@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Atentik</string>
+
+    <!--FONT START-->
+    <string name="fontReguler" translatable="false">fonts/Gotham_Light.otf</string>
+    <string name="fontRegulerItalic" translatable="false">fonts/Gotham_LightItalic.otf</string>
+    <string name="fontBold" translatable="false">fonts/Gotham_Book.otf</string>
+    <string name="fontBoldItalic" translatable="false">fonts/Gotham_BookItalic.otf</string>
+    <string name="fontBlack" translatable="false">fonts/Gotham_Medium.otf</string>
+    <string name="fontBlackItalic" translatable="false">fonts/Gotham_MediumItalic.otf</string>
+    <string name="fontExtraBold" translatable="false">fonts/GothamBlack.otf</string>
+    <string name="fontThin" translatable="false">fonts/Gotham_Thin.otf</string>
+    <!--FONT FINISH-->
+</resources>

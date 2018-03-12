@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff7800</color>
+    <color name="colorPrimaryDark">#C65D00</color>
+    <color name="colorAccent">#ff2a00</color>
+    <color name="putih">#ffffff</color>
+    <color name="hitam">#000</color>
+    <color name="dasar">#fafafa</color>
+    <color name="biruDongker">#23333f</color>
+    <color name="Abu">#727272</color>
+</resources>
