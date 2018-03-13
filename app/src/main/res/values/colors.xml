@@ -5,7 +5,12 @@
     <color name="colorAccent">#ff2a00</color>
     <color name="putih">#ffffff</color>
     <color name="hitam">#000</color>
-    <color name="dasar">#fafafa</color>
     <color name="biruDongker">#23333f</color>
+    <color name="background">#fafafa</color>
     <color name="Abu">#727272</color>
+    <color name="AbuMuda">#CFCECE</color>
+    <color name="biru">#1B92BF</color>
+    <color name="ungu">#DC41DC</color>
+    <color name="red">#FF4D48</color>
+    <color name="ijo">#39C942</color>
 </resources>

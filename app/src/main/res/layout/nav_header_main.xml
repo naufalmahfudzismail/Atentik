@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="-25dp"
+            android:paddingTop="16dp"
+            android:src="@drawable/logo" />
+
+        <fr.arnaudguyon.smartfontslib.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_toEndOf="@id/imageView"
+            android:paddingTop="16dp"
+            android:layout_marginStart="-10dp"
+            app:smart_font="@string/fontBlack"
+            android:textSize="26sp"
+            android:layout_marginTop="25dp"/>
+
+    </RelativeLayout>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:textColor="@color/Abu"
+        app:smart_font="@string/fontBlack"
+        android:textSize="16sp"
+        android:text="Muhamad Hafizh"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/nim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Abu"
+        app:smart_font="@string/fontReguler"
+        android:text="4314010034" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/AbuMuda"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

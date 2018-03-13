@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Atentik</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!--FONT START-->
     <string name="fontReguler" translatable="false">fonts/Gotham_Light.otf</string>
@@ -11,4 +14,7 @@
     <string name="fontExtraBold" translatable="false">fonts/GothamBlack.otf</string>
     <string name="fontThin" translatable="false">fonts/Gotham_Thin.otf</string>
     <!--FONT FINISH-->
+
+    <string name="logDosen"><u>Sign in as lecturer</u></string>
+    <string name="roleAbsen"><u>Baca aturan tentang kehadiran disini</u></string>
 </resources>
