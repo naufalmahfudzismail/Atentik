@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:smart_font="@string/fontBlack"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorPrimary"
+        android:text="PILIH RUANG KELAS"
+        android:layout_gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/rViewCube"
+        android:layout_marginTop="10dp"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scan"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        app:smart_font="@string/fontBlack"
+        android:textColor="@color/colorPrimary"
+        android:text="SCAN"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

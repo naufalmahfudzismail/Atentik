@@ -9,17 +9,21 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.splash_screen"
+        <activity
+            android:name=".Activity.splash_screen"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.login"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Activity.register"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".Activity.login"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activity.register"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Activity.activity_main">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -29,7 +33,9 @@
         <activity android:name=".Activity.jadwal_kuliah" />
         <activity android:name=".Activity.login_dosen" />
         <activity android:name=".Activity.register_dosen" />
-        <activity android:name=".Activity.statistik_view"/>
+        <activity android:name=".Activity.statistik_view" />
+        <activity android:name=".Activity.home_2" />
+        <activity android:name=".Activity.peraturan"></activity>
     </application>
 
 </manifest>

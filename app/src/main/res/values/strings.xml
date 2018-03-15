@@ -17,4 +17,46 @@
 
     <string name="logDosen"><u>Sign in as lecturer</u></string>
     <string name="roleAbsen"><u>Baca aturan tentang kehadiran disini</u></string>
+
+    <!--MATKUL-->
+    <string name="matkul1">Pengantar Algoritma dan Pemograman</string>
+    <string name="matkul2">Basis Data</string>
+    <string name="matkul3">Pengantar Multimedia</string>
+    <!--MATKUL FINISH-->
+
+    <!--RUANGAN-->
+    <string name="aa301">AA301</string>
+    <string name="aa302">AA302</string>
+    <string name="aa303">AA303</string>
+    <!--RUANGAN FINISH-->
+
+    <string name="sampleTxt">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry is standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book. It has survived not only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in
+        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus PageMaker including
+        versions of Lorem Ipsum.
+    </string>
+
+    <string name="about">
+        Atentik merupakan kependekan dari attandence tik, aplikasi yang hadir untuk
+        menangani masalah-masalah yang ada di lingkungan TIK PNJ khususnya pada masalah
+        absensi mahasiswa, aplikasi ini hanya dikhususkan untuk warga TIK PNJ.
+        Selain itu terdapat pula beberapa fitur tambahan yang bisa dimanfaatkan
+        oleh warga TIK PNJ. Aplikasi ini mengandalkan teknologi Bluetooth dan koneksi internet
+        pada smartphone user.
+    </string>
+
+    <string name="developer">
+        <b>Founded : September 2017</b>\n
+        Develeped by TiregDev
+    </string>
+
+    <string name="web">
+        <u>www.atentik.com</u>
+    </string>
+
 </resources>

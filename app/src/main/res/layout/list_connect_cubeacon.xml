@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/ruangan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBlack"
+                android:textColor="@color/Abu"
+                android:text="AA301" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/cubeaconNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:layout_below="@id/ruangan"
+                android:textSize="12sp"
+                android:textColor="@color/Abu"
+                android:text="CBN_820" />
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:textAllCaps="false"
+                android:background="@color/Abu"
+                app:smart_font="@string/fontExtraBold"
+                android:textColor="@color/putih"
+
+                android:text="Absen"
+                android:layout_alignParentEnd="true"/>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

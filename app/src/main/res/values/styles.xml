@@ -12,8 +12,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="SetToolbar" parent="AppTheme" >
+        <item name="android:windowBackground">@color/putih</item>
+        <item name="android:colorBackground">@color/putih</item>
         <item name="android:textColorPrimary">@color/putih</item>
-        <item name="colorControlNormal">@color/putih</item>
+        <item name="android:textColorPrimaryInverse">@color/colorPrimary</item>
     </style>
 
 </resources>

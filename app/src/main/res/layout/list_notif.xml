@@ -1,0 +1,36 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        app:smart_font="@string/fontBlack"
+        android:id="@+id/judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jadwal Pendataan"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        app:smart_font="@string/fontReguler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/isi"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="Pengumuman"
+        android:layout_below="@id/judul"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        app:smart_font="@string/fontReguler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:id="@+id/time"
+        android:layout_alignParentEnd="true"
+        android:text="02/02/2018"/>
+
+</RelativeLayout>
