@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         app:smart_font="@string/fontBlack"
         android:textColor="@color/Abu"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="120dp"
         android:text="Pemograman Web"/>
 
     <fr.arnaudguyon.smartfontslib.FontTextView
@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         app:smart_font="@string/fontReguler"
         android:textColor="@color/Abu"
-        android:textSize="12sp"
-        android:layout_below="@id/matkul"
+        android:textSize="12sp" android:layout_below="@id/matkul"
         android:text="AA303"/>
 
     <fr.arnaudguyon.smartfontslib.FontTextView
@@ -64,5 +63,28 @@
         android:layout_alignParentEnd="true"
         android:textColor="@color/Abu"
         android:text="10"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/kompenTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:smart_font="@string/fontReguler"
+        android:layout_below="@id/telatTxt"
+        android:textSize="10sp"
+        android:layout_toStartOf="@id/jam"
+        android:textColor="@color/Abu"
+        android:text="Kompensasi (jam) : "/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/kompen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/telat"
+        android:layout_marginBottom="3dp"
+        app:smart_font="@string/fontBlack"
+        android:textSize="10sp"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/Abu"
+        android:text="1"/>
 
 </RelativeLayout>

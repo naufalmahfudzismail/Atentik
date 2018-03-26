@@ -1,10 +1,12 @@
 package id.tiregdev.atentik.Adapter;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -39,6 +41,7 @@ public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.
         holder.jabatanAatauKelas.setText(itemList.get(position).getJabatanAatauKelas());
         holder.nipAtauNim.setText(itemList.get(position).getNipAtauNim());
         holder.emailAtauTlpn.setText(itemList.get(position).getEmailAtauTlpn());
+        holder.ava.setImageResource(itemList.get(position).getAva());
     }
 
     @Override
@@ -48,6 +51,7 @@ public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.
 
     public class holder_mhsw_dosen extends RecyclerView.ViewHolder {
         public TextView nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn;
+        public ImageView ava;
 
         public holder_mhsw_dosen(View itemView){
             super(itemView);
@@ -56,6 +60,19 @@ public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.
             jabatanAatauKelas = itemView.findViewById(R.id.jabatanAtauKelas);
             nipAtauNim = itemView.findViewById(R.id.nipAtauNim);
             emailAtauTlpn = itemView.findViewById(R.id.emailAtauTlp);
+            ava = itemView.findViewById(R.id.ava);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final LayoutInflater factory = LayoutInflater.from(context);
+                    final View exitDialogView = factory.inflate(R.layout.dialog_detail_dsn_mhsw, null);
+                    final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
+
+                    exitDialog.setView(exitDialogView);
+                    exitDialog.show();
+                }
+            });
         }
     }
 

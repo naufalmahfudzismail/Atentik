@@ -7,12 +7,14 @@ package id.tiregdev.atentik.Model;
 public class object_mhsw_dosen {
 
     private String nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn;
+    private int ava;
 
-    public object_mhsw_dosen(String nama, String jabatanAatauKelas, String nipAtauNim, String emailAtauTlpn) {
+    public object_mhsw_dosen(String nama, String jabatanAatauKelas, String nipAtauNim, String emailAtauTlpn, int ava) {
         this.nama = nama;
         this.jabatanAatauKelas = jabatanAatauKelas;
         this.nipAtauNim = nipAtauNim;
         this.emailAtauTlpn = emailAtauTlpn;
+        this.ava = ava;
     }
 
     public String getNama() {
@@ -45,5 +47,13 @@ public class object_mhsw_dosen {
 
     public void setEmailAtauTlpn(String emailAtauTlpn) {
         this.emailAtauTlpn = emailAtauTlpn;
+    }
+
+    public int getAva() {
+        return ava;
+    }
+
+    public void setAva(int ava) {
+        this.ava = ava;
     }
 }

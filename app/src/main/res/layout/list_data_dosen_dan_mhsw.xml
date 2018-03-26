@@ -12,15 +12,25 @@
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
+            android:id="@+id/wrapperCV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ava"
+                android:id="@+id/ava"
+                android:contentDescription="@string/app_name"/>
 
             <fr.arnaudguyon.smartfontslib.FontTextView
                 android:id="@+id/nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/ava"
+                android:layout_marginStart="15dp"
                 android:text="Jadwal Pendataan"
                 android:textColor="@color/colorPrimaryDark"
                 app:smart_font="@string/fontBlack" />
@@ -30,6 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nama"
+                android:layout_toEndOf="@id/ava"
+                android:layout_marginStart="15dp"
                 android:text="Pengumuman"
                 android:textSize="12sp"
                 app:smart_font="@string/fontReguler" />
@@ -39,8 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nama"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_toEndOf="@id/jabatanAtauKelas"
-                android:text=" | "
+                android:text="@string/spasi"
                 android:textSize="12sp"
                 app:smart_font="@string/fontReguler" />
 
@@ -49,6 +63,8 @@
                 android:id="@+id/nipAtauNim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_below="@id/nama"
                 android:layout_toEndOf="@id/spasi"
                 android:text="02/02/2018"
@@ -60,6 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nipAtauNim"
+                android:layout_toEndOf="@id/ava"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:text="02/02/2018"
                 android:textSize="12sp"

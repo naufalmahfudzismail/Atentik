@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.tiregdev.atentik.Activity.peraturan">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/SetToolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontExtraBold"
+                android:textColor="@color/Abu"
+                android:layout_marginTop="20dp"
+                android:text="Pasal 31"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBold"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/Abu"
+                android:text="Ketidakhadiran/Absen yang Diizinkan"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:textColor="@color/Abu"
+                android:text="@string/pasal31"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/AbuMuda"
+                android:layout_marginTop="15dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontExtraBold"
+                android:textColor="@color/Abu"
+                android:layout_marginTop="15dp"
+                android:text="Pasal 32"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBold"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/Abu"
+                android:text="Ketidakhadiran/Absen yang Tidak Diizinkan"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:textColor="@color/Abu"
+                android:text="@string/pasal32"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/AbuMuda"
+                android:layout_marginTop="15dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontExtraBold"
+                android:textColor="@color/Abu"
+                android:layout_marginTop="15dp"
+                android:text="Pasal 33"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBold"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/Abu"
+                android:text="Batas Maksimum Ketidakhadiran dan Sanksi"
+                android:textAlignment="center"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:textColor="@color/Abu"
+                android:text="@string/pasal33"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

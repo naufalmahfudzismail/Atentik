@@ -1,9 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/wrapEditProfile"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="id.tiregdev.atentik.Activity.edit_profile">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/SetToolbar">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="U B A H  D A T A  D I R I"
+                android:textAlignment="center"
+                android:textColor="@color/putih"
+                android:textSize="18sp"
+                app:smart_font="@string/fontReguler" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/wrapHeader"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorPrimary">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ava" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/photo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="Muhamad Hafizh"
+                android:textColor="@color/putih"
+                android:textSize="16sp"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/nip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nama"
+                android:layout_centerHorizontal="true"
+                android:text="Muhamad Hafizh"
+                android:textColor="@color/putih"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nip"
+                android:visibility="gone"
+                android:textSize="12sp"
+                android:layout_centerHorizontal="true"
+                android:text="Dosen Tetap Non PNS"
+                android:textColor="@color/putih"
+                app:smart_font="@string/fontReguler" />
+
+            <RelativeLayout
+                android:id="@+id/wrapNim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_below="@id/nama"
+                android:gravity="center">
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/nim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="4314010034"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontReguler" />
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/spasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/nim"
+                    android:text="@string/spasi"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontReguler" />
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/kelas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@id/spasi"
+                    android:text="TI 8 Reg"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontReguler" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/wrapContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-30dp"
+            android:background="@drawable/bg_shape_white"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/emailTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/colorPrimary"
+                app:smart_font="@string/fontBold" />
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawablePadding="15dp"
+                android:drawableStart="@drawable/ic_mode_edit_black_24dp"
+                android:text="hvs137@gmail.com"
+                android:textAllCaps="false"
+                android:textColor="@color/Abu"
+                android:textSize="16sp"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Nomor Telepon"
+                android:textColor="@color/colorPrimary"
+                app:smart_font="@string/fontBold" />
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/tlp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawablePadding="15dp"
+                android:drawableStart="@drawable/ic_mode_edit_black_24dp"
+                android:text="085613212276"
+                android:textAllCaps="false"
+                android:textColor="@color/Abu"
+                android:textSize="16sp"
+                app:smart_font="@string/fontReguler" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/AbuMuda" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="IMEI HP"
+                android:textColor="@color/colorPrimary"
+                app:smart_font="@string/fontBold" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/imei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3212273"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Status SP"
+                android:textColor="@color/colorPrimary"
+                app:smart_font="@string/fontBold" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/statusSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tidak mendapat SP"
+                app:smart_font="@string/fontReguler" />
+
+        </LinearLayout>
+
+        <fr.arnaudguyon.smartfontslib.FontTextView
+            android:id="@+id/nb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="*Tekan dan tahan untuk ubah data"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:layout_marginBottom="20dp"
+            android:textSize="12sp"
+            app:smart_font="@string/fontReguler" />
+
+
+    </LinearLayout>
+</ScrollView>

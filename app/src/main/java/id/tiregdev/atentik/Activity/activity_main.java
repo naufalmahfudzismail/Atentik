@@ -33,9 +33,7 @@ import id.tiregdev.atentik.R;
 public class activity_main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AdvanceDrawerLayout drawer;
-    TextView nama, nim, kelas;
-    public static Context mainContext;
-    private boolean backPressedToExitOnce = false;
+    TextView nama, nimOrNip, kelasOrStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,8 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
     public void setDrawer() {
         Toolbar toolbar = findViewById(R.id.toolbar);
 //        nama = toolbar.findViewById(R.id.nama);
-//        nim =  toolbar.findViewById(R.id.nim);
-//        kelas = toolbar.findViewById(R.id.kelas);
+//        nimOrNip =  toolbar.findViewById(R.id.nimOrNip);
+//        kelasOrStatus = toolbar.findViewById(R.id.kelasOrStatus);
         setSupportActionBar(toolbar);
 
 

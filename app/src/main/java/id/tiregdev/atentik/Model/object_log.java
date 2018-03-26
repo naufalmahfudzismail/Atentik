@@ -6,13 +6,14 @@ package id.tiregdev.atentik.Model;
 
 public class object_log {
 
-    private String matkul, ruang, jamHadir, telat;
+    private String matkul, ruang, jamHadir, telat, kompen;
 
-    public object_log(String matkul, String ruang, String jamHadir, String telat) {
+    public object_log(String matkul, String ruang, String jamHadir, String telat, String kompen) {
         this.matkul = matkul;
         this.ruang = ruang;
         this.jamHadir = jamHadir;
         this.telat = telat;
+        this.kompen = kompen;
     }
 
     public String getMatkul() {
@@ -45,5 +46,13 @@ public class object_log {
 
     public void setTelat(String telat) {
         this.telat = telat;
+    }
+
+    public String getKompen() {
+        return kompen;
+    }
+
+    public void setKompen(String kompen) {
+        this.kompen = kompen;
     }
 }

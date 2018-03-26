@@ -1,9 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/AbuBG"
     tools:context="id.tiregdev.atentik.Activity.login_dosen">
 
-</android.support.constraint.ConstraintLayout>
+    <fr.arnaudguyon.smartfontslib.FontButton
+        android:id="@+id/logMhsw"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/AbuTua"
+        android:text="@string/logMhsw"
+        app:smart_font="@string/fontExtraBold"
+        android:textAllCaps="false"
+        android:textColor="@color/putih"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="50dp">
+
+            <ImageView
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_arrow_forward_white_36dp" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/loginTxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/register"
+                android:lineSpacingExtra="10dp"
+                android:layout_marginTop="40dp"
+                android:text="Lecture Page"
+                android:textSize="30sp"
+                android:textColor="@color/putih"
+                app:smart_font="@string/fontExtraBold" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/Txt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginTxt"
+                android:lineSpacingExtra="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Sign for start your session"
+                android:textColor="@color/pink"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/nim"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/Txt"
+                android:layout_marginTop="40dp"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_person_white_24dp"
+                android:hint="NIP"
+                android:inputType="number"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/nim"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_lock_white_24dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/pass"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_button_dark"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="Sign In"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:smart_font="@string/fontExtraBold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnLogin"
+                android:gravity="center">
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/regisTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Dont have account?"
+                    android:textColor="@color/AbuMuda"
+                    app:smart_font="@string/fontReguler" />
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/regis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/regisTxt"
+                    android:text="Sign Up"
+                    android:textColor="@color/pink"
+                    app:smart_font="@string/fontBlack" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

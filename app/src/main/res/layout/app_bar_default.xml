@@ -11,6 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -46,10 +47,10 @@
                     android:ellipsize="end"
                     android:textColor="@color/putih"
                     android:textSize="16sp"
-                    app:smart_font="@string/fontBlack" />
+                    app:smart_font="@string/fontBold" />
 
                 <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/nim"
+                    android:id="@+id/nimOrNip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4314010034"
@@ -61,19 +62,21 @@
                     android:id="@+id/spasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="|"
-                    android:layout_toEndOf="@id/nim"
+                    android:text="@string/spasi"
+                    android:layout_toEndOf="@id/nimOrNip"
                     android:layout_marginStart="5dp"
                     android:layout_below="@id/nama"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
                 <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/kelas"
+                    android:id="@+id/kelasOrStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TI 8 Reguler"
                     android:layout_toEndOf="@id/spasi"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
                     android:layout_marginStart="5dp"
                     android:layout_below="@id/nama"
                     android:textColor="@color/putih"

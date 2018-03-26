@@ -1,9 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.tiregdev.atentik.Activity.register_dosen">
+    android:background="@color/AbuBG"
+    tools:context=".Activity.register_dosen">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="50dp">
+
+        <ImageView
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_arrow_back_white_36dp" />
+
+        <fr.arnaudguyon.smartfontslib.FontTextView
+            android:id="@+id/loginTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnLogin"
+            android:layout_marginTop="40dp"
+            android:lineSpacingExtra="10dp"
+            android:textColor="@color/putih"
+            android:text="Create new lecturer account"
+            android:textSize="30sp"
+            app:smart_font="@string/fontExtraBold" />
+
+        <LinearLayout
+            android:id="@+id/wrapEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/loginTxt"
+            android:orientation="vertical">
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/nama"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:hint="Name"
+                android:inputType="textEmailAddress"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_sort_by_alpha_white_24dp"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/nip"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:hint="NIP"
+                android:inputType="number"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_person_white_24dp"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_lock_outline_white_24dp"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontEditText
+                android:id="@+id/confirmPass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_lock_white_24dp"
+                android:textColor="@color/putih"
+                android:textColorHint="@color/AbuMuda"
+                app:smart_font="@string/fontReguler" />
+
+        </LinearLayout>
+
+        <fr.arnaudguyon.smartfontslib.FontButton
+            android:id="@+id/btnRegis"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/wrapEditText"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_button_dark"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:smart_font="@string/fontExtraBold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnRegis"
+            android:gravity="center">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/regisTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/AbuMuda"
+                android:text="Do you have account?"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@id/regisTxt"
+                android:text="Sign In"
+                android:textColor="@color/pink"
+                app:smart_font="@string/fontBlack" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

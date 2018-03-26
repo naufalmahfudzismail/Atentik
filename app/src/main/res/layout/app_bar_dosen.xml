@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Activity.main_dosen"
+    tools:showIn="@layout/activity_main_dosen">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:elevation="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/AbuBG"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:smart_font="@string/fontBold"
+                android:text="Notification"
+                android:visibility="visible"/>
+
+            <LinearLayout
+                android:id="@+id/wrapperToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:text="Dr. Geraldi Joni STr., MI."
+                    android:ellipsize="end"
+                    android:textColor="@color/putih"
+                    android:textSize="16sp"
+                    app:smart_font="@string/fontBlack" />
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/nip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="098898267615562874"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontReguler" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_default_dosen" />
+
+</android.support.design.widget.CoordinatorLayout>

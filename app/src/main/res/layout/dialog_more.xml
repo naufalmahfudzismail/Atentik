@@ -7,10 +7,10 @@
     android:padding="20dp">
 
     <fr.arnaudguyon.smartfontslib.FontTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/filterPage"
-        android:layout_gravity="center"
+        android:textAlignment="center"
         app:smart_font="@string/fontBlack"
         android:textColor="@color/Abu"
         android:text="Filter"/>
@@ -24,12 +24,12 @@
         android:layout_marginBottom="10dp"/>
 
     <fr.arnaudguyon.smartfontslib.FontTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:textAlignment="center"
         android:id="@+id/statistik"
         app:smart_font="@string/fontBlack"
         android:textColor="@color/Abu"
-        android:text="Statistik"/>
+        android:text="Mode Statistik Data"/>
 
 </LinearLayout>

@@ -32,16 +32,14 @@ public class register extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(register.this, id.tiregdev.atentik.Activity.login.class);
-                startActivity(i);
+                register.this.finish();
             }
         });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(register.this, id.tiregdev.atentik.Activity.login.class);
-                startActivity(i);
+                register.this.finish();
             }
         });
     }

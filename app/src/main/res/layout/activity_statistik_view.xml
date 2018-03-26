@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.tiregdev.atentik.Activity.statistik_view">
+    android:orientation="vertical"
+    tools:context=".Activity.statistik_view">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <RelativeLayout
+            android:id="@+id/wrapperToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statistik Data Kehadiran"
+                android:textColor="@color/putih"
+                android:textSize="16sp"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:text="Muhamad Hafizh"
+                android:textColor="@color/putih"
+                app:smart_font="@string/fontReguler" />
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert_white_24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_public_black_48dp"
+                android:contentDescription="@string/app_name"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:text="@string/statistik"
+                android:textAlignment="center"
+                android:layout_marginTop="20dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBold"
+                android:text="@string/web"
+                android:textColor="@color/colorPrimary"
+                android:textAlignment="center"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

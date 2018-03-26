@@ -13,4 +13,14 @@
     <color name="ungu">#DC41DC</color>
     <color name="red">#FF4D48</color>
     <color name="ijo">#39C942</color>
+    <color name="toska">#24C6B1</color>
+    <color name="AbuBG">#414A53</color>
+    <color name="bgCV">#515b64</color>
+    <color name="AbuTua">#1F242A</color>
+    <color name="pink">#F06471</color>
+    <color name="biruPastel">#5C989E</color>
+    <color name="orangePastel">#FF903A</color>
+    <color name="merahPastel">#df5e74</color>
+    <color name="unguPastel">#ada2ff</color>
+    <color name="ijoPastel">#5c965d</color>
 </resources>

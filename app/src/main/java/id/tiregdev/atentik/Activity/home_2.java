@@ -2,9 +2,14 @@ package id.tiregdev.atentik.Activity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -19,9 +24,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import id.tiregdev.atentik.Adapter.adapter_kompen_terbanyak;
+import id.tiregdev.atentik.Model.object_kompen_terbanyak;
 import id.tiregdev.atentik.R;
 
 public class home_2 extends AppCompatActivity {
+
+    RecyclerView rView;
+    LinearLayoutManager  lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +47,7 @@ public class home_2 extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
 
         dialogOpsi();
+        setupAdapterkompen_terbanyak();
     }
 
     @Override
@@ -128,5 +142,37 @@ public class home_2 extends AppCompatActivity {
             }
         });
         exitDialog.show();
+    }
+
+    public void setupAdapterkompen_terbanyak(){
+        List<object_kompen_terbanyak> rowListItem = getAllItemList();
+        lLayout = new LinearLayoutManager(home_2.this);
+
+        rView = findViewById(R.id.rView);
+        rView.setLayoutManager(lLayout);
+
+        adapter_kompen_terbanyak rcAdapter = new adapter_kompen_terbanyak(home_2.this, rowListItem);
+        rView.setAdapter(rcAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(home_2.this, lLayout.getOrientation());
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(home_2.this, R.drawable.line_shape));
+        rView.addItemDecoration(dividerItemDecoration);
+
+    }
+
+    private List<object_kompen_terbanyak> getAllItemList(){
+        List<object_kompen_terbanyak> allItems = new ArrayList<>();
+        allItems.add(new object_kompen_terbanyak("1.","Kurain Aji", "TMD 4 Reg","121 Jam", "SP 3", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("2.","Aji Kurain", "TI 2a Reg","111 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("3.","Kirain Aji", "TI 2b MSU","101 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("4.","Yusuf Aji", "CCIT 4a","91 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("5.","Aji Setya", "TI 4 AeU","90 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("6.","Nugraha Aji", "TMJ 6 Reg","88 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("7.","Aji", "TMD 2 Reg","86 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("8.","Kurain Yusuf", "TMD 4 Reg","83 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("9.","Ajino Moto", "TI 4 Reg","75 Jam", "SP 1", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("10.","Kirain Yusuf", "TI 2c MSU","70 Jam", "SP 1", R.drawable.ava));
+
+        return allItems;
     }
 }

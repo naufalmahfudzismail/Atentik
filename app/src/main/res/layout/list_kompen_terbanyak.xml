@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:smart_font="@string/fontReguler"
+        android:textSize="18sp"
+        android:text="1."
+        android:id="@+id/urutan"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ava"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ava" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/ava"
+        android:text="Kurain Aji"
+        android:textColor="@color/colorPrimaryDark"
+        app:smart_font="@string/fontBlack" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/kelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/ava"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/nama"
+        android:text="TMD 4 Reg"
+        android:textSize="12sp"
+        app:smart_font="@string/fontReguler" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/spasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toEndOf="@id/kelas"
+        android:text="@string/spasi"
+        android:textSize="12sp"
+        app:smart_font="@string/fontReguler" />
+
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/jumlahKompen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama"
+        android:layout_toEndOf="@id/spasi"
+        android:text="121 Jam"
+        android:textSize="12sp"
+        app:smart_font="@string/fontReguler" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/statusSPtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jumlahKompen"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/ava"
+        android:text="Status SP : "
+        android:textSize="12sp"
+        android:textColor="@color/red"
+        app:smart_font="@string/fontBold" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/statusSP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jumlahKompen"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/statusSPtxt"
+        android:text="SP 2"
+        android:textSize="12sp"
+        android:textColor="@color/red"
+        app:smart_font="@string/fontBold" />
+
+</RelativeLayout>

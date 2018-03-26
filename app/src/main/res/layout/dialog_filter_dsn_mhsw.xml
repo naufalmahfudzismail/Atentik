@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="Filter Data"
+        android:textColor="@color/Abu"
+        app:smart_font="@string/fontExtraBold" />
+
+    <Spinner
+        android:id="@+id/sortKelas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_spinner"
+        android:padding="5dp"
+        android:spinnerMode="dropdown" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button"
+        android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:text="Tampilkan"
+        android:textAllCaps="false"
+        android:textColor="@color/putih"
+        app:smart_font="@string/fontExtraBold" />
+
+</LinearLayout>

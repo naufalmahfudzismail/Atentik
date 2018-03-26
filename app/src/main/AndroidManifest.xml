@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.tiregdev.atentik">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -32,10 +34,26 @@
         <activity android:name=".Activity.edit_profile" />
         <activity android:name=".Activity.jadwal_kuliah" />
         <activity android:name=".Activity.login_dosen" />
-        <activity android:name=".Activity.register_dosen" />
-        <activity android:name=".Activity.statistik_view" />
-        <activity android:name=".Activity.home_2" />
-        <activity android:name=".Activity.peraturan"></activity>
+        <activity
+            android:name=".Activity.register_dosen"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activity.statistik_view"
+            android:noHistory="true" />
+        <activity
+            android:name=".Activity.home_2"
+            android:noHistory="true" />
+        <activity android:name=".Activity.peraturan" />
+        <activity android:name=".Activity.detail_notif" />
+        <activity android:name=".Activity.main_dosen" />
+        <activity android:name=".Activity.detail_notif_dosen" />
+        <activity android:name=".Activity.edit_profile_dosen" />
+        <activity android:name=".Activity.jadwal_kuliah_dosen" />
+        <activity android:name=".Activity.set_jadwal_masuk_dosen"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activity.set_jadwal_masuk_dosen_2"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activity.log_mahasiswa"></activity>
     </application>
 
 </manifest>

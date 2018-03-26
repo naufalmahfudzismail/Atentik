@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapSetJadwalMasukDosen"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:id="@+id/wrapperToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Jadwal Masuk Dosen"
+                android:textColor="@color/putih"
+                android:textSize="16sp"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/tglTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:text="Hari ini : "
+                android:textColor="@color/putih"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/tgl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_toEndOf="@id/tglTxt"
+                android:text="Senin, 12 Mei 2018"
+                android:textColor="@color/putih"
+                app:smart_font="@string/fontReguler" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBlack"
+                android:text="@string/mk2"
+                android:layout_marginTop="5dp"
+                android:id="@+id/namaMatkul"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:text="Dr.Geraldi Joni STr.,MI."
+                android:textSize="12sp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/namaDosen"/>
+
+            <RadioGroup
+                android:id="@+id/RG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTelat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dosen telat masuk"
+                    android:textColor="@color/Abu"
+                    android:buttonTint="@color/toska"
+                    app:smart_font="@string/fontReguler" />
+
+
+                <fr.arnaudguyon.smartfontslib.FontEditText
+                    android:id="@+id/setJamMasuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:enabled="false"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="-5dp"
+                    android:hint="Mata kuliah dimulai pada jam :"
+                    android:inputType="time"
+                    android:textColor="@color/Abu"
+                    android:textColorHint="@color/AbuMuda"
+                    android:textSize="14sp"
+                    app:smart_font="@string/fontBold">
+
+                    <requestFocus/>
+
+                </fr.arnaudguyon.smartfontslib.FontEditText>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTidakMasuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/toska"
+                    android:text="Dosen tidak masuk dan kelas ditiadakan"
+                    android:textColor="@color/Abu"
+                    app:smart_font="@string/fontReguler" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTidakMasukMhswMasuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/toska"
+                    android:text="Dosen tidak masuk dan kelas tetap berjalan"
+                    android:textColor="@color/Abu"
+                    app:smart_font="@string/fontReguler" />
+
+            </RadioGroup>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:visibility="gone"
+                android:textSize="12sp"
+                android:id="@+id/namaTxt"
+                android:text="Terakhir di ubah oleh :"
+                android:layout_marginTop="20dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:visibility="gone"
+                android:text="Ilham Al-Fajri"
+                android:id="@+id/namaUpdate"
+                android:layout_marginTop="2dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:visibility="gone"
+                android:text="pada pukul : 06.30"
+                android:textSize="10sp"
+                android:id="@+id/waktuUpdate"
+                android:layout_marginTop="2dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_button"
+                android:paddingEnd="50dp"
+                android:paddingStart="50dp"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/putih"
+                android:textSize="16sp"
+                app:smart_font="@string/fontExtraBold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

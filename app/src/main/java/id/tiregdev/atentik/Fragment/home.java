@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.tiregdev.atentik.Activity.edit_profile;
+import id.tiregdev.atentik.Activity.edit_profile_dosen;
 import id.tiregdev.atentik.Activity.home_2;
+import id.tiregdev.atentik.Activity.jadwal_kuliah;
 import id.tiregdev.atentik.Activity.peraturan;
 import id.tiregdev.atentik.Adapter.adapter_cubeacon;
 import id.tiregdev.atentik.Adapter.adapter_log;
@@ -37,9 +39,10 @@ import id.tiregdev.atentik.R;
 public class home extends Fragment {
 
     TextView nextData, peraturans;
-    Button editProfile;
+    CardView editProfile;
+    Button editProfileBtn;
     RecyclerView rView;
-    RelativeLayout absen;
+    RelativeLayout absen, jadwal;
     LinearLayoutManager  lLayout;
     View v;
 
@@ -47,8 +50,6 @@ public class home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_home, container, false);
-        CardView cv = v.findViewById(R.id.cv);
-        cv.setPreventCornerOverlap(false);
         findId();
         setupAdapterLog();
         return v;
@@ -56,10 +57,29 @@ public class home extends Fragment {
 
 
     public void findId(){
+        jadwal = v.findViewById(R.id.jadwal);
         nextData = v.findViewById(R.id.nextData);
         peraturans = v.findViewById(R.id.peraturan);
         editProfile = v.findViewById(R.id.editProfile);
+        editProfile.setPreventCornerOverlap(false);
         absen = v.findViewById(R.id.absen);
+
+        jadwal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), jadwal_kuliah.class);
+                startActivity(i);
+            }
+        });
+
+        editProfileBtn = v.findViewById(R.id.editProfileBtn);
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), edit_profile.class);
+                startActivity(i);
+            }
+        });
 
         absen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,20 +159,14 @@ public class home extends Fragment {
 
     private List<object_log> getAllItemList(){
         List<object_log> allItems = new ArrayList<>();
-        allItems.add(new object_log(getResources().getString(R.string.matkul1), getResources().getString(R.string.aa301),"08.10", "10"));
-        allItems.add(new object_log(getResources().getString(R.string.matkul2), getResources().getString(R.string.aa301),"10.15", "15"));
-        allItems.add(new object_log(getResources().getString(R.string.matkul3), getResources().getString(R.string.aa302),"13.00", "0"));
-        allItems.add(new object_log(getResources().getString(R.string.matkul1), getResources().getString(R.string.aa301),"08.10", "10"));
-        allItems.add(new object_log(getResources().getString(R.string.matkul2), getResources().getString(R.string.aa301),"10.15", "15"));
+        allItems.add(new object_log(getResources().getString(R.string.matkul1), getResources().getString(R.string.aa301),"08.10", "10", "1"));
+        allItems.add(new object_log(getResources().getString(R.string.matkul2), getResources().getString(R.string.aa301),"10.15", "15", "1"));
+        allItems.add(new object_log(getResources().getString(R.string.matkul3), getResources().getString(R.string.aa302),"13.00", "0", "0"));
+        allItems.add(new object_log(getResources().getString(R.string.matkul1), getResources().getString(R.string.aa301),"08.10", "10", "1"));
+        allItems.add(new object_log(getResources().getString(R.string.matkul2), getResources().getString(R.string.aa301),"10.15", "15", "1"));
 
         return allItems;
     }
-
-
-//    public void setupAdapterCubecon(){
-//
-//    }
-
 
 }
 

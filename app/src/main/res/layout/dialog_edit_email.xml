@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="20dp">
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tuliskan email baru"
+        app:smart_font="@string/fontBlack" />
+
+    <fr.arnaudguyon.smartfontslib.FontEditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/edtEmail"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/txt"
+        android:background="@color/putih"
+        android:padding="10dp"
+        android:textColor="@color/Abu"
+        app:smart_font="@string/fontReguler">
+
+        <requestFocus />
+    </fr.arnaudguyon.smartfontslib.FontEditText>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEmail"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorAccent"
+        android:layout_toStartOf="@id/tidak"
+        android:layout_marginEnd="30dp"
+        android:text="Simpan"
+        app:smart_font="@string/fontBold" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/tidak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtEmail"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentEnd="true"
+        android:text="Tidak"
+        app:smart_font="@string/fontBold" />
+
+</RelativeLayout>

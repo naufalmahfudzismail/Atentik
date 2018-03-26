@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapJadwal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AbuBG"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/AbuBG"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/AbuBG">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontBold"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:text="Edit log mahasiswa"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:gravity="end">
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="save"
+                    android:id="@+id/save"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontBold" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_bar"
+            style="@style/SearchViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:background="@color/AbuBG"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            app:iconifiedByDefault="false"
+            app:queryHint="Cari nama atau nim" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp" />
+
+</LinearLayout>

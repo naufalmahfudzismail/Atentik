@@ -39,6 +39,7 @@ public class adapter_log extends RecyclerView.Adapter<adapter_log.holder_log> {
         holder.ruang.setText(itemList.get(position).getRuang());
         holder.jamHadir.setText(itemList.get(position).getJamHadir());
         holder.telat.setText(itemList.get(position).getTelat());
+        holder.kompen.setText(itemList.get(position).getKompen());
     }
 
     @Override
@@ -47,7 +48,7 @@ public class adapter_log extends RecyclerView.Adapter<adapter_log.holder_log> {
     }
 
     public class holder_log extends RecyclerView.ViewHolder {
-        public TextView matkul, ruang, jamHadir, telat;
+        public TextView matkul, ruang, jamHadir, telat, kompen;
 
         public holder_log(View itemView){
             super(itemView);
@@ -56,6 +57,7 @@ public class adapter_log extends RecyclerView.Adapter<adapter_log.holder_log> {
             ruang = itemView.findViewById(R.id.ruangan);
             jamHadir = itemView.findViewById(R.id.jam);
             telat = itemView.findViewById(R.id.telat);
+            kompen = itemView.findViewById(R.id.kompen);
         }
     }
 

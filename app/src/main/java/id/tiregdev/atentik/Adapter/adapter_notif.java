@@ -1,14 +1,20 @@
 package id.tiregdev.atentik.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
+import id.tiregdev.atentik.Activity.detail_notif;
 import id.tiregdev.atentik.Model.object_notif;
 import id.tiregdev.atentik.R;
 
@@ -25,6 +31,7 @@ public class adapter_notif extends RecyclerView.Adapter<adapter_notif.holder_not
         this.itemList = itemList;
         this.context = context;
     }
+
 
     @Override
     public holder_notif onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,12 +55,20 @@ public class adapter_notif extends RecyclerView.Adapter<adapter_notif.holder_not
     public class holder_notif extends RecyclerView.ViewHolder {
         public TextView judul, isi, waktu;
 
-        public holder_notif(View itemView) {
+        public holder_notif(final View itemView) {
             super(itemView);
 
             judul = itemView.findViewById(R.id.judul);
             isi = itemView.findViewById(R.id.isi);
             waktu = itemView.findViewById(R.id.time);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, detail_notif.class);
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }

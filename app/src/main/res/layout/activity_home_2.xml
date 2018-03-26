@@ -42,11 +42,11 @@
                 android:id="@+id/more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_more_vert_white_24dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
                 android:layout_centerVertical="true"
-                android:contentDescription="@string/app_name"/>
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_more_vert_white_24dp" />
 
         </RelativeLayout>
 
@@ -71,11 +71,26 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/Abu"
                 android:padding="10dp"
-                android:text="Jumlah Keseluruhan"
+                android:text="Jumlah Keseluruhan Hingga Hari Ini"
                 android:textAlignment="center"
                 android:textColor="@color/putih"
-                android:textSize="18sp"
-                app:smart_font="@string/fontExtraBold" />
+                android:visibility="visible"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/tglFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/Abu"
+                android:padding="10dp"
+                android:text="Data pertanggal 02-01-2018"
+                android:textAlignment="center"
+                android:textColor="@color/putih"
+                android:visibility="gone"
+                app:smart_font="@string/fontBlack" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cv2"
@@ -295,7 +310,6 @@
                 android:id="@+id/cv3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
                 app:cardElevation="7dp"
                 app:cardPreventCornerOverlap="false"
@@ -357,6 +371,63 @@
                         android:background="#85bb65" />
 
                 </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="310dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:background="@color/putih"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <fr.arnaudguyon.smartfontslib.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="10 Mahasiswa Dengan Kompensasi Terbanyak"
+                            android:textColor="@color/Abu"
+                            android:lineSpacingExtra="5dp"
+                            app:smart_font="@string/fontExtraBold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="-5dp"
+                            android:background="@color/AbuMuda" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/merahPastel"/>
+
+                </LinearLayout>
 
             </android.support.v7.widget.CardView>
 

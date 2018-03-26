@@ -3,6 +3,7 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="optionMenu">&#8942;</string>
 
     <!--FONT START-->
     <string name="fontReguler" translatable="false">fonts/Gotham_Light.otf</string>
@@ -16,6 +17,7 @@
     <!--FONT FINISH-->
 
     <string name="logDosen"><u>Sign in as lecturer</u></string>
+    <string name="logMhsw"><u>Sign in as student</u></string>
     <string name="roleAbsen"><u>Baca aturan tentang kehadiran disini</u></string>
 
     <!--MATKUL-->
@@ -29,6 +31,14 @@
     <string name="aa302">AA302</string>
     <string name="aa303">AA303</string>
     <!--RUANGAN FINISH-->
+
+    <!--MATKUL-->
+    <string name="mk1">Struktur Data</string>
+    <string name="mk2">Bahasa Indonesia untuk Teknik Informatika</string>
+    <string name="mk3">Aljabar Linier</string>
+    <string name="mk4">Rekayasa Perangkat Lunak</string>
+    <string name="mk5">Jaringan Komputer dan Komunikasi</string>
+    <!--MATKUL FINISH-->
 
     <string name="sampleTxt">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -50,6 +60,8 @@
         pada smartphone user.
     </string>
 
+    <string name="spasi"> &#8226; </string>
+
     <string name="developer">
         <b>Founded : September 2017</b>\n
         Develeped by TiregDev
@@ -57,6 +69,67 @@
 
     <string name="web">
         <u>www.atentik.com</u>
+    </string>
+
+    <string name="statistik">
+        Saat ini mode statistik hanya dapat Anda rasakan pada versi web, silahkan akses web kami!
+    </string>
+
+    <string name="pasal31">
+(1) Ketidakhadiran yang diizinkan dapat diberikan dengan alasan sakit, mendapat
+kecelakaan, atau alasan penting yang dapat diterima oleh Ketua Jurusan atau pejabat
+yang ditunjuk untuk menanganinya.\n\n
+(2) Izin ketidakhadiran selama satu hari atau kurang, harus diperoleh dari Ketua Jurusan
+atau pejabat yang ditunjuk untuk menanganinya.\n\n
+(3) Permohonan izin ketidakhadiran tersebut pada Ayat (2) harus dilakukan secara tertulis
+sekurang-kurangnya dalam waktu 24 (dua puluh empat) jam sebelumnya.\n\n
+(4) Ketidakhadiran yang direncanakan lebih dari sehari, izin harus diminta secara tertulis
+kepada Ketua Jurusan, sekurang-kurangnya 72 (tujuh puluh dua) jam sebelumnya.\n\n
+(5) Ketidakhadiran yang tidak terduga dan/atau mendadak harus diberitahukan oleh
+mahasiswa atau orang tua/wali kepada Ketua Jurusan atau pejabat yang ditunjuk untuk
+menangani dalam waktu 3 (tiga) hari sudah menerima pemberitahuan tertulis.\n\n
+(6) Ketidakhadiran karena sakit atau kecelakaan, harus diberitahukan oleh mahasiswa atau
+orang tua/wali dengan melampirkan surat keterangan dokter.\n\n
+(7) Izin ketidakhadiran dipertimbangkan oleh Ketua Jurusan.
+    </string>
+
+    <string name="pasal32">
+(1) Ketidakhadiran yang tidak diizinkan dikenakan sanksi kompensasi sebagai berikut
+<b>(Jangka waktu ketidakhadiran yang tidak diizinkan atau meninggalkan pelajaran sebelum waktunya):\n</b>
+<i>- 5 menit s.d. 90 menit = kompensasi 5 kalinya\n</i>
+<i>- lebih dari 90 menit = dianggap tidak hadir selama 1 (satu) hari yang diperhitungkan sesuai dengan jumlah jam kuliah pada hari tersebut\n</i>
+<i>- 1 (satu) hari = kompensasi 2 kalinya\n\n</i>
+(2) Waktu ketidakhadiran yang tidak diizinkan dan keterlambatan faktual (bukan waktu
+kompensasi) dijumlahkan setiap hari selama semester berjalan dengan ketentuan
+sebagai berikut:\n
+<i>- 675 menit, diberikan surat peringatan I\n</i>
+<i>- 1.350 menit, diberikan surat peringatan II\n</i>
+<i>- 1.665 menit, diberikan surat peringatan III\n</i>
+<i>- 1.710 menit, diberhentikan studinya/dikeluarkan dari Politeknik\n</i>
+<i>- kurang dari 675 menit langsung menjadi 1350 menit, diberikan surat
+peringatan I dan surat peringatan II\n</i>
+<i>- kurang dari 1350 menit langsung menjadi 1665 menit, diberikan surat
+peringatan II dan surat peringatan III\n\n</i>
+(3) Surat peringatan I dan II ditandatangani oleh Ketua Jurusan terkait, sedangkan
+surat peringatan III ditandatangani oleh Direktur.\n\n
+(4) Peringatan tertulis dikirimkan kepada mahasiswa dan orang tua / walinya.\n\n
+(5) Ketidakhadiran yang tidak diijinkan yang melebihi 20% dari total kehadiran setiap mata
+kuliah tidak diperbolehkan mengikuti ujian akhir semester (UAS) yang ditetapkan oleh
+Ketua Jurusan.\n\n
+(6) Tata cara kompensasi dan penyampaian surat peringatan diatur dengan keputusan
+Direktur.
+    </string>
+
+    <string name="pasal33">
+(1) Batas maksimum ketidakhadiran mahasiswa, baik yang diizinkan maupun yang
+tidak diizinkan, adalah 114 jam perkuliahan dalam satu semester.\n\n
+(2) Sanksi akademis sebagaimana dimaksud dalam Ayat (1) pada semester 1 dan 2
+berupa pemberhentian studi (drop out).\n\n
+(3) Sanksi akademis sebagaimana dimaksud dalam Ayat (1) pada semester 3 dan
+semester selanjutnya berupa cuti akademik.\n\n
+(4) Dalam hal sebagaimana dalam Ayat (3), mahasiswa yang bersangkutan dapat
+mengulang seluruh mata kuliah pada semester yang sama pada tahun akademik
+berikutnya.
     </string>
 
 </resources>
