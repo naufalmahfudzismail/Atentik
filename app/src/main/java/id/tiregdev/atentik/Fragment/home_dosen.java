@@ -31,8 +31,11 @@ import id.tiregdev.atentik.Activity.home_2;
 import id.tiregdev.atentik.Activity.jadwal_kuliah_dosen;
 import id.tiregdev.atentik.Activity.peraturan;
 import id.tiregdev.atentik.Adapter.adapter_cubeacon;
+import id.tiregdev.atentik.Adapter.adapter_kompen_terbanyak;
+import id.tiregdev.atentik.Adapter.adapter_kompen_terbanyak_dosen;
 import id.tiregdev.atentik.Adapter.adapter_log;
 import id.tiregdev.atentik.Model.object_cubeacon;
+import id.tiregdev.atentik.Model.object_kompen_terbanyak;
 import id.tiregdev.atentik.Model.object_log;
 import id.tiregdev.atentik.R;
 
@@ -45,6 +48,8 @@ public class home_dosen extends Fragment {
     ImageView filter;
     CardView openWeb, wrapJadwal, cvProfile;
     Button editProfile;
+    RecyclerView rView;
+    LinearLayoutManager  lLayout;
     View v;
 
     @Nullable
@@ -53,7 +58,7 @@ public class home_dosen extends Fragment {
         v = inflater.inflate(R.layout.fragment_home_dosen, container, false);
         setUpfilter();
         findId();
-
+        setupAdapterkompen_terbanyak();
         return v;
     }
 
@@ -96,6 +101,39 @@ public class home_dosen extends Fragment {
             }
         });
     }
+
+    public void setupAdapterkompen_terbanyak(){
+        List<object_kompen_terbanyak> rowListItem = getAllItemList();
+        lLayout = new LinearLayoutManager(getActivity());
+
+        rView = v.findViewById(R.id.rView);
+        rView.setLayoutManager(lLayout);
+
+        adapter_kompen_terbanyak_dosen rcAdapter = new adapter_kompen_terbanyak_dosen(getActivity(), rowListItem);
+        rView.setAdapter(rcAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lLayout.getOrientation());
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_shape));
+        rView.addItemDecoration(dividerItemDecoration);
+
+    }
+
+    private List<object_kompen_terbanyak> getAllItemList(){
+        List<object_kompen_terbanyak> allItems = new ArrayList<>();
+        allItems.add(new object_kompen_terbanyak("1.","Kurain Aji", "TMD 4 Reg","121 Jam", "SP 3", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("2.","Aji Kurain", "TI 2a Reg","111 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("3.","Kirain Aji", "TI 2b MSU","101 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("4.","Yusuf Aji", "CCIT 4a","91 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("5.","Aji Setya", "TI 4 AeU","90 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("6.","Nugraha Aji", "TMJ 6 Reg","88 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("7.","Aji", "TMD 2 Reg","86 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("8.","Kurain Yusuf", "TMD 4 Reg","83 Jam", "SP 2", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("9.","Ajino Moto", "TI 4 Reg","75 Jam", "SP 1", R.drawable.ava));
+        allItems.add(new object_kompen_terbanyak("10.","Kirain Yusuf", "TI 2c MSU","70 Jam", "SP 1", R.drawable.ava));
+
+        return allItems;
+    }
+
 
     public void setUpfilter(){
         filter = v.findViewById(R.id.filter);

@@ -571,7 +571,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
             app:cardElevation="7dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
@@ -632,6 +631,62 @@
                     android:background="#85bb65" />
 
             </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:cardElevation="7dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            card_view:cardPreventCornerOverlap="false"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/bgCV"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="10 Mahasiswa Dengan Kompensasi Terbanyak"
+                        android:textColor="@color/putih"
+                        android:lineSpacingExtra="5dp"
+                        app:smart_font="@string/fontExtraBold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="-5dp"
+                        android:background="@color/AbuMuda" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/merahPastel"/>
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 

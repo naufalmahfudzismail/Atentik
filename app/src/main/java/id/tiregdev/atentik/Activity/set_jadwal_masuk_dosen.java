@@ -68,7 +68,6 @@ public class set_jadwal_masuk_dosen extends AppCompatActivity {
     public void setRG(){
         final EditText setJamMasuk = findViewById(R.id.setJamMasuk);
         dosenTelat = findViewById(R.id.dosenTelat);
-//        dosenTelat.setSupportButtonTintList(ContextCompat.getColorStateList(this,R.color.colorAccent));
         RG = findViewById(R.id.RG);
 
         RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

@@ -1,11 +1,14 @@
 package id.tiregdev.atentik.Adapter;
 
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -30,6 +33,35 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
     public holder_log_mahasiswa onCreateViewHolder(ViewGroup parent, int viewType){
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_log_mahasiswa,null);
         holder_log_mahasiswa hn = new holder_log_mahasiswa(layoutView);
+
+        RadioButton terlambat = layoutView.findViewById(R.id.RBtelat);
+        terlambat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final LayoutInflater factory = LayoutInflater.from(context);
+                final View exitDialogView = factory.inflate(R.layout.dialog_input_jam_telat, null);
+                final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
+
+                exitDialog.setView(exitDialogView);
+                exitDialogView.findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        exitDialog.dismiss();
+                        Toast.makeText(context, "save sukses", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                exitDialogView.findViewById(R.id.tidak).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        exitDialog.dismiss();
+                    }
+                });
+
+                exitDialog.show();
+            }
+        });
+
         return hn;
     }
 
