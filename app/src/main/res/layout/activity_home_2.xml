@@ -176,11 +176,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_below="@+id/totalTelat"
-                                android:text="Total Keterlambatan (jam)"
+                                android:text="Total Keterlambatan (menit)"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
                                 app:smart_font="@string/fontBold" />
-
 
                         </RelativeLayout>
 
@@ -255,6 +254,79 @@
                                 android:textColor="@color/putih"
                                 app:smart_font="@string/fontBold" />
 
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:id="@+id/sakit"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_biru_pastel"
+                            android:gravity="center"
+                            android:padding="5dp">
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalSakit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="4"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="44sp"
+                                app:smart_font="@string/fontBlack" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalSakitTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/totalSakit"
+                                android:text="Total Sakit (jam)"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                app:smart_font="@string/fontBold" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_ungu_pastel"
+                            android:gravity="center"
+                            android:padding="5dp">
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalBekom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="12"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="44sp"
+                                app:smart_font="@string/fontBlack" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalBekomTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/totalBekom"
+                                android:text="Total Bekom (jam)"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                app:smart_font="@string/fontBold" />
 
                         </RelativeLayout>
 

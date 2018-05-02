@@ -222,13 +222,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="2">
 
                     <RelativeLayout
                         android:id="@+id/absen"
                         android:layout_width="0dp"
                         android:layout_height="120dp"
-                        android:gravity="center"
                         android:layout_weight="1"
                         android:background="@drawable/bg_shape_abu"
                         android:padding="10dp">
@@ -238,13 +237,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
                             android:layout_marginBottom="5dp"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_settings_remote_black_36dp" />
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/absenTxt"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon1"
                             android:layout_marginTop="5dp"
@@ -252,15 +252,12 @@
                             android:textAlignment="center"
                             app:smart_font="@string/fontBold" />
 
-
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/jadwal"
                         android:layout_width="0dp"
                         android:layout_height="120dp"
-                        android:gravity="center"
-                        android:layout_marginEnd="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_shape_orange"
@@ -271,13 +268,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
                             android:layout_marginBottom="5dp"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_library_books_white_36dp" />
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/jadwalTxt"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/icon2"
                             android:layout_marginTop="5dp"
@@ -285,9 +283,16 @@
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             app:smart_font="@string/fontBold" />
-
-
                     </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -299,9 +304,9 @@
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/totalMasuk"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
                             android:text="20"
                             android:layout_marginBottom="5dp"
                             android:textColor="@color/putih"
@@ -310,40 +315,31 @@
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/totalMasukTxt"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/totalMasuk"
                             android:text="Total Masuk (jam)"
+                            android:textSize="12sp"
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             app:smart_font="@string/fontBold" />
-
-
                     </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
 
                     <RelativeLayout
                         android:id="@+id/telat"
                         android:layout_width="0dp"
                         android:layout_height="120dp"
                         android:gravity="center"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_shape_ungu"
                         android:padding="5dp">
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/totalTelat"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
                             android:text="10"
                             android:layout_marginBottom="5dp"
                             android:textColor="@color/putih"
@@ -352,84 +348,14 @@
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:id="@+id/totalTelatTxt"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
                             android:layout_below="@+id/totalTelat"
-                            android:text="Total Keterlambatan (jam)"
+                            android:text="Total Keterlambatan (menit)"
                             android:textAlignment="center"
                             android:textSize="12sp"
                             android:textColor="@color/putih"
                             app:smart_font="@string/fontBold" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/izin"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:gravity="center"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_ijo"
-                        android:padding="5dp">
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalIzin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:text="1"
-                            android:layout_marginBottom="5dp"
-                            android:textColor="@color/putih"
-                            android:textSize="44sp"
-                            app:smart_font="@string/fontBlack" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalIzinTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/totalIzin"
-                            android:text="Total Izin (jam)"
-                            android:textAlignment="center"
-                            android:textColor="@color/putih"
-                            app:smart_font="@string/fontBold" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_red"
-                        android:padding="5dp">
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalGakMasuk"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:text="2"
-                            android:layout_marginBottom="5dp"
-                            android:textColor="@color/putih"
-                            android:textSize="44sp"
-                            app:smart_font="@string/fontBlack" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalGakMasukTxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/totalGakMasuk"
-                            android:text="Total Tidak Masuk (jam)"
-                            android:textAlignment="center"
-                            android:textColor="@color/putih"
-                            app:smart_font="@string/fontBold" />
-
-
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -438,12 +364,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_shape_list_orange">
+                    android:background="@drawable/bg_shape_list_red">
 
                     <View
                         android:layout_width="5dp"
                         android:layout_height="60dp"
-                        android:background="@drawable/bg_shape_orange" />
+                        android:background="@drawable/bg_shape_red" />
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
                         android:layout_width="wrap_content"
@@ -460,7 +386,7 @@
                         android:layout_width="70dp"
                         android:layout_height="60dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/bg_shape_orange">
+                        android:background="@drawable/bg_shape_red">
 
                         <fr.arnaudguyon.smartfontslib.FontTextView
                             android:layout_width="wrap_content"

@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Atentik.iml" filepath="$PROJECT_DIR$/Atentik.iml" />
-      <module fileurl="file://D:\Mesosfer-Android-master\Atentik\.idea\Atentik.iml" filepath="D:\Mesosfer-Android-master\Atentik\.idea\Atentik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Atentik.iml" filepath="$PROJECT_DIR$/.idea/Atentik.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

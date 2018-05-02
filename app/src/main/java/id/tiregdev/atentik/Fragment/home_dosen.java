@@ -147,6 +147,7 @@ public class home_dosen extends Fragment {
                 final Spinner sortTgl = exitDialogView.findViewById(R.id.sortTanggal);
                 final Spinner sortBln = exitDialogView.findViewById(R.id.sortBulan);
                 final Spinner sortThn = exitDialogView.findViewById(R.id.sortTahun);
+                final Spinner sortKls = exitDialogView.findViewById(R.id.sortKelas);
 
                 final String tahun[] = {
                         "2018", "2019", "2020", "2021", "2022"
@@ -164,6 +165,10 @@ public class home_dosen extends Fragment {
                         "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
                 };
 
+                final String kelas[] = {
+                        "TI-2A", "TI-4", "TMJ-2", "TMD-4", "CCIT-SEC 2B"
+                };
+
                 final ArrayAdapter<String> AdapterTgl = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, tanggal);
                 AdapterTgl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sortTgl.setAdapter(AdapterTgl);
@@ -175,6 +180,10 @@ public class home_dosen extends Fragment {
                 final ArrayAdapter<String> AdapterThn = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, tahun);
                 AdapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sortThn.setAdapter(AdapterThn);
+
+                final ArrayAdapter<String> AdapterKls = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, kelas);
+                AdapterKls.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sortKls.setAdapter(AdapterKls);
 
                 exitDialog.setView(exitDialogView);
                 exitDialogView.findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {

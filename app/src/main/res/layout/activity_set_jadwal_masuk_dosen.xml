@@ -149,6 +149,16 @@
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontReguler"
                 android:visibility="gone"
+                android:text="Telah diupdate oleh:"
+                android:id="@+id/updateTxt"
+                android:textSize="10sp"
+                android:layout_marginTop="2dp"/>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:visibility="gone"
                 android:text="Ilham Al-Fajri"
                 android:id="@+id/namaUpdate"
                 android:layout_marginTop="2dp"/>

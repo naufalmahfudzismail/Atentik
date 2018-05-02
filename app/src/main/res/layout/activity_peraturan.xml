@@ -28,10 +28,18 @@
             <fr.arnaudguyon.smartfontslib.FontTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:textSize="10sp"
+                android:textColor="@color/Abu"
+                android:text="@string/sumber" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:smart_font="@string/fontExtraBold"
                 android:textColor="@color/Abu"
                 android:layout_marginTop="20dp"
-                android:text="Pasal 31"
+                android:text="Pasal 21"
                 android:textAlignment="center"/>
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -48,7 +56,7 @@
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontReguler"
                 android:textColor="@color/Abu"
-                android:text="@string/pasal31"
+                android:text="@string/pasal21"
                 android:layout_marginTop="10dp"/>
 
             <View
@@ -63,7 +71,7 @@
                 app:smart_font="@string/fontExtraBold"
                 android:textColor="@color/Abu"
                 android:layout_marginTop="15dp"
-                android:text="Pasal 32"
+                android:text="Pasal 22"
                 android:textAlignment="center"/>
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -80,7 +88,7 @@
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontReguler"
                 android:textColor="@color/Abu"
-                android:text="@string/pasal32"
+                android:text="@string/pasal22"
                 android:layout_marginTop="10dp"/>
 
             <View
@@ -95,7 +103,7 @@
                 app:smart_font="@string/fontExtraBold"
                 android:textColor="@color/Abu"
                 android:layout_marginTop="15dp"
-                android:text="Pasal 33"
+                android:text="Pasal 23"
                 android:textAlignment="center"/>
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -112,7 +120,7 @@
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontReguler"
                 android:textColor="@color/Abu"
-                android:text="@string/pasal33"
+                android:text="@string/pasal23"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"/>
 
