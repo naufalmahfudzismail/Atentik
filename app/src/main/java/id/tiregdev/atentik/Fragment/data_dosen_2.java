@@ -20,9 +20,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.tiregdev.atentik.Adapter.dosen_adapter_mhsw_dosen;
+import id.tiregdev.atentik.Activity.CekToken;
+import id.tiregdev.atentik.Adapter.dosen_adapter_dosen;
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Util.AtentikHelper;
 import id.tiregdev.atentik.Model.object_mhsw_dosen;
 import id.tiregdev.atentik.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by HVS on 13/03/18.
@@ -34,12 +40,18 @@ public class data_dosen_2 extends Fragment {
     LinearLayoutManager  lLayout;
     View v;
     SearchView searchView;
+    String tokens;
+    List<object_mhsw_dosen> dosen = new ArrayList<>();
+    List<object_mhsw_dosen> dosen2 = new ArrayList<>();
+    dosen_adapter_dosen rcAdapter;
     RelativeLayout mainLayout, wrapSearchDosen;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_data_dosen, container, false);
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this.getActivity());
         setupAdaptermhsw_dosen();
         setSearch();
         dialogOpsi();
@@ -52,6 +64,19 @@ public class data_dosen_2 extends Fragment {
         EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchEditText.setTextColor(getResources().getColor(R.color.putih));
         searchEditText.setHintTextColor(getResources().getColor(R.color.background));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
     }
 
     public void changeColor(){
@@ -118,30 +143,54 @@ public class data_dosen_2 extends Fragment {
     }
 
     public void setupAdaptermhsw_dosen(){
-        List<object_mhsw_dosen> rowListItem = getAllItemList();
-        lLayout = new LinearLayoutManager(getContext());
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<List<object_mhsw_dosen>> call = client.dataDosenDsn("Bearer " + tokens);
+        call.enqueue(new Callback<List<object_mhsw_dosen>>() {
+            @Override
+            public void onResponse(Call<List<object_mhsw_dosen>> call, Response<List<object_mhsw_dosen>> response) {
+                if(response.isSuccessful())
+                {
+                    List<object_mhsw_dosen> simpan = response.body();
+                    for(int i = 0; i < simpan.size(); i++)
+                    {
+                        dosen.add(new object_mhsw_dosen(simpan.get(i).getNama(),simpan.get(i).getStatus_dosen(),simpan.get(i).getNip(), simpan.get(i).getTlp(), simpan.get(i).getNidn(), simpan.get(i).getEmail(), R.drawable.ava));
+                    }
+                    List<object_mhsw_dosen> rowListItem = dosen;
+                    dosen2.addAll(dosen);
+                    lLayout = new LinearLayoutManager(getContext());
+
+                    rView = v.findViewById(R.id.rview);
+                    rView.setLayoutManager(lLayout);
+
+                    rcAdapter = new dosen_adapter_dosen(getContext(), dosen);
+                    rView.setAdapter(rcAdapter);
+                    rView.setNestedScrollingEnabled(false);
+                }
 
 
-        rView = v.findViewById(R.id.rview);
-        rView.setLayoutManager(lLayout);
-
-        dosen_adapter_mhsw_dosen rcAdapter = new dosen_adapter_mhsw_dosen(getContext(), rowListItem);
-        rView.setAdapter(rcAdapter);
-        rView.setNestedScrollingEnabled(false);
+            }
+            @Override
+            public void onFailure(Call<List<object_mhsw_dosen>> call, Throwable t) {
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        aa.setBackgroundColor(getResources().getColor(R.color.biru));
     }
 
-    private List<object_mhsw_dosen> getAllItemList(){
-        List<object_mhsw_dosen> allItems = new ArrayList<>();
-        allItems.add(new object_mhsw_dosen("Fajar Hadi Putranto", "Dosen Tetap Non PNS","213390297889129", "08912789799", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Setya Putranto", "Dosen PNS","545390297889129", "08912789729", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Hadi Nugraha", "Dosen PNS","6763390297889129", "08912789739", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Putra Yusuf", "Dosen Tetap Dosen PNS","441390297889129", "08912789749", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Setya Nugraha Yusuf", "Freelance","734390297889129", "08912789759", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Nugraha Aji", "Freelance","217390297889129", "08912789796", R.drawable.ava));
-        allItems.add(new object_mhsw_dosen("Al Khawarizm", "Dosen PNS","813390297889129", "08912789779", R.drawable.ava));
-
-        return allItems;
+    public void filter(String text) {
+        dosen.clear();
+        if(text.isEmpty()){
+            dosen.addAll(dosen2);
+        }
+        else{
+            text = text.toLowerCase();
+            for(int i = 0; i<dosen2.size(); i++){
+                if(dosen2.get(i).getNama().toLowerCase().contains(text) ||  dosen2.get(i).getNipAtauNim().toLowerCase().contains(text)){
+                    dosen.add(dosen2.get(i));
+                }
+            }
+        }
+        rcAdapter.notifyDataSetChanged();
     }
 }

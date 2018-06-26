@@ -3,6 +3,8 @@
     package="id.tiregdev.atentik">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,12 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/notif_logo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/biru" />
         <activity
             android:name=".Activity.splash_screen"
             android:noHistory="true">
@@ -44,16 +52,34 @@
             android:name=".Activity.home_2"
             android:noHistory="true" />
         <activity android:name=".Activity.peraturan" />
-        <activity android:name=".Activity.detail_notif" />
+        <activity android:name=".Activity.detail_notif">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".Activity.main_dosen" />
         <activity android:name=".Activity.detail_notif_dosen" />
         <activity android:name=".Activity.edit_profile_dosen" />
         <activity android:name=".Activity.jadwal_kuliah_dosen" />
-        <activity android:name=".Activity.set_jadwal_masuk_dosen"
+        <activity
+            android:name=".Activity.set_jadwal_masuk_dosen"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Activity.set_jadwal_masuk_dosen_2"
+        <activity
+            android:name=".Activity.set_jadwal_masuk_dosen_2"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Activity.log_mahasiswa"></activity>
+        <activity android:name=".Activity.log_mahasiswa" />
+
+        <!-- Firebase Notifications -->
+        <service android:name=".Service.NotificationsMessagingService">
+            <intent-filter android:priority="1">
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+
+        <activity android:name=".Activity.AbsenCubeacon"></activity>
+        <activity android:name=".Activity.tracking_mhsw"></activity>
     </application>
 
 </manifest>

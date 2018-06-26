@@ -10,9 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:id="@+id/setJadwal"
+        android:id="@+id/setJadwal1"
         app:smart_font="@string/fontBlack"
         android:textColor="@color/Abu"
-        android:text="Atur jadwal masuk dosen"/>
+        android:text="Atur jadwal masuk dosen hari ini"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:id="@+id/setJadwal2"
+        app:smart_font="@string/fontBlack"
+        android:textColor="@color/Abu"
+        android:text="Atur jadwal masuk dosen besok"/>
 
 </LinearLayout>

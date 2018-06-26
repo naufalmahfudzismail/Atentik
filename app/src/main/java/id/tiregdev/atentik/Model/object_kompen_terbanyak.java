@@ -1,12 +1,67 @@
 package id.tiregdev.atentik.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Muhammad63 on 3/19/2018.
  */
 
 public class object_kompen_terbanyak {
 
-    private String urutan, nama, kelas, jumlahKompen, statusSP;
+    @SerializedName("id_mhsw")
+    private String id_mhsw;
+    @SerializedName("nama")
+    private String nama;
+    @SerializedName("nama_kelas")
+    private String nama_kelas;
+    @SerializedName("kompen")
+    private String kompen;
+    @SerializedName("biaya")
+    private String biaya;
+    @SerializedName("status_sp")
+    private String status_sp;
+
+    public String getId_mhsw() {
+        return id_mhsw;
+    }
+
+    public void setId_mhsw(String id_mhsw) {
+        this.id_mhsw = id_mhsw;
+    }
+
+    public String getNama_kelas() {
+        return nama_kelas;
+    }
+
+    public void setNama_kelas(String nama_kelas) {
+        this.nama_kelas = nama_kelas;
+    }
+
+    public String getKompen() {
+        return kompen;
+    }
+
+    public void setKompen(String kompen) {
+        this.kompen = kompen;
+    }
+
+    public String getBiaya() {
+        return biaya;
+    }
+
+    public void setBiaya(String biaya) {
+        this.biaya = biaya;
+    }
+
+    public String getStatus_sp() {
+        return status_sp;
+    }
+
+    public void setStatus_sp(String status_sp) {
+        this.status_sp = status_sp;
+    }
+
+    private String urutan, kelas, jumlahKompen, statusSP;
     int ava;
 
     public object_kompen_terbanyak(String urutan, String nama, String kelas, String jumlahKompen, String statusSP, int ava) {

@@ -109,7 +109,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/foto"
-                    android:text="IMEI        : "
+                    android:text="Jabatan  : "
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontBold" />
 
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/spTxt"
                     android:layout_toEndOf="@+id/tlpTxt"
-                    android:text="3212273"
+                    android:text="KPS TMJ"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 

@@ -83,6 +83,32 @@
                 android:textSize="12sp"
                 app:smart_font="@string/fontReguler" />
 
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/jumlahKompenAtauStatusDosen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/spasi"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="86 Jam"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/statusSPatauEmailDosen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/wrap"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="SP 2"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

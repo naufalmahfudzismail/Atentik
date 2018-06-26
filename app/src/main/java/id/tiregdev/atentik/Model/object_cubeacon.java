@@ -6,11 +6,12 @@ package id.tiregdev.atentik.Model;
 
 public class object_cubeacon {
 
-    private String ruangan, cubeacon;
+    private String ruangan, nama_cubeacon, proximity, accuracy;
 
-    public object_cubeacon(String ruangan, String cubeacon) {
+    public object_cubeacon(String ruangan, String nama_cubeacon, String proximity) {
         this.ruangan = ruangan;
-        this.cubeacon = cubeacon;
+        this.nama_cubeacon  = nama_cubeacon;
+        this.proximity = proximity;
     }
 
     public String getRuangan() {
@@ -21,11 +22,27 @@ public class object_cubeacon {
         this.ruangan = ruangan;
     }
 
-    public String getCubeacon() {
-        return cubeacon;
+    public String getName() {
+        return nama_cubeacon;
     }
 
-    public void setCubeacon(String cubeacon) {
-        this.cubeacon = cubeacon;
+    public void setName(String name) {
+        this.nama_cubeacon = nama_cubeacon;
+    }
+
+    public String getProximity() {
+        return proximity;
+    }
+
+    public void setProximity(String proximity) {
+        this.proximity = proximity;
+    }
+
+    public String getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(String accuracy) {
+        this.accuracy = accuracy;
     }
 }

@@ -2,7 +2,9 @@ package id.tiregdev.atentik.Activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,34 +15,202 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eyro.cubeacon.CBBeacon;
+import com.eyro.cubeacon.CBBootstrapListener;
+import com.eyro.cubeacon.CBBootstrapRegion;
+import com.eyro.cubeacon.CBRangingListener;
+import com.eyro.cubeacon.CBRegion;
+import com.eyro.cubeacon.CBServiceListener;
+import com.eyro.cubeacon.Cubeacon;
+import com.eyro.cubeacon.LogLevel;
+import com.eyro.cubeacon.Logger;
+import com.eyro.cubeacon.MonitoringState;
+import com.eyro.cubeacon.SystemRequirementManager;
+import com.google.firebase.messaging.RemoteMessage;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
+import com.pusher.pushnotifications.PushNotificationReceivedListener;
+import com.pusher.pushnotifications.PushNotifications;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
+
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Model.object_cubeacon;
+import id.tiregdev.atentik.Util.AtentikHelper;
 import id.tiregdev.atentik.Fragment.about;
 import id.tiregdev.atentik.Fragment.data_dosen;
 import id.tiregdev.atentik.Fragment.data_mhsw;
 import id.tiregdev.atentik.Fragment.home;
 import id.tiregdev.atentik.Fragment.notif;
 import id.tiregdev.atentik.Fragment.tracking;
+import id.tiregdev.atentik.Model.object_mahasiswa;
 import id.tiregdev.atentik.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class activity_main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class activity_main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CBRangingListener, CBServiceListener {
 
     private AdvanceDrawerLayout drawer;
-    TextView nama, nimOrNip, kelasOrStatus;
+    Cubeacon cubeacon;
+    SimpleAdapter adapter;
+    List<CBBeacon> beacons;
+    List<Map<String, String>> data;
+    private static final String TAG = activity_main.class.getSimpleName();
+    TextView nama, nimOrNip, kelasOrStatus, namaheader, nimheader;
+    String tokens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        data = new ArrayList<>();
+
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        View includedLayout = findViewById(R.id.appsbar);
+        NavigationView headerLayout = findViewById(R.id.nav_view);
+        View headerView = headerLayout.getHeaderView(0);
+        nama = includedLayout.findViewById(R.id.nama);
+        nimOrNip = includedLayout.findViewById(R.id.nimOrNip);
+        kelasOrStatus = includedLayout.findViewById(R.id.kelasOrStatus);
+        namaheader = headerView.findViewById(R.id.nama);
+        nimheader = headerView.findViewById(R.id.nim);
+
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
+
+        cubeacon = Cubeacon.getInstance();
+
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_mahasiswa> call = client.profilMahasiswa("Bearer " + tokens);
+        call.enqueue(new Callback<object_mahasiswa>() {
+            @Override
+            public void onResponse(Call<object_mahasiswa> call, Response<object_mahasiswa> response) {
+                if(response.isSuccessful())
+                {
+                    nama.setText(response.body().getNama());
+                    nimOrNip.setText(response.body().getNim());
+                    kelasOrStatus.setText(response.body().getKelas());
+                    namaheader.setText(response.body().getNama());
+                    nimheader.setText(response.body().getNim());
+                    PushNotifications.start(getApplicationContext(), "937b430b-6f6b-4a25-b435-2f98ed561236");
+                    PushNotifications.subscribe("alluser");
+                    PushNotifications.subscribe("allmahasiswa");
+                    PushNotifications.subscribe(nimOrNip.getText().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<object_mahasiswa> call, Throwable t) {
+                Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        Toast.makeText(this, "tes", Toast.LENGTH_SHORT).show();
+
         setDrawer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // check all requirement like is BLE available, is bluetooth on/off,
+        // location service for Android API 23 or later
+        if (SystemRequirementManager.checkAllRequirementUsingDefaultDialog(this)) {
+            // connecting to Cubeacon service when all requirements completed
+            cubeacon.connect(this);
+            // disable background mode, because we're going to use full
+            // scanning resource in foreground mode
+            cubeacon.setBackgroundMode(false);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // enable background mode when this activity paused
+        cubeacon.setBackgroundMode(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // disconnect from Cubeacon service when this activity destroyed
+        cubeacon.disconnect(this);
+    }
+
+    @Override
+    public void didRangeBeaconsInRegion(final List<CBBeacon> beacons, CBRegion region) {
+        this.beacons = beacons;
+        for (final CBBeacon beacon : beacons) {
+            String isi = "kosong";
+            if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
+            {
+                isi = beacon.getName();
+            }
+                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, isi);
+                callz.enqueue(new Callback<object_cubeacon>() {
+                    @Override
+                    public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                        if(response.isSuccessful())
+                        {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+//            }
+//            Toast.makeText(this, beacon.getName() + " " + beacon.getProximity(), Toast.LENGTH_SHORT).show();
+        }
+        // update view using runnable
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                Toast.makeText(activity_main.this, isi, Toast.LENGTH_SHORT).show();
+//                rcAdapter.notifyDataSetChanged();
+//                if (getSupportActionBar() != null) {
+//                    getSupportActionBar().setSubtitle("Ranged beacon : " + beacons.size());
+//                }
+            }
+        });
+    }
+
+    @Override
+    public void onBeaconServiceConnect() {
+        // add ranging listener implementation
+        cubeacon.addRangingListener(this);
+        try {
+            // create a new region for ranging beacons
+            CBRegion region = new CBRegion("com.eyro.cubeacon.ranging_region");
+            // start ranging beacons using region
+            cubeacon.startRangingBeaconsInRegion(region);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Error while start ranging beacon, " + e);
+        }
     }
 
     public void setDrawer() {
@@ -115,13 +285,6 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
                 nTitle.setVisibility(View.GONE);
                 title.setText("Notification");
                 break;
-            case R.id.tracking:
-                fragment = new tracking();
-                getSupportActionBar().setDisplayShowTitleEnabled(false);
-                title.setVisibility(View.VISIBLE);
-                nTitle.setVisibility(View.GONE);
-                title.setText("Tracking Position");
-                break;
             case R.id.data_mhsw:
                 fragment = new data_mhsw();
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -144,7 +307,30 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
                 title.setText("About apps");
                 break;
             case R.id.logout:
-                Toast.makeText(this, "logout sukses", Toast.LENGTH_SHORT).show();
+
+                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_mahasiswa> call = client.logoutMahasiswa("Bearer " + tokens);
+                call.enqueue(new Callback<object_mahasiswa>() {
+                    @Override
+                    public void onResponse(Call<object_mahasiswa> call, Response<object_mahasiswa> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(activity_main.this, "Logout Sukses", Toast.LENGTH_SHORT).show();
+                            deletesFile("loginnama");
+                            deletesFile("loginpass");
+//                            Intent i = new Intent(activity_main.this, login.class);
+//                            startActivity(i);
+                            PushNotifications.unsubscribeAll();
+                            activity_main.this.finish();
+                        }
+                        else
+                            Toast.makeText(activity_main.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_mahasiswa> call, Throwable t) {
+                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
         }
 
@@ -166,5 +352,10 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
         displaySelectedScreen(item.getItemId());
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void deletesFile(String filename) {
+        File file = new File(getFilesDir(), filename);
+        file.delete();
     }
 }

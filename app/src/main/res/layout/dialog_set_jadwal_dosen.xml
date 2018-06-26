@@ -7,13 +7,29 @@
     android:padding="20dp">
 
     <fr.arnaudguyon.smartfontslib.FontTextView
-        android:id="@+id/setJadwal"
+        android:id="@+id/setJadwal1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atur jadwal masuk"
+        android:text="Atur jadwal masuk hari ini"
         android:textAlignment="center"
         android:textColor="@color/Abu"
         app:smart_font="@string/fontBlack" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/AbuMuda"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:id="@+id/setJadwal2"
+        app:smart_font="@string/fontBlack"
+        android:textColor="@color/Abu"
+        android:text="Atur jadwal masuk besok"/>
 
     <View
         android:layout_width="match_parent"

@@ -48,8 +48,8 @@ public class adapter_jadwal_dosen extends RecyclerView.Adapter<adapter_jadwal_do
         TextView jam = layoutView.findViewById(R.id.jam);
         jam.setTextColor(ContextCompat.getColor(context, R.color.putih));
 
-        TextView jpm = layoutView.findViewById(R.id.jpm);
-        jpm.setTextColor(ContextCompat.getColor(context, R.color.putih));
+//        TextView jpm = layoutView.findViewById(R.id.jpm);
+//        jpm.setTextColor(ContextCompat.getColor(context, R.color.putih));
 
         TextView ruangan = layoutView.findViewById(R.id.ruangan);
         ruangan.setTextColor(ContextCompat.getColor(context, R.color.putih));
@@ -60,36 +60,36 @@ public class adapter_jadwal_dosen extends RecyclerView.Adapter<adapter_jadwal_do
         TextView spasi = layoutView.findViewById(R.id.spasi);
         spasi.setTextColor(ContextCompat.getColor(context, R.color.putih));
 
-        TextView option = layoutView.findViewById(R.id.optionMenu);
-        option.setTextColor(ContextCompat.getColor(context, R.color.putih));
-        option.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final LayoutInflater factory = LayoutInflater.from(context);
-                final View exitDialogView = factory.inflate(R.layout.dialog_set_jadwal_dosen, null);
-                final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
-
-                exitDialog.setView(exitDialogView);
-                exitDialogView.findViewById(R.id.setJadwal).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        Intent i = new Intent(context, set_jadwal_masuk_dosen_2.class);
-                        context.startActivity(i);
-                    }
-                });
-
-                exitDialogView.findViewById(R.id.setLogMahasiswa).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        Intent i = new Intent(context, log_mahasiswa.class);
-                        context.startActivity(i);
-                    }
-                });
-                exitDialog.show();
-            }
-        });
+//        TextView option = layoutView.findViewById(R.id.optionMenu);
+//        option.setTextColor(ContextCompat.getColor(context, R.color.putih));
+//        option.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final LayoutInflater factory = LayoutInflater.from(context);
+//                final View exitDialogView = factory.inflate(R.layout.dialog_set_jadwal_dosen, null);
+//                final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
+//
+//                exitDialog.setView(exitDialogView);
+//                exitDialogView.findViewById(R.id.setJadwal).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        exitDialog.dismiss();
+//                        Intent i = new Intent(context, set_jadwal_masuk_dosen_2.class);
+//                        context.startActivity(i);
+//                    }
+//                });
+//
+//                exitDialogView.findViewById(R.id.setLogMahasiswa).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        exitDialog.dismiss();
+//                        Intent i = new Intent(context, log_mahasiswa.class);
+//                        context.startActivity(i);
+//                    }
+//                });
+//                exitDialog.show();
+//            }
+//        });
 
         return hn;
     }
@@ -98,7 +98,7 @@ public class adapter_jadwal_dosen extends RecyclerView.Adapter<adapter_jadwal_do
     public void onBindViewHolder(holder_jadwal holder, int position){
         holder.namaMatkul.setText(itemList.get(position).getNamaMatkul());
         holder.jam.setText(itemList.get(position).getJam());
-        holder.jpm.setText(itemList.get(position).getJpm());
+//        holder.jpm.setText(itemList.get(position).getJpm());
         holder.ruangan.setText(itemList.get(position).getRuangan());
         holder.namaDosenAtauNamaKelas.setText(itemList.get(position).getNamaDosenAtauNamaKelas());
     }
@@ -116,7 +116,7 @@ public class adapter_jadwal_dosen extends RecyclerView.Adapter<adapter_jadwal_do
 
             namaMatkul = itemView.findViewById(R.id.namaMatkul);
             jam = itemView.findViewById(R.id.jam);
-            jpm = itemView.findViewById(R.id.jpm);
+//            jpm = itemView.findViewById(R.id.jpm);
             ruangan = itemView.findViewById(R.id.ruangan);
             namaDosenAtauNamaKelas = itemView.findViewById(R.id.namaDosenAtauNamaKelas);
         }

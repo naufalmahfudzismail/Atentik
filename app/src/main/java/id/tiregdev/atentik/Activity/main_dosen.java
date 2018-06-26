@@ -1,7 +1,10 @@
 package id.tiregdev.atentik.Activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,41 +15,184 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eyro.cubeacon.CBBeacon;
+import com.eyro.cubeacon.CBRangingListener;
+import com.eyro.cubeacon.CBRegion;
+import com.eyro.cubeacon.CBServiceListener;
+import com.eyro.cubeacon.Cubeacon;
+import com.eyro.cubeacon.SystemRequirementManager;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
+import com.pusher.pushnotifications.PushNotifications;
 
-import id.tiregdev.atentik.Fragment.about;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Model.object_cubeacon;
+import id.tiregdev.atentik.Util.AtentikHelper;
 import id.tiregdev.atentik.Fragment.about_dosen;
-import id.tiregdev.atentik.Fragment.data_dosen;
 import id.tiregdev.atentik.Fragment.data_dosen_2;
-import id.tiregdev.atentik.Fragment.data_mhsw;
 import id.tiregdev.atentik.Fragment.data_mhsw_2;
-import id.tiregdev.atentik.Fragment.home;
 import id.tiregdev.atentik.Fragment.home_dosen;
-import id.tiregdev.atentik.Fragment.notif;
 import id.tiregdev.atentik.Fragment.notif_dosen;
-import id.tiregdev.atentik.Fragment.tracking;
 import id.tiregdev.atentik.Fragment.tracking_dosen;
+import id.tiregdev.atentik.Model.object_dosen;
 import id.tiregdev.atentik.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class main_dosen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class main_dosen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CBRangingListener, CBServiceListener {
 
     private AdvanceDrawerLayout drawer;
-    TextView nama, Nip;
+    Cubeacon cubeacon;
+    List<CBBeacon> beacons;
+    TextView nama, nip, kelasOrStatus, namaheader, nipheader;
+    String tokens;
+    private static final String TAG = main_dosen.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dosen);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        View includedLayout = findViewById(R.id.appsbar);
+        NavigationView headerLayout = findViewById(R.id.nav_view);
+        View headerView = headerLayout.getHeaderView(0);
+        nama = includedLayout.findViewById(R.id.nama);
+        nip = includedLayout.findViewById(R.id.nip);
+//        kelasOrStatus = includedLayout.findViewById(R.id.kelasOrStatus);
+        namaheader = headerView.findViewById(R.id.nama);
+        nipheader = headerView.findViewById(R.id.nim);
+
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
+
+        cubeacon = Cubeacon.getInstance();
+
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_dosen> call = client.profilDosen("Bearer " + tokens);
+        call.enqueue(new Callback<object_dosen>() {
+            @Override
+            public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                if(response.isSuccessful())
+                {
+                    nama.setText(response.body().getNama());
+                    nip.setText(response.body().getNip());
+//                    kelasOrStatus.setText(response.body().getStatus_dosen());
+                    namaheader.setText(response.body().getNama());
+                    nipheader.setText(response.body().getNip());
+                    PushNotifications.start(getApplicationContext(), "937b430b-6f6b-4a25-b435-2f98ed561236");
+                    PushNotifications.subscribe("alluser");
+                    PushNotifications.subscribe("alldosen");
+                    PushNotifications.subscribe(nip.getText().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<object_dosen> call, Throwable t) {
+                Toast.makeText(main_dosen.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         setDrawer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // check all requirement like is BLE available, is bluetooth on/off,
+        // location service for Android API 23 or later
+        if (SystemRequirementManager.checkAllRequirementUsingDefaultDialog(this)) {
+            // connecting to Cubeacon service when all requirements completed
+            cubeacon.connect(this);
+            // disable background mode, because we're going to use full
+            // scanning resource in foreground mode
+            cubeacon.setBackgroundMode(false);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // enable background mode when this activity paused
+        cubeacon.setBackgroundMode(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // disconnect from Cubeacon service when this activity destroyed
+        cubeacon.disconnect(this);
+    }
+
+    @Override
+    public void didRangeBeaconsInRegion(final List<CBBeacon> beacons, CBRegion region) {
+        this.beacons = beacons;
+        for (final CBBeacon beacon : beacons) {
+            String isi = "kosong";
+            if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
+            {
+                isi = beacon.getName();
+            }
+            AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+            Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, isi);
+            callz.enqueue(new Callback<object_cubeacon>() {
+                @Override
+                public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                    if(response.isSuccessful())
+                    {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+//            }
+//            Toast.makeText(this, beacon.getName() + " " + beacon.getProximity(), Toast.LENGTH_SHORT).show();
+        }
+        // update view using runnable
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                Toast.makeText(activity_main.this, tess, Toast.LENGTH_SHORT).show();
+//                rcAdapter.notifyDataSetChanged();
+//                if (getSupportActionBar() != null) {
+//                    getSupportActionBar().setSubtitle("Ranged beacon : " + beacons.size());
+//                }
+            }
+        });
+    }
+
+    @Override
+    public void onBeaconServiceConnect() {
+        // add ranging listener implementation
+        cubeacon.addRangingListener(this);
+        try {
+            // create a new region for ranging beacons
+            CBRegion region = new CBRegion("com.eyro.cubeacon.ranging_region");
+            // start ranging beacons using region
+            cubeacon.startRangingBeaconsInRegion(region);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Error while start ranging beacon, " + e);
+        }
     }
 
     public void setDrawer() {
@@ -149,7 +295,29 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
                 title.setText("About apps");
                 break;
             case R.id.logout:
-                Toast.makeText(this, "logout sukses", Toast.LENGTH_SHORT).show();
+                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_dosen> call = client.logoutDosen("Bearer " + tokens);
+                call.enqueue(new Callback<object_dosen>() {
+                    @Override
+                    public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(main_dosen.this, "Logout Sukses", Toast.LENGTH_SHORT).show();
+                            deletesFile("logindosennama");
+                            deletesFile("logindosenpass");
+//                            Intent i = new Intent(main_dosen.this, login_dosen.class);
+//                            startActivity(i);
+                            PushNotifications.unsubscribeAll();
+                            main_dosen.this.finish();
+                        }
+                        else
+                            Toast.makeText(main_dosen.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_dosen> call, Throwable t) {
+                        Toast.makeText(main_dosen.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
         }
 
@@ -171,5 +339,10 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
         displaySelectedScreen(item.getItemId());
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void deletesFile(String filename) {
+        File file = new File(getFilesDir(), filename);
+        file.delete();
     }
 }

@@ -14,18 +14,34 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import id.tiregdev.atentik.Adapter.adapter_log;
 import id.tiregdev.atentik.Adapter.adapter_log_mahasiswa;
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Model.object_log;
 import id.tiregdev.atentik.Model.object_log_mahasiswa;
 import id.tiregdev.atentik.R;
+import id.tiregdev.atentik.Util.AtentikHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class log_mahasiswa extends AppCompatActivity {
 
     RecyclerView rView;
     LinearLayoutManager  lLayout;
     TextView save;
+    String tokens;
+    Locale localeID = new Locale("in", "ID");
+    String jam = new SimpleDateFormat("HH:mm:ss ZZZZ", localeID).format(new Date());
+    String tanggals = new SimpleDateFormat("dd-MM-yyyy", localeID).format(new Date());
+    String hari = new SimpleDateFormat("EEEE", localeID).format(new Date());
+    List<object_log> logs = new ArrayList<>();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +52,8 @@ public class log_mahasiswa extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
         setupAdapterLog();
         setSave();
     }
@@ -67,23 +84,44 @@ public class log_mahasiswa extends AppCompatActivity {
     }
 
     public void setupAdapterLog(){
-        List<object_log_mahasiswa> rowListItem = getAllItemList();
-        lLayout = new LinearLayoutManager(log_mahasiswa.this);
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<List<object_log>> call = client.lihatLogAbsenMahasiswa("Bearer " + tokens, tanggals, hari, jam);
+        call.enqueue(new Callback<List<object_log>>() {
+            @Override
+            public void onResponse(Call<List<object_log>> call, Response<List<object_log>> response) {
+                if(response.isSuccessful())
+                {
+                    List<object_log> simpan = response.body();
+                    for(int i = 0; i < simpan.size(); i++)
+                    {
+                        logs.add(new object_log(simpan.get(i).getNama_matkul(),simpan.get(i).getRuangan(),simpan.get(i).getJam_hadir(), simpan.get(i).getWaktu_telat(), simpan.get(i).getKompen()));
+                    }
+                    List<object_log> rowListItem = logs;
+                    lLayout = new LinearLayoutManager(log_mahasiswa.this);
 
-        rView = findViewById(R.id.rView);
-        rView.setLayoutManager(lLayout);
+                    rView = findViewById(R.id.rView);
+                    rView.setLayoutManager(lLayout);
 
-        adapter_log_mahasiswa rcAdapter = new adapter_log_mahasiswa(log_mahasiswa.this, rowListItem);
-        rView.setAdapter(rcAdapter);
+                    adapter_log rcAdapter = new adapter_log(log_mahasiswa.this, logs);
+                    rView.setAdapter(rcAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<object_log>> call, Throwable t) {
+                Toast.makeText(log_mahasiswa.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
-    private List<object_log_mahasiswa> getAllItemList(){
-        List<object_log_mahasiswa> allItems = new ArrayList<>();
-        allItems.add(new object_log_mahasiswa("Muhammad Hafizh", "4314010034","08.10", "10", "1"));
-        allItems.add(new object_log_mahasiswa("Ilham Al Fajri", "4314010023","10.15", "15", "1"));
-        allItems.add(new object_log_mahasiswa("Kadek Pandu", "4314010013","13.00", "0", "0"));
-        allItems.add(new object_log_mahasiswa("Rifqie Fadlurrahman", "4414010036","08.10", "10", "1"));
-        allItems.add(new object_log_mahasiswa("Zaky Nuralifi", "4414010034","10.15", "15", "1"));
+    private List<object_log> getAllItemList(){
+        List<object_log> allItems = new ArrayList<>();
+//        allItems.add(new object_log_mahasiswa("Muhammad Hafizh", "4314010034","08.10", "10", "1"));
+//        allItems.add(new object_log_mahasiswa("Ilham Al Fajri", "4314010023","10.15", "15", "1"));
+//        allItems.add(new object_log_mahasiswa("Kadek Pandu", "4314010013","13.00", "0", "0"));
+//        allItems.add(new object_log_mahasiswa("Rifqie Fadlurrahman", "4414010036","08.10", "10", "1"));
+//        allItems.add(new object_log_mahasiswa("Zaky Nuralifi", "4414010034","10.15", "15", "1"));
 
         return allItems;
     }

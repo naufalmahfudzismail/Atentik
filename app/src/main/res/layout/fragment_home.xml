@@ -1,564 +1,623 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/editProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="7dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            card_view:cardPreventCornerOverlap="false"
-            card_view:cardUseCompatPadding="true">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@color/putih"
-                android:padding="15dp">
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/dataDiri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data Diri"
-                    android:textColor="@color/Abu"
-                    android:textSize="16sp"
-                    app:smart_font="@string/fontExtraBold" />
-
-                <View
-                    android:id="@+id/line"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/dataDiri"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/AbuMuda" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/foto"
-                    android:layout_width="63dp"
-                    android:layout_height="63dp"
-                    android:layout_below="@id/line"
-                    android:layout_marginTop="10dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ava" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/mailTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/line"
-                    android:layout_toStartOf="@+id/email"
-                    android:text="Email        : "
-                    app:smart_font="@string/fontBold" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/line"
-                    android:layout_toEndOf="@id/spTxt"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="hvs137@gmail.com"
-                    app:smart_font="@string/fontReguler" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/tlpTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mailTxt"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/foto"
-                    android:text="No Tlp      : "
-                    app:smart_font="@string/fontBold" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/tlp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mailTxt"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/spTxt"
-                    android:text="085613212276"
-                    app:smart_font="@string/fontReguler" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/imeiTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tlp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/foto"
-                    android:text="IMEI          : "
-                    app:smart_font="@string/fontBold" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/imei"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/spTxt"
-                    android:layout_toEndOf="@+id/spTxt"
-                    android:text="3212273"
-                    app:smart_font="@string/fontReguler" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/spTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imeiTxt"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/foto"
-                    android:text="Status SP : "
-                    app:smart_font="@string/fontBold" />
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/SP"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imei"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/spTxt"
-                    android:text="Tidak mendapat SP"
-                    app:smart_font="@string/fontReguler" />
-
-            </RelativeLayout>
-
-            <fr.arnaudguyon.smartfontslib.FontButton
-                android:id="@+id/editProfileBtn"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="bottom"
-                android:background="@color/Abu"
-                android:text="Tap for edit"
-                android:textAllCaps="false"
-                android:textColor="@color/putih"
-                app:smart_font="@string/fontBlack" />
-
-        </android.support.v7.widget.CardView>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:background="@color/biruDongker">
+            android:padding="10dp">
 
-            <fr.arnaudguyon.smartfontslib.FontTextView
+            <android.support.v7.widget.CardView
+                android:id="@+id/editProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aktivitas Hari Ini"
-                android:textAlignment="center"
-                android:textColor="@color/putih"
-                android:textSize="16sp"
-                app:smart_font="@string/fontBlack" />
-
-            <fr.arnaudguyon.smartfontslib.FontTextView
-                android:id="@+id/tgl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:text="Senin, 12 Mei 2018"
-                android:textAlignment="center"
-                android:textColor="@color/putih"
-                app:smart_font="@string/fontReguler"/>
-
-        </LinearLayout>
-
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:cardElevation="7dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            card_view:cardPreventCornerOverlap="false"
-            card_view:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/putih"
-                android:orientation="vertical"
-                android:padding="15dp">
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/kompenTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="Absensi, Jadwal, dan Data Kehadiran"
-                    android:textColor="@color/Abu"
-                    android:textSize="16sp"
-                    app:smart_font="@string/fontExtraBold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="-10dp"
-                    android:background="@color/AbuMuda" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <RelativeLayout
-                        android:id="@+id/absen"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_abu"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:id="@+id/icon1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp"
-                            android:contentDescription="@string/app_name"
-                            android:src="@drawable/ic_settings_remote_black_36dp" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/absenTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/icon1"
-                            android:layout_marginTop="5dp"
-                            android:text="Connect Absen"
-                            android:textAlignment="center"
-                            app:smart_font="@string/fontBold" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/jadwal"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_orange"
-                        android:padding="10dp">
-
-                        <ImageView
-                            android:id="@+id/icon2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="5dp"
-                            android:contentDescription="@string/app_name"
-                            android:src="@drawable/ic_library_books_white_36dp" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/jadwalTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/icon2"
-                            android:layout_marginTop="5dp"
-                            android:text="Lihat Jadwal"
-                            android:textAlignment="center"
-                            android:textColor="@color/putih"
-                            app:smart_font="@string/fontBold" />
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_biru"
-                        android:padding="5dp">
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalMasuk"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:text="20"
-                            android:layout_marginBottom="5dp"
-                            android:textColor="@color/putih"
-                            android:textSize="44sp"
-                            app:smart_font="@string/fontBlack" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalMasukTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/totalMasuk"
-                            android:text="Total Masuk (jam)"
-                            android:textSize="12sp"
-                            android:textAlignment="center"
-                            android:textColor="@color/putih"
-                            app:smart_font="@string/fontBold" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/telat"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_shape_ungu"
-                        android:padding="5dp">
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalTelat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:text="10"
-                            android:layout_marginBottom="5dp"
-                            android:textColor="@color/putih"
-                            android:textSize="44sp"
-                            app:smart_font="@string/fontBlack" />
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:id="@+id/totalTelatTxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/totalTelat"
-                            android:text="Total Keterlambatan (menit)"
-                            android:textAlignment="center"
-                            android:textSize="12sp"
-                            android:textColor="@color/putih"
-                            app:smart_font="@string/fontBold" />
-                    </RelativeLayout>
-
-                </LinearLayout>
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_shape_list_red">
+                    android:layout_height="180dp"
+                    android:background="@color/putih"
+                    android:padding="15dp">
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/dataDiri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Data Diri"
+                        android:textColor="@color/Abu"
+                        android:textSize="16sp"
+                        app:smart_font="@string/fontExtraBold" />
 
                     <View
-                        android:layout_width="5dp"
-                        android:layout_height="60dp"
-                        android:background="@drawable/bg_shape_red" />
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/dataDiri"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/AbuMuda" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/foto"
+                        android:layout_width="63dp"
+                        android:layout_height="63dp"
+                        android:layout_below="@id/line"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ava" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/mailTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line"
+                        android:layout_toStartOf="@+id/email"
+                        android:text="Email        : "
+                        app:smart_font="@string/fontBold" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line"
+                        android:layout_toEndOf="@id/spTxt"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="hvs137@gmail.com"
+                        app:smart_font="@string/fontReguler" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/tlpTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mailTxt"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/foto"
+                        android:text="No Tlp      : "
+                        app:smart_font="@string/fontBold" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/tlp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mailTxt"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/spTxt"
+                        android:text="085613212276"
+                        app:smart_font="@string/fontReguler" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/imeiTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tlp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/foto"
+                        android:text="IMEI          : "
+                        app:smart_font="@string/fontBold" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/imei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/spTxt"
+                        android:layout_toEndOf="@+id/spTxt"
+                        android:text="3212273"
+                        app:smart_font="@string/fontReguler" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/spTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imeiTxt"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/foto"
+                        android:text="Status SP : "
+                        app:smart_font="@string/fontBold" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/SP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imei"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/spTxt"
+                        android:text="Tidak mendapat SP"
+                        app:smart_font="@string/fontReguler" />
+
+                </RelativeLayout>
+
+                <fr.arnaudguyon.smartfontslib.FontButton
+                    android:id="@+id/editProfileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/Abu"
+                    android:text="Tap for edit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontBlack" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/tracking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/putih">
+
+                    <RelativeLayout
+                        android:id="@+id/icons"
+                        android:layout_width="60dp"
+                        android:layout_height="90dp"
+                        android:background="#10ac84">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_person_pin_circle_white_24dp" />
+
+                    </RelativeLayout>
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginEnd="80dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="12dp"
-                        android:lineSpacingExtra="5dp"
-                        android:text="Total kompensasi setelah di akumulasikan (jam)"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/icons"
+                        android:text="Temukan Posisi Teman atau Dosen"
+                        android:textColor="@color/Abu"
                         app:smart_font="@string/fontBold" />
 
-                    <RelativeLayout
-                        android:layout_width="70dp"
-                        android:layout_height="60dp"
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="90dp"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/bg_shape_red">
-
-                        <fr.arnaudguyon.smartfontslib.FontTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4"
-                            android:id="@+id/totalKompen"
-                            android:layout_centerInParent="true"
-                            android:textColor="@color/putih"
-                            android:textSize="44sp"
-                            app:smart_font="@string/fontBlack" />
-
-                    </RelativeLayout>
+                        android:layout_alignParentTop="true"
+                        android:background="#10ac84" />
 
                 </RelativeLayout>
 
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/peraturan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/roleAbsen"
-                    android:textColor="@color/biru"
-                    android:textSize="12sp"
-                    app:smart_font="@string/fontBold" />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
-            app:cardElevation="7dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            card_view:cardPreventCornerOverlap="false"
-            card_view:cardUseCompatPadding="true">
+            </android.support.v7.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/putih"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/biruDongker"
                 android:orientation="vertical"
-                android:padding="15dp">
-
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Log kehadiran hari ini"
-                    android:textColor="@color/Abu"
-                    android:textSize="16sp"
-                    app:smart_font="@string/fontExtraBold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/AbuMuda" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_tag_faces_black_48dp"
-                    android:visibility="gone" />
+                android:padding="10dp">
 
                 <fr.arnaudguyon.smartfontslib.FontTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:lineSpacingExtra="5dp"
-                    android:text="Belum ada catatan\nuntuk hari ini"
+                    android:text="Aktivitas Hari Ini"
                     android:textAlignment="center"
-                    android:textColor="@color/Abu"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    app:smart_font="@string/fontExtraBold" />
+                    android:textColor="@color/putih"
+                    android:textSize="16sp"
+                    app:smart_font="@string/fontBlack" />
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:id="@+id/tgl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Senin, 12 Mei 2018"
+                    android:textAlignment="center"
+                    android:textColor="@color/putih"
+                    android:textSize="12sp"
+                    app:smart_font="@string/fontReguler" />
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:cardElevation="7dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            card_view:cardPreventCornerOverlap="false"
-            card_view:cardUseCompatPadding="true">
-
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv2"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:background="@color/putih">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
 
-                <RelativeLayout
-                    android:id="@+id/icon3"
-                    android:layout_width="60dp"
-                    android:layout_height="90dp"
-                    android:background="#85bb65">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/putih"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/kompenTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Absensi, Jadwal, dan Data Kehadiran"
+                        android:textColor="@color/Abu"
+                        android:textSize="16sp"
+                        app:smart_font="@string/fontExtraBold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/AbuMuda" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:id="@+id/absen"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_abu"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/icon1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/ic_settings_remote_black_36dp" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/absenTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/icon1"
+                                android:layout_marginTop="5dp"
+                                android:text="Connect Absen"
+                                android:textAlignment="center"
+                                app:smart_font="@string/fontBold" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/jadwal"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_orange"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:id="@+id/icon2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/ic_library_books_white_36dp" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/jadwalTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/icon2"
+                                android:layout_marginTop="5dp"
+                                android:text="Lihat Jadwal"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                app:smart_font="@string/fontBold" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_biru"
+                            android:gravity="center"
+                            android:padding="5dp">
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalMasuk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="20"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="44sp"
+                                app:smart_font="@string/fontBlack" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalMasukTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/totalMasuk"
+                                android:text="Total Masuk (jam)"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="12sp"
+                                app:smart_font="@string/fontBold" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/telat"
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_shape_ungu"
+                            android:gravity="center"
+                            android:padding="5dp">
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalTelat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="10"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="44sp"
+                                app:smart_font="@string/fontBlack" />
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalTelatTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/totalTelat"
+                                android:text="Total Keterlambatan (menit)"
+                                android:textAlignment="center"
+                                android:textColor="@color/putih"
+                                android:textSize="12sp"
+                                app:smart_font="@string/fontBold" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_shape_list_red">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_shape_red" />
+
+                        <fr.arnaudguyon.smartfontslib.FontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginEnd="80dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="12dp"
+                            android:lineSpacingExtra="5dp"
+                            android:text="Total kompensasi setelah di akumulasikan (jam)"
+                            app:smart_font="@string/fontBold" />
+
+                        <RelativeLayout
+                            android:layout_width="70dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/bg_shape_red">
+
+                            <fr.arnaudguyon.smartfontslib.FontTextView
+                                android:id="@+id/totalKompen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="4"
+                                android:textColor="@color/putih"
+                                android:textSize="44sp"
+                                app:smart_font="@string/fontBlack" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/peraturan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/roleAbsen"
+                        android:textColor="@color/biru"
+                        android:textSize="12sp"
+                        app:smart_font="@string/fontBold" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/putih"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Log kehadiran hari ini"
+                        android:textColor="@color/Abu"
+                        android:textSize="16sp"
+                        app:smart_font="@string/fontExtraBold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/AbuMuda" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
                         android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_attach_money_white_36dp" />
+                        android:src="@drawable/ic_tag_faces_black_48dp"
+                        android:visibility="gone" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:lineSpacingExtra="5dp"
+                        android:text="Belum ada catatan\nuntuk hari ini"
+                        android:textAlignment="center"
+                        android:textColor="@color/Abu"
+                        android:textSize="20sp"
+                        android:visibility="gone"
+                        app:smart_font="@string/fontExtraBold" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardElevation="7dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="@color/putih">
+
+                    <RelativeLayout
+                        android:id="@+id/icon3"
+                        android:layout_width="60dp"
+                        android:layout_height="90dp"
+                        android:background="#85bb65">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_attach_money_white_36dp" />
+
+                    </RelativeLayout>
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/totalUangTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@id/icon3"
+                        android:text="Total akumulasi uang yang harus anda selesaikan"
+                        android:textColor="@color/Abu"
+                        app:smart_font="@string/fontReguler" />
+
+                    <fr.arnaudguyon.smartfontslib.FontTextView
+                        android:id="@+id/totalUang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/totalUangTxt"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/icon3"
+                        android:text="30000 IDR"
+                        android:textColor="@color/Abu"
+                        android:textSize="30sp"
+                        app:smart_font="@string/fontBlack" />
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="90dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:background="#85bb65" />
 
                 </RelativeLayout>
 
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/totalUangTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toEndOf="@id/icon3"
-                    android:text="Total akumulasi uang yang harus anda selesaikan"
-                    android:textColor="@color/Abu"
-                    app:smart_font="@string/fontReguler" />
+            </android.support.v7.widget.CardView>
 
-                <fr.arnaudguyon.smartfontslib.FontTextView
-                    android:id="@+id/totalUang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalUangTxt"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/icon3"
-                    android:text="30000 IDR"
-                    android:textColor="@color/Abu"
-                    android:textSize="30sp"
-                    app:smart_font="@string/fontBlack" />
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/nextData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Lihat lebih banyak data >>"
+                android:textColor="@color/Abu"
+                app:smart_font="@string/fontBlack" />
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="90dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:background="#85bb65" />
+        </LinearLayout>
 
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <fr.arnaudguyon.smartfontslib.FontTextView
-            android:id="@+id/nextData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Lihat lebih banyak data >>"
-            android:textColor="@color/Abu"
-            app:smart_font="@string/fontBlack" />
-
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

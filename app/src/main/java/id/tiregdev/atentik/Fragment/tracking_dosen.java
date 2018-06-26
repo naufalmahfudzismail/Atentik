@@ -30,10 +30,7 @@ public class tracking_dosen extends Fragment {
     }
 
     public void changeColor(){
-        wrapTracking = v.findViewById(R.id.wrapTracking);
+        wrapTracking = v.findViewById(R.id.mainLayout);
         wrapTracking.setBackgroundColor(getResources().getColor(R.color.AbuBG));
-
-        txt = v.findViewById(R.id.txt);
-        txt.setTextColor(getResources().getColor(R.color.putih));
     }
 }

@@ -186,13 +186,14 @@
             <fr.arnaudguyon.smartfontslib.FontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/imeiORjabatanTxt"
                 android:layout_marginTop="15dp"
                 android:text="IMEI HP"
                 android:textColor="@color/colorPrimary"
                 app:smart_font="@string/fontBold" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
-                android:id="@+id/imei"
+                android:id="@+id/imeiORjabatan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3212273"
@@ -202,12 +203,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:id="@+id/spORstatusTxt"
                 android:text="Status SP"
                 android:textColor="@color/colorPrimary"
                 app:smart_font="@string/fontBold" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
-                android:id="@+id/statusSP"
+                android:id="@+id/spORstatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tidak mendapat SP"

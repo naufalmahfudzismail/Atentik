@@ -41,13 +41,23 @@
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:textAllCaps="false"
+                android:id="@+id/btnAbsen"
                 android:background="@color/Abu"
                 app:smart_font="@string/fontExtraBold"
                 android:textColor="@color/putih"
-
                 android:text="Absen"
                 android:layout_alignParentEnd="true"/>
 
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/jarak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smart_font="@string/fontReguler"
+                android:layout_below="@id/ruangan"
+                android:textSize="12sp"
+                android:textColor="@color/Abu"
+                android:text="Jarak"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 

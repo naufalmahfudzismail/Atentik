@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/namaMatkul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/mk2"
+                app:smart_font="@string/fontBlack" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/namaDosen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Dr.Geraldi Joni STr.,MI."
+                android:textSize="12sp"
+                app:smart_font="@string/fontReguler" />
+
+            <RadioGroup
+                android:id="@+id/RG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTelat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/toska"
+                    android:text="Dosen telat masuk"
+                    android:textColor="@color/Abu"
+                    app:smart_font="@string/fontReguler" />
+
+
+                <fr.arnaudguyon.smartfontslib.FontEditText
+                    android:id="@+id/setJamMasuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="-5dp"
+                    android:enabled="false"
+                    android:hint="Mata kuliah dimulai pada jam :"
+                    android:inputType="time"
+                    android:textColor="@color/Abu"
+                    android:textColorHint="@color/AbuMuda"
+                    android:textSize="14sp"
+                    app:smart_font="@string/fontBold">
+
+                    <requestFocus />
+
+                </fr.arnaudguyon.smartfontslib.FontEditText>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTidakMasuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/toska"
+                    android:text="Dosen tidak masuk dan kelas ditiadakan"
+                    android:textColor="@color/Abu"
+                    app:smart_font="@string/fontReguler" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/dosenTidakMasukMhswMasuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/toska"
+                    android:text="Dosen tidak masuk dan kelas tetap berjalan"
+                    android:textColor="@color/Abu"
+                    app:smart_font="@string/fontReguler" />
+
+            </RadioGroup>
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/namaTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Terakhir di ubah oleh :"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/namaUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ilham Al-Fajri"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/updateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Pada pukul:"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+
+            <fr.arnaudguyon.smartfontslib.FontTextView
+                android:id="@+id/waktuUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="6.30"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:smart_font="@string/fontReguler" />
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_button"
+                android:paddingEnd="50dp"
+                android:paddingStart="50dp"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="@color/putih"
+                android:textSize="16sp"
+                app:smart_font="@string/fontExtraBold" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

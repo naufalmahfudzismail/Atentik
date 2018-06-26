@@ -18,12 +18,12 @@ import id.tiregdev.atentik.R;
  * Created by HVS on 14/03/18.
  */
 
-public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.holder_mhsw_dosen> {
+public class adapter_dialog_dosen extends RecyclerView.Adapter<adapter_dialog_dosen.holder_mhsw_dosen> {
 
     private List<object_mhsw_dosen> itemList;
     private Context context;
 
-    public adapter_mhsw_dosen(Context context, List<object_mhsw_dosen> itemList){
+    public adapter_dialog_dosen(Context context, List<object_mhsw_dosen> itemList){
         this.itemList = itemList;
         this.context = context;
     }
@@ -41,6 +41,8 @@ public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.
         holder.jabatanAatauKelas.setText(itemList.get(position).getJabatanAatauKelas());
         holder.nipAtauNim.setText(itemList.get(position).getNipAtauNim());
         holder.emailAtauTlpn.setText(itemList.get(position).getEmailAtauTlpn());
+        holder.jumlahKompenAtauStatusDosen.setText(itemList.get(position).getJumlahKompenAtauStatusDosen());
+        holder.statusSPatauEmailDosen.setText(itemList.get(position).getStatusSPatauEmailDosen());
         holder.ava.setImageResource(itemList.get(position).getAva());
     }
 
@@ -50,24 +52,35 @@ public class adapter_mhsw_dosen extends RecyclerView.Adapter<adapter_mhsw_dosen.
     }
 
     public class holder_mhsw_dosen extends RecyclerView.ViewHolder {
-        public TextView nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn;
+        public TextView nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn, jumlahKompenAtauStatusDosen, statusSPatauEmailDosen;
         public ImageView ava;
 
-        public holder_mhsw_dosen(View itemView){
+        public holder_mhsw_dosen(final View itemView){
             super(itemView);
 
             nama = itemView.findViewById(R.id.nama);
             jabatanAatauKelas = itemView.findViewById(R.id.jabatanAtauKelas);
             nipAtauNim = itemView.findViewById(R.id.nipAtauNim);
             emailAtauTlpn = itemView.findViewById(R.id.emailAtauTlp);
+            jumlahKompenAtauStatusDosen = itemView.findViewById(R.id.jumlahKompenAtauStatusDosen);
+            statusSPatauEmailDosen = itemView.findViewById(R.id.statusSPatauEmailDosen);
             ava = itemView.findViewById(R.id.ava);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(  new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     final LayoutInflater factory = LayoutInflater.from(context);
-                    final View exitDialogView = factory.inflate(R.layout.dialog_detail_dsn_mhsw, null);
+                    final View exitDialogView = factory.inflate(R.layout.dialog_detail_dosen, null);
                     final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
+
+                    TextView namadialog = exitDialogView.findViewById(R.id.nama);
+                    TextView nip = exitDialogView.findViewById(R.id.nip);
+                    TextView nidn = exitDialogView.findViewById(R.id.nidn);
+                    TextView email = exitDialogView.findViewById(R.id.email);
+                    namadialog.setText(nama.getText());
+                    nip.setText(nipAtauNim.getText());
+                    nidn.setText(jumlahKompenAtauStatusDosen.getText());
+                    email.setText(statusSPatauEmailDosen.getText());
 
                     exitDialog.setView(exitDialogView);
                     exitDialog.show();

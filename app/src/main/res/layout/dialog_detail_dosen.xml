@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/wrapDialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -9,8 +10,8 @@
         android:id="@+id/ava"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ava" />
 
@@ -20,62 +21,66 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ava"
         android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="16sp"
-        android:text="Yusuf Setya Nugraha"
+        android:text="Pak Fauzi"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         app:smart_font="@string/fontBlack" />
+
+    <fr.arnaudguyon.smartfontslib.FontTextView
+        android:id="@+id/nip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nama"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:text="2210099217728993890"
+        android:textAlignment="center"
+        app:smart_font="@string/fontReguler" />
 
     <RelativeLayout
         android:id="@+id/wrap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nama"
+        android:layout_below="@id/nip"
         android:layout_centerHorizontal="true"
         android:gravity="center">
 
         <fr.arnaudguyon.smartfontslib.FontTextView
-            android:id="@+id/jumlahKompenAtauStatusDosenTxt"
+            android:id="@+id/nidnTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="Jumlah Kompen"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:text="NIDN : "
             app:smart_font="@string/fontReguler" />
 
         <fr.arnaudguyon.smartfontslib.FontTextView
-            android:id="@+id/spasi"
+            android:id="@+id/nidn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/jumlahKompenAtauStatusDosenTxt"
-            android:text=":"
-            app:smart_font="@string/fontReguler" />
-
-        <fr.arnaudguyon.smartfontslib.FontTextView
-            android:id="@+id/jumlahKompenAtauStatusDosen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/spasi"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:layout_toEndOf="@id/nidnTxt"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="86 Jam"
+            android:text="2177289"
             app:smart_font="@string/fontReguler" />
 
     </RelativeLayout>
 
     <fr.arnaudguyon.smartfontslib.FontTextView
-        android:id="@+id/statusSPatauEmailDosen"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wrap"
-        android:textAlignment="center"
-        android:layout_marginBottom="15dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="SP 2"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:text="nurfauzi.tik@pnj.ac.id"
+        android:textAlignment="center"
         app:smart_font="@string/fontReguler" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package id.tiregdev.atentik.Activity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -15,10 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import id.tiregdev.atentik.Fragment.jadwal_jumat;
 import id.tiregdev.atentik.Fragment.jadwal_jumat_dosen;
@@ -38,6 +43,9 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
     LinearLayout wrapJadwal;
     Toolbar toolbar;
     TabLayout tab;
+    TextView tgl;
+    Locale localeID = new Locale("in", "ID");
+    String tokens, hari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,13 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
 
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
+        tgl = findViewById(R.id.tgl);
+        String tanggal = new SimpleDateFormat("dd MMMM yyyy", localeID).format(new Date());
+        hari = new SimpleDateFormat("EEEE", localeID).format(new Date());
+        String haritanggal = hari + ", " + tanggal;
+        tgl.setText(haritanggal);
         setMore();
         setUpPager();
         setColour();
@@ -85,15 +100,32 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final LayoutInflater factory = LayoutInflater.from(jadwal_kuliah_dosen.this);
-                final View exitDialogView = factory.inflate(R.layout.dialog_more_jadwal, null);
+                final View exitDialogView = factory.inflate(R.layout.dialog_set_jadwal_dosen, null);
                 final AlertDialog exitDialog = new AlertDialog.Builder(jadwal_kuliah_dosen.this).create();
 
                 exitDialog.setView(exitDialogView);
-                exitDialogView.findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
+                exitDialogView.findViewById(R.id.setJadwal1).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         exitDialog.dismiss();
-                        Toast.makeText(jadwal_kuliah_dosen.this, "Unduh data sukses", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getBaseContext(), set_jadwal_masuk_dosen_2.class);
+                        startActivity(i);
+                    }
+                });
+                exitDialogView.findViewById(R.id.setJadwal2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        exitDialog.dismiss();
+                        Intent i = new Intent(getBaseContext(), set_jadwal_masuk_dosen_2.class);
+                        startActivity(i);
+                    }
+                });
+                exitDialogView.findViewById(R.id.setLogMahasiswa).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        exitDialog.dismiss();
+                        Intent i = new Intent(getBaseContext(), log_mahasiswa.class);
+                        startActivity(i);
                     }
                 });
                 exitDialog.show();
@@ -108,6 +140,23 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
         tabs.setupWithViewPager(pager);
 
         setupViewPager(pager);
+        switch (hari) {
+            case "Senin":
+                pager.setCurrentItem(0);
+                break;
+            case "Selasa":
+                pager.setCurrentItem(1);
+                break;
+            case "Rabu":
+                pager.setCurrentItem(2);
+                break;
+            case "Kamis":
+                pager.setCurrentItem(3);
+                break;
+            case "Jumat":
+                pager.setCurrentItem(4);
+                break;
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -120,7 +169,6 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
         adapter.addFragment(new jadwal_jumat_dosen(), "JUM");
 
         viewPager.setAdapter(adapter);
-
     }
 
     static class Adapter extends FragmentPagerAdapter {

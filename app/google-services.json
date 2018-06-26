@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "256699893513",
+    "firebase_url": "https://atentik-f06ea.firebaseio.com",
+    "project_id": "atentik-f06ea",
+    "storage_bucket": "atentik-f06ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256699893513:android:9626ef100ced0a2a",
+        "android_client_info": {
+          "package_name": "id.tiregdev.atentik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256699893513-t1e5261c7bq092lic6p0j5lvq0jab2bn.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "256699893513-t1e5261c7bq092lic6p0j5lvq0jab2bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5gpSAt6ZUBoI7JikR_Gse8u9F_mo0s0M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

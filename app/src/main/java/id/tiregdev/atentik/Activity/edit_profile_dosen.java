@@ -17,19 +17,26 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Util.AtentikHelper;
+import id.tiregdev.atentik.Model.object_dosen;
 import id.tiregdev.atentik.R;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class edit_profile_dosen extends AppCompatActivity {
 
     private static int RESULT_LOAD_IMG = 1;
     Button email, tlp;
     EditText emailEdt, tlpEdt;
-    TextView imei, statusSP, nb, nama, status, nip;
+    TextView jabatan, nb, nama, status, nip, jabatanTxt, statusTxt;
     ScrollView wrapEditProfile;
     RelativeLayout wrapHeader, wrapNim;
     Toolbar toolbar;
     LinearLayout wrapContent;
     ImageView photo;
+    String tokens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,8 @@ public class edit_profile_dosen extends AppCompatActivity {
         setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
         setEmail();
         setTlp();
         findID();
@@ -60,6 +69,28 @@ public class edit_profile_dosen extends AppCompatActivity {
 
         wrapNim = findViewById(R.id.wrapNim);
         wrapNim.setVisibility(View.GONE);
+
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_dosen> call = client.profilDosen("Bearer " + tokens);
+        call.enqueue(new Callback<object_dosen>() {
+            @Override
+            public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                if(response.isSuccessful())
+                {
+                    nama.setText(response.body().getNama());
+                    email.setText(response.body().getEmail());
+                    tlp.setText(response.body().getTlp());
+//                    imei.setText(response.body().getImei_hp());
+                    status.setText(response.body().getStatus_dosen());
+                    nip.setText(response.body().getNip());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<object_dosen> call, Throwable t) {
+                Toast.makeText(edit_profile_dosen.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void changeColor(){
@@ -77,19 +108,29 @@ public class edit_profile_dosen extends AppCompatActivity {
     }
 
     public void findID(){
-        imei = findViewById(R.id.imei);
-        statusSP = findViewById(R.id.statusSP);
-        imei.setOnClickListener(new View.OnClickListener() {
+        jabatan = findViewById(R.id.imeiORjabatan);
+        jabatan.setText("KPS TMJ");
+
+        jabatanTxt = findViewById(R.id.imeiORjabatanTxt);
+        jabatanTxt.setText("Jabatan");
+
+        status = findViewById(R.id.spORstatus);
+        status.setText("Dosen PNS");
+
+        statusTxt = findViewById(R.id.spORstatusTxt);
+        statusTxt.setText("Status Dosen");
+
+        jabatan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(edit_profile_dosen.this, "Imei tidak dapat di ubah", Toast.LENGTH_SHORT).show();
+                Toast.makeText(edit_profile_dosen.this, "Jabatan tidak dapat di ubah", Toast.LENGTH_SHORT).show();
             }
         });
 
-        statusSP.setOnClickListener(new View.OnClickListener() {
+        status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(edit_profile_dosen.this, "Status SP tidak dapat di ubah", Toast.LENGTH_SHORT).show();
+                Toast.makeText(edit_profile_dosen.this, "Status dosen tidak dapat di ubah", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,15 +153,30 @@ public class edit_profile_dosen extends AppCompatActivity {
                 final LayoutInflater factory = LayoutInflater.from(edit_profile_dosen.this);
                 final View exitDialogView = factory.inflate(R.layout.dialog_edit_tlp, null);
                 final AlertDialog exitDialog = new AlertDialog.Builder(edit_profile_dosen.this).create();
+                tlpEdt = exitDialogView.findViewById(R.id.edtTlp);
                 exitDialog.setView(exitDialogView);
                 exitDialogView.findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                        Call<object_dosen> call = client.profilTlpDosen("Bearer " + tokens, tlpEdt.getText().toString());
+                        call.enqueue(new Callback<object_dosen>() {
+                            @Override
+                            public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                                if(response.isSuccessful())
+                                {
+                                    Toast.makeText(edit_profile_dosen.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<object_dosen> call, Throwable t) {
+                                Toast.makeText(edit_profile_dosen.this, t.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         exitDialog.dismiss();
-                        Toast.makeText(edit_profile_dosen.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 exitDialogView.findViewById(R.id.tidak).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -140,15 +196,30 @@ public class edit_profile_dosen extends AppCompatActivity {
                 final LayoutInflater factory = LayoutInflater.from(edit_profile_dosen.this);
                 final View exitDialogView = factory.inflate(R.layout.dialog_edit_email, null);
                 final AlertDialog exitDialog = new AlertDialog.Builder(edit_profile_dosen.this).create();
+                emailEdt = exitDialogView.findViewById(R.id.edtEmail);
                 exitDialog.setView(exitDialogView);
                 exitDialogView.findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                        Call<object_dosen> call = client.profilEmailDosen("Bearer " + tokens, emailEdt.getText().toString());
+                        call.enqueue(new Callback<object_dosen>() {
+                            @Override
+                            public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                                if(response.isSuccessful())
+                                {
+                                    Toast.makeText(edit_profile_dosen.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<object_dosen> call, Throwable t) {
+                                Toast.makeText(edit_profile_dosen.this, t.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         exitDialog.dismiss();
-                        Toast.makeText(edit_profile_dosen.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 exitDialogView.findViewById(R.id.tidak).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
