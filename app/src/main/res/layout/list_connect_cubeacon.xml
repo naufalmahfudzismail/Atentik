@@ -20,22 +20,24 @@
             android:padding="10dp">
 
             <fr.arnaudguyon.smartfontslib.FontTextView
-                android:id="@+id/ruangan"
+                android:id="@+id/cubeaconNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontBlack"
                 android:textColor="@color/Abu"
-                android:text="AA301" />
+                android:text="AA301"
+                android:textSize="16sp"/>
 
             <fr.arnaudguyon.smartfontslib.FontTextView
-                android:id="@+id/cubeaconNumber"
+                android:id="@+id/ruangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:smart_font="@string/fontReguler"
                 android:layout_below="@id/ruangan"
                 android:textSize="12sp"
                 android:textColor="@color/Abu"
-                android:text="CBN_820" />
+                android:text="CBN_820"
+                android:visibility="gone"/>
 
             <fr.arnaudguyon.smartfontslib.FontButton
                 android:layout_width="70dp"

@@ -68,9 +68,9 @@ public class adapter_cubeacon extends RecyclerView.Adapter<adapter_cubeacon.hold
                                 if(response.isSuccessful())
                                 {
                                     if(response.body().getJam_hadir().equals("-"))
-                                        Toast.makeText(layoutView.getContext(), "Anda berhasil absen pada jam " + response.body().getKompen(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(layoutView.getContext(), response.body().getKompen(), Toast.LENGTH_SHORT).show();
                                     else
-                                        Toast.makeText(layoutView.getContext(), response.body().getJam_hadir(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(layoutView.getContext(), "Anda berhasil absen pada jam " + response.body().getJam_hadir(), Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {
