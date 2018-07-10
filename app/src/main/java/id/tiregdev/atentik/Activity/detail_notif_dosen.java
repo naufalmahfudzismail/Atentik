@@ -1,5 +1,7 @@
 package id.tiregdev.atentik.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ public class detail_notif_dosen extends AppCompatActivity {
     ScrollView wrapDetailNotif;
     Toolbar toolbar;
     TextView judul, tgl, isi, toolbar_title;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,16 @@ public class detail_notif_dosen extends AppCompatActivity {
 
         isi = findViewById(R.id.isi);
         isi.setTextColor(getResources().getColor(R.color.putih));
+
+        sharedpreferences = getSharedPreferences("notif", Context.MODE_PRIVATE);
+
+        String judull = sharedpreferences.getString("judul", null);
+        String isii = sharedpreferences.getString("isi", null);
+        String waktuu = sharedpreferences.getString("waktu", null);
+
+        judul.setText(judull);
+        tgl.setText(waktuu);
+        isi.setText(isii);
     }
 
     @Override

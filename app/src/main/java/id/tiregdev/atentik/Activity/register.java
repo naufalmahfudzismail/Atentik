@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,30 +87,42 @@ public class register extends AppCompatActivity {
                 String passs = pass.getText().toString();
                 String confirmpasss = confirmPass.getText().toString();
 
-                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-                Call<object_mahasiswa> call = client.regisMahasiswa(namas, nims, passs, confirmpasss, imei);
+                if(passs.length() <8 || confirmpasss.length() <8)
+                {
+                    Toast.makeText(register.this, "Password minimal 8 karakter", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                    Call<object_mahasiswa> call = client.regisMahasiswa(namas, nims, passs, confirmpasss, imei);
 //                Call<object_mahasiswa> call = client.harun();
-                call.enqueue(new Callback<object_mahasiswa>() {
-                    @Override
-                    public void onResponse(Call<object_mahasiswa> call, Response<object_mahasiswa> response) {
-                        if(response.isSuccessful())
-                        {
-                            if(response.body().getId() == null)
+                    call.enqueue(new Callback<object_mahasiswa>() {
+                        @Override
+                        public void onResponse(Call<object_mahasiswa> call, Response<object_mahasiswa> response) {
+                            if(response.isSuccessful())
+                            {
+                                if(response.body().getId() == null)
+                                    Toast.makeText(register.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
+                                else if(response.body().getId() == "0")
+                                    Toast.makeText(register.this, "Data sudah ada", Toast.LENGTH_SHORT).show();
+                                else
+                                {
+                                    Toast.makeText(register.this, "Anda telah teregistrasi", Toast.LENGTH_SHORT).show();
+                                    register.this.finish();
+                                }
+                            }
+                            else if(response.code() == 422 || response.code() == 401)
                                 Toast.makeText(register.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
-                            else if(response.body().getId() == "0")
-                                Toast.makeText(register.this, "Data sudah ada", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(register.this, "Anda telah teregistrasi", Toast.LENGTH_SHORT).show();
                         }
-                        else if(response.code() == 422)
-                            Toast.makeText(register.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<object_mahasiswa> call, Throwable t) {
-                        Toast.makeText(register.this, "Gagal: " + t.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<object_mahasiswa> call, Throwable t) {
+                            String salah = "Koneksi internet tidak tersambung";
+                            Log.d("ALALALA", t.toString());
+                            Toast.makeText(register.this, "Gagal: \n" + salah, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 

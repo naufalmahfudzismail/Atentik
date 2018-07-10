@@ -19,11 +19,22 @@ public class object_lokasi {
     private String nimornip;
     @SerializedName("posisi")
     private String posisi;
+    @SerializedName("photo")
+    private String photo;
 
-    public object_lokasi(String nama, String nimornip, String posisi) {
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public object_lokasi(String nama, String nimornip, String posisi, String photo) {
         this.nama = nama;
         this.nimornip = nimornip;
         this.posisi = posisi;
+        this.photo = photo;
     }
 
     public String getPosisi() {

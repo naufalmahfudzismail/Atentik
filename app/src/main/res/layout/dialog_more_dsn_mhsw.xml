@@ -21,7 +21,8 @@
         android:background="@color/AbuMuda"
         android:alpha="0.5"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"/>
 
     <fr.arnaudguyon.smartfontslib.FontTextView
         android:layout_width="match_parent"
@@ -30,6 +31,7 @@
         android:id="@+id/download"
         app:smart_font="@string/fontBlack"
         android:textColor="@color/Abu"
-        android:text="Download Data"/>
+        android:text="Download Data"
+        android:visibility="gone"/>
 
 </LinearLayout>

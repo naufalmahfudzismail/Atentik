@@ -21,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,7 @@ import java.util.Locale;
 import id.tiregdev.atentik.Activity.CekToken;
 import id.tiregdev.atentik.Activity.edit_profile_dosen;
 import id.tiregdev.atentik.Activity.jadwal_kuliah_dosen;
+import id.tiregdev.atentik.Activity.tracking_dosen;
 import id.tiregdev.atentik.Adapter.adapter_kompen_terbanyak_dosen;
 import id.tiregdev.atentik.AtentikClient;
 import id.tiregdev.atentik.Model.object_total;
@@ -48,8 +51,8 @@ import retrofit2.Response;
 
 public class home_dosen extends Fragment {
 
-    ImageView filter;
-    CardView openWeb, wrapJadwal, cvProfile;
+    ImageView foto;
+    CardView openWeb, wrapJadwal, cvProfile, tracking;
     Button editProfile;
     RecyclerView rView;
     LinearLayoutManager  lLayout;
@@ -76,6 +79,7 @@ public class home_dosen extends Fragment {
         imei = v.findViewById(R.id.imei);
         status = v.findViewById(R.id.status);
         tgl = v.findViewById(R.id.tgl);
+        foto = v.findViewById(R.id.foto);
         totalMasuk = v.findViewById(R.id.totalMasuk);
         totalTelat = v.findViewById(R.id.totalTelat);
         totalIzin = v.findViewById(R.id.totalIzin);
@@ -96,6 +100,7 @@ public class home_dosen extends Fragment {
                     tlp.setText(response.body().getTlp());
 //                    imei.setText(response.body().getImei_hp());
                     status.setText(response.body().getStatus_dosen());
+                    Glide.with(getContext()).load("https://atentik.id/assets/img/faces/" + response.body().getPhoto()).into(foto);
                 }
             }
             @Override
@@ -139,7 +144,6 @@ public class home_dosen extends Fragment {
             }
         });
         tgl.setText("Jumlah data hingga " + hari + ", " + tanggal);
-        setUpfilter();
         findId();
         setupAdapterkompen_terbanyak();
         return v;
@@ -183,11 +187,20 @@ public class home_dosen extends Fragment {
                 startActivity(i);
             }
         });
+
+        tracking = v.findViewById(R.id.tracking);
+        tracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), tracking_dosen.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void setupAdapterkompen_terbanyak(){
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-        Call<List<object_kompen_terbanyak>> callz = client.kompenTerbanyakDosen("Bearer " + tokens);
+        Call<List<object_kompen_terbanyak>> callz = client.kompenTerbanyakDosen("Bearer " + tokens, tanggals);
         callz.enqueue(new Callback<List<object_kompen_terbanyak>>() {
             @Override
             public void onResponse(Call<List<object_kompen_terbanyak>> call, Response<List<object_kompen_terbanyak>> response) {
@@ -196,7 +209,7 @@ public class home_dosen extends Fragment {
                     List<object_kompen_terbanyak> simpan = response.body();
                     for(int i = 0; i < simpan.size(); i++)
                     {
-                        kompenMhsw.add(new object_kompen_terbanyak(String.valueOf(i+1)+".",simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getKompen(), simpan.get(i).getStatus_sp(),R.drawable.ava));
+                        kompenMhsw.add(new object_kompen_terbanyak(String.valueOf(i+1)+".",simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getKompen() + " jam", simpan.get(i).getStatus_sp(), simpan.get(i).getPhoto()));
                     }
                     List<object_kompen_terbanyak> rowListItem = kompenMhsw;
                     lLayout = new LinearLayoutManager(getActivity());
@@ -219,69 +232,6 @@ public class home_dosen extends Fragment {
             }
         });
 
-    }
-
-    public void setUpfilter(){
-        filter = v.findViewById(R.id.filter);
-        filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final LayoutInflater factory = LayoutInflater.from(getActivity());
-                final View exitDialogView = factory.inflate(R.layout.dialog_filter, null);
-                final AlertDialog exitDialog = new AlertDialog.Builder(getActivity()).create();
-
-                final Spinner sortTgl = exitDialogView.findViewById(R.id.sortTanggal);
-                final Spinner sortBln = exitDialogView.findViewById(R.id.sortBulan);
-                final Spinner sortThn = exitDialogView.findViewById(R.id.sortTahun);
-                final Spinner sortKls = exitDialogView.findViewById(R.id.sortKelas);
-
-                final String tahun[] = {
-                        "2018", "2019", "2020", "2021", "2022"
-                };
-
-                final String bulan[] = {
-                        "Januari", "Februari", "Maret", "Aapril", "Mei",
-                        "Juni", "Juli", "Agustus",
-                        "September", "Oktober", "November", "Desember"
-                };
-
-                final String tanggal[] = {
-                        "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
-                };
-
-                final String kelas[] = {
-                        "TI-2A", "TI-4", "TMJ-2", "TMD-4", "CCIT-SEC 2B"
-                };
-
-                final ArrayAdapter<String> AdapterTgl = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, tanggal);
-                AdapterTgl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sortTgl.setAdapter(AdapterTgl);
-
-                final ArrayAdapter<String> AdapterBln = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, bulan);
-                AdapterBln.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sortBln.setAdapter(AdapterBln);
-
-                final ArrayAdapter<String> AdapterThn = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, tahun);
-                AdapterThn.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sortThn.setAdapter(AdapterThn);
-
-                final ArrayAdapter<String> AdapterKls = new ArrayAdapter<String>(exitDialogView.getContext(), android.R.layout.simple_spinner_item, kelas);
-                AdapterKls.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sortKls.setAdapter(AdapterKls);
-
-                exitDialog.setView(exitDialogView);
-                exitDialogView.findViewById(R.id.filter).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        Toast.makeText(getActivity(), "Filter Sukses", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                exitDialog.show();
-            }
-        });
     }
 
 }

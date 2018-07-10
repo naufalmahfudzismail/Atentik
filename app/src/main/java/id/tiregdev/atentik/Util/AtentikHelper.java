@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AtentikHelper {
-    public static final String BASE_URL = "http://192.168.1.4:80/api/";
+    public static final String BASE_URL = "https://atentik.id/api/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {

@@ -1,9 +1,9 @@
 package id.tiregdev.atentik.Activity;
 
-import android.content.Context;
+import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -25,30 +25,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eyro.cubeacon.CBBeacon;
-import com.eyro.cubeacon.CBBootstrapListener;
-import com.eyro.cubeacon.CBBootstrapRegion;
 import com.eyro.cubeacon.CBRangingListener;
 import com.eyro.cubeacon.CBRegion;
 import com.eyro.cubeacon.CBServiceListener;
 import com.eyro.cubeacon.Cubeacon;
 import com.eyro.cubeacon.LogLevel;
 import com.eyro.cubeacon.Logger;
-import com.eyro.cubeacon.MonitoringState;
 import com.eyro.cubeacon.SystemRequirementManager;
-import com.google.firebase.messaging.RemoteMessage;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
-import com.pusher.pushnotifications.PushNotificationReceivedListener;
 import com.pusher.pushnotifications.PushNotifications;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import id.tiregdev.atentik.AtentikClient;
 import id.tiregdev.atentik.Model.object_cubeacon;
@@ -58,7 +49,6 @@ import id.tiregdev.atentik.Fragment.data_dosen;
 import id.tiregdev.atentik.Fragment.data_mhsw;
 import id.tiregdev.atentik.Fragment.home;
 import id.tiregdev.atentik.Fragment.notif;
-import id.tiregdev.atentik.Fragment.tracking;
 import id.tiregdev.atentik.Model.object_mahasiswa;
 import id.tiregdev.atentik.R;
 import retrofit2.Call;
@@ -75,6 +65,8 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
     private static final String TAG = activity_main.class.getSimpleName();
     TextView nama, nimOrNip, kelasOrStatus, namaheader, nimheader;
     String tokens;
+    BluetoothAdapter bluetoothadapter;
+    int times = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +87,15 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
 
         CekToken ct = new CekToken();
         tokens = ct.Cek(this);
+
+        // set Cubeacon SDK log level to verbose mode
+        Logger.setLogLevel(LogLevel.VERBOSE);
+
+        // enable background power saver to save battery life up to 60%
+        Cubeacon.setBackgroundPowerSaver(true);
+
+        // initializing Cubeacon SDK
+        Cubeacon.initialize(this);
 
         cubeacon = Cubeacon.getInstance();
 
@@ -153,7 +154,22 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, "kosong");
+        callz.enqueue(new Callback<object_cubeacon>() {
+            @Override
+            public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                if(response.isSuccessful())
+                {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
         // disconnect from Cubeacon service when this activity destroyed
         cubeacon.disconnect(this);
     }
@@ -161,12 +177,21 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
     @Override
     public void didRangeBeaconsInRegion(final List<CBBeacon> beacons, CBRegion region) {
         this.beacons = beacons;
-        for (final CBBeacon beacon : beacons) {
-            String isi = "kosong";
-            if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
-            {
-                isi = beacon.getName();
-            }
+        // update view using runnable
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+                times++;
+                if(times > 8)
+                {
+                    times = 0;
+                    for (final CBBeacon beacon : beacons) {
+                String isi = "kosong";
+                if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
+                {
+                    isi = beacon.getName();
+                }
                 AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
                 Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, isi);
                 callz.enqueue(new Callback<object_cubeacon>() {
@@ -185,11 +210,12 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
                 });
 //            }
 //            Toast.makeText(this, beacon.getName() + " " + beacon.getProximity(), Toast.LENGTH_SHORT).show();
-        }
-        // update view using runnable
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+                    }
+                }
+                if(!bluetoothadapter.isEnabled())
+                {
+                    activity_main.this.finish();
+                }
 //                Toast.makeText(activity_main.this, isi, Toast.LENGTH_SHORT).show();
 //                rcAdapter.notifyDataSetChanged();
 //                if (getSupportActionBar() != null) {
@@ -309,6 +335,22 @@ public class activity_main extends AppCompatActivity implements NavigationView.O
             case R.id.logout:
 
                 AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, "kosong");
+                callz.enqueue(new Callback<object_cubeacon>() {
+                    @Override
+                    public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                        if(response.isSuccessful())
+                        {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 Call<object_mahasiswa> call = client.logoutMahasiswa("Bearer " + tokens);
                 call.enqueue(new Callback<object_mahasiswa>() {
                     @Override

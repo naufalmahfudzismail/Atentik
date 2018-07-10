@@ -15,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import id.tiregdev.atentik.AtentikClient;
 import id.tiregdev.atentik.Util.AtentikHelper;
 import id.tiregdev.atentik.Model.object_mahasiswa;
@@ -82,6 +84,7 @@ public class edit_profile extends AppCompatActivity {
                     statusSP.setText(response.body().getStatus_sp());
                     nim.setText(response.body().getNim());
                     kelas.setText(response.body().getKelas());
+                    Glide.with(getBaseContext()).load("https://atentik.id/assets/img/faces/" + response.body().getPhoto()).into(photo);
                 }
             }
 
@@ -180,6 +183,10 @@ public class edit_profile extends AppCompatActivity {
                                 if(response.isSuccessful())
                                 {
                                     Toast.makeText(edit_profile.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(response.code() == 422 || response.code() == 401)
+                                {
+                                    Toast.makeText(edit_profile.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

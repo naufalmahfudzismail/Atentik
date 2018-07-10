@@ -29,6 +29,16 @@ public class object_mahasiswa {
     private String token;
     @SerializedName("pesan")
     private String pesan;
+    @SerializedName("photo")
+    private String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getPesan() {
         return pesan;

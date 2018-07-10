@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ import java.util.List;
 import id.tiregdev.atentik.Adapter.adapter_tracking;
 import id.tiregdev.atentik.AtentikClient;
 import id.tiregdev.atentik.Model.object_lokasi;
-import id.tiregdev.atentik.Model.object_mhsw_dosen;
 import id.tiregdev.atentik.Model.object_tracking;
 import id.tiregdev.atentik.R;
 import id.tiregdev.atentik.Util.AtentikHelper;
@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class tracking_mhsw extends AppCompatActivity {
+public class tracking_dosen extends AppCompatActivity {
 
     RecyclerView rView;
     LinearLayoutManager lLayout;
@@ -49,6 +49,24 @@ public class tracking_mhsw extends AppCompatActivity {
 
         setupAdapter();
         setSearch();
+        setColour();
+    }
+
+    public void setColour(){
+        RelativeLayout mainLayout, wrapSearchDosen;
+        Toolbar toolbar;
+
+        rView = findViewById(R.id.rview);
+        rView.setBackgroundColor(getResources().getColor(R.color.bgCV));
+
+        mainLayout = findViewById(R.id.mainLayout);
+        mainLayout.setBackgroundColor(getResources().getColor(R.color.bgCV));
+
+        wrapSearchDosen = findViewById(R.id.wrapSearchDosen);
+        wrapSearchDosen.setBackgroundColor(getResources().getColor(R.color.bgCV));
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.bgCV));
     }
 
     public void setSearch(){
@@ -76,7 +94,7 @@ public class tracking_mhsw extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // todo: goto back activity from here
-                tracking_mhsw.this.finish();
+                tracking_dosen.this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -85,7 +103,7 @@ public class tracking_mhsw extends AppCompatActivity {
 
     public void setupAdapter(){
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-        Call<List<object_lokasi>> call = client.lihatLokasi("Bearer " + tokens);
+        Call<List<object_lokasi>> call = client.lihatLokasiDsn("Bearer " + tokens);
         call.enqueue(new Callback<List<object_lokasi>>() {
             @Override
             public void onResponse(Call<List<object_lokasi>> call, Response<List<object_lokasi>> response) {
@@ -99,12 +117,12 @@ public class tracking_mhsw extends AppCompatActivity {
                     }
                     List<object_lokasi> rowListItem = lihatlokasi;
                     lihatlokasi2.addAll(lihatlokasi);
-                    lLayout = new LinearLayoutManager(tracking_mhsw.this);
+                    lLayout = new LinearLayoutManager(tracking_dosen.this);
 
                     rView = findViewById(R.id.rview);
                     rView.setLayoutManager(lLayout);
 
-                    rcAdapter = new adapter_tracking(tracking_mhsw.this, rowListItem);
+                    rcAdapter = new adapter_tracking(tracking_dosen.this, rowListItem);
                     rView.setAdapter(rcAdapter);
                 }
             }

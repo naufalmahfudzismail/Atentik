@@ -166,25 +166,25 @@ public class adapter_set_jadwal_dosen extends RecyclerView.Adapter<adapter_set_j
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(rb1.isChecked())
-                    {
+                    if (rb1.isChecked()) {
                         pilihans = "1";
-                    }
-                    else if(rb2.isChecked())
-                    {
+                    } else if (rb2.isChecked()) {
                         pilihans = "2";
-                    }
-                    else if(rb3.isChecked())
-                    {
+                    } else if (rb3.isChecked()) {
                         pilihans = "3";
                     }
+                    if(rb1.isChecked() && (waktuMasuk.getText().toString().isEmpty() || waktuMasuk.getText().toString().length() != 5 || !waktuMasuk.getText().toString().contains(".")))
+                    {
+                        Toast.makeText(itemView.getContext(), "Waktu masuk harus diisi dengan benar", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
                     AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
                     Call<object_set_jadwal_masuk> call = client.setJadwalMasukDosen("Bearer " + tokens, namaMatkul.getText().toString(), hari, namaDosen.getText().toString(), tanggals, pilihans, waktuMasuk.getText().toString(), jam);
                     call.enqueue(new Callback<object_set_jadwal_masuk>() {
                         @Override
                         public void onResponse(Call<object_set_jadwal_masuk> call, Response<object_set_jadwal_masuk> response) {
-                            if(response.isSuccessful())
-                            {
+                            if (response.isSuccessful()) {
                                 Toast.makeText(itemView.getContext(), response.body().getPesan(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -194,6 +194,7 @@ public class adapter_set_jadwal_dosen extends RecyclerView.Adapter<adapter_set_j
                             Toast.makeText(itemView.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
                         }
                     });
+                    }
                 }
             });
         }

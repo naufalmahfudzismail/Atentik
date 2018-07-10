@@ -30,19 +30,29 @@ public class object_mhsw_dosen {
     private String kompen;
     @SerializedName("status_sp")
     private String status_sp;
+    @SerializedName("photo")
+    private String photo;
 
 
     private String jabatanAatauKelas, nipAtauNim, emailAtauTlpn, jumlahKompenAtauStatusDosen, statusSPatauEmailDosen;
     private int ava;
 
-    public object_mhsw_dosen(String nama, String jabatanAatauKelas, String nipAtauNim, String emailAtauTlpn, String jumlahKompenAtauStatusDosen, String statusSPatauEmailDosen, int ava) {
+    public object_mhsw_dosen(String nama, String jabatanAatauKelas, String nipAtauNim, String emailAtauTlpn, String jumlahKompenAtauStatusDosen, String statusSPatauEmailDosen, String photo) {
         this.nama = nama;
         this.jabatanAatauKelas = jabatanAatauKelas;
         this.nipAtauNim = nipAtauNim;
         this.emailAtauTlpn = emailAtauTlpn;
         this.jumlahKompenAtauStatusDosen = jumlahKompenAtauStatusDosen;
         this.statusSPatauEmailDosen = statusSPatauEmailDosen;
-        this.ava = ava;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getNidn() {

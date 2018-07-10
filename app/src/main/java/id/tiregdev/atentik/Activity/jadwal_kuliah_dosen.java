@@ -116,8 +116,7 @@ public class jadwal_kuliah_dosen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         exitDialog.dismiss();
-                        Intent i = new Intent(getBaseContext(), set_jadwal_masuk_dosen_2.class);
-                        startActivity(i);
+                        Toast.makeText(getBaseContext(), "Fitur ini akan disempurnakan", Toast.LENGTH_SHORT).show();
                     }
                 });
                 exitDialogView.findViewById(R.id.setLogMahasiswa).setOnClickListener(new View.OnClickListener() {

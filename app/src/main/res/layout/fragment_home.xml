@@ -76,7 +76,7 @@
                         android:layout_toEndOf="@id/spTxt"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="hvs137@gmail.com"
+                        android:text="email"
                         app:smart_font="@string/fontReguler" />
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
@@ -97,7 +97,7 @@
                         android:layout_below="@id/mailTxt"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/spTxt"
-                        android:text="085613212276"
+                        android:text="nomor telpon"
                         app:smart_font="@string/fontReguler" />
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/spTxt"
                         android:layout_toEndOf="@+id/spTxt"
-                        android:text="3212273"
+                        android:text="imei"
                         app:smart_font="@string/fontReguler" />
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
@@ -138,7 +138,7 @@
                         android:layout_below="@id/imei"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/spTxt"
-                        android:text="Tidak mendapat SP"
+                        android:text="status sp"
                         app:smart_font="@string/fontReguler" />
 
                 </RelativeLayout>
@@ -365,7 +365,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="20"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
                                 android:textSize="44sp"
@@ -398,7 +398,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="10"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
                                 android:textSize="44sp"
@@ -433,7 +433,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginEnd="80dp"
+                            android:layout_marginEnd="110dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="12dp"
                             android:lineSpacingExtra="5dp"
@@ -441,7 +441,7 @@
                             app:smart_font="@string/fontBold" />
 
                         <RelativeLayout
-                            android:layout_width="70dp"
+                            android:layout_width="100dp"
                             android:layout_height="60dp"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/bg_shape_red">
@@ -451,9 +451,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="4"
+                                android:text="0"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="35sp"
                                 app:smart_font="@string/fontBlack" />
 
                         </RelativeLayout>
@@ -589,7 +589,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/icon3"
-                        android:text="30000 IDR"
+                        android:text="0 IDR"
                         android:textColor="@color/Abu"
                         android:textSize="30sp"
                         app:smart_font="@string/fontBlack" />

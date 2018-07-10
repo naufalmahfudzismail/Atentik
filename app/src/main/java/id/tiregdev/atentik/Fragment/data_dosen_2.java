@@ -54,7 +54,6 @@ public class data_dosen_2 extends Fragment {
         tokens = ct.Cek(this.getActivity());
         setupAdaptermhsw_dosen();
         setSearch();
-        dialogOpsi();
         changeColor();
         return v;
     }
@@ -85,36 +84,6 @@ public class data_dosen_2 extends Fragment {
 
         wrapSearchDosen = v.findViewById(R.id.wrapSearchDosen);
         wrapSearchDosen.setBackgroundColor(getResources().getColor(R.color.AbuBG));
-    }
-
-    public void dialogOpsi() {
-        ImageView more = v.findViewById(R.id.more);
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater factory = LayoutInflater.from(getActivity());
-                final View exitDialogView = factory.inflate(R.layout.dialog_more_dsn_mhsw, null);
-                final AlertDialog exitDialog = new AlertDialog.Builder(getActivity()).create();
-
-                exitDialog.setView(exitDialogView);
-                exitDialogView.findViewById(R.id.filterKelas).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        dialogFilter();
-                    }
-                });
-
-                exitDialogView.findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        Toast.makeText(getActivity(), "Unduh data sukses", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                exitDialog.show();
-            }
-        });
     }
 
     public void dialogFilter(){
@@ -153,7 +122,7 @@ public class data_dosen_2 extends Fragment {
                     List<object_mhsw_dosen> simpan = response.body();
                     for(int i = 0; i < simpan.size(); i++)
                     {
-                        dosen.add(new object_mhsw_dosen(simpan.get(i).getNama(),simpan.get(i).getStatus_dosen(),simpan.get(i).getNip(), simpan.get(i).getTlp(), simpan.get(i).getNidn(), simpan.get(i).getEmail(), R.drawable.ava));
+                        dosen.add(new object_mhsw_dosen(simpan.get(i).getNama(),simpan.get(i).getStatus_dosen(),simpan.get(i).getNip(), simpan.get(i).getTlp(), simpan.get(i).getNidn(), simpan.get(i).getEmail(), simpan.get(i).getPhoto()));
                     }
                     List<object_mhsw_dosen> rowListItem = dosen;
                     dosen2.addAll(dosen);

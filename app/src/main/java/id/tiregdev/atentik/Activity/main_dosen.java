@@ -1,8 +1,7 @@
 package id.tiregdev.atentik.Activity;
 
-import android.content.Context;
+import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.RemoteException;
 import android.support.design.widget.NavigationView;
@@ -28,13 +27,13 @@ import com.eyro.cubeacon.CBRangingListener;
 import com.eyro.cubeacon.CBRegion;
 import com.eyro.cubeacon.CBServiceListener;
 import com.eyro.cubeacon.Cubeacon;
+import com.eyro.cubeacon.LogLevel;
+import com.eyro.cubeacon.Logger;
 import com.eyro.cubeacon.SystemRequirementManager;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 import com.pusher.pushnotifications.PushNotifications;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import id.tiregdev.atentik.AtentikClient;
@@ -45,7 +44,6 @@ import id.tiregdev.atentik.Fragment.data_dosen_2;
 import id.tiregdev.atentik.Fragment.data_mhsw_2;
 import id.tiregdev.atentik.Fragment.home_dosen;
 import id.tiregdev.atentik.Fragment.notif_dosen;
-import id.tiregdev.atentik.Fragment.tracking_dosen;
 import id.tiregdev.atentik.Model.object_dosen;
 import id.tiregdev.atentik.R;
 import retrofit2.Call;
@@ -59,7 +57,9 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
     List<CBBeacon> beacons;
     TextView nama, nip, kelasOrStatus, namaheader, nipheader;
     String tokens;
+    BluetoothAdapter bluetoothadapter;
     private static final String TAG = main_dosen.class.getSimpleName();
+    int times = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +78,15 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
 
         CekToken ct = new CekToken();
         tokens = ct.Cek(this);
+
+        // set Cubeacon SDK log level to verbose mode
+        Logger.setLogLevel(LogLevel.VERBOSE);
+
+        // enable background power saver to save battery life up to 60%
+        Cubeacon.setBackgroundPowerSaver(true);
+
+        // initializing Cubeacon SDK
+        Cubeacon.initialize(this);
 
         cubeacon = Cubeacon.getInstance();
 
@@ -135,7 +144,22 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_cubeacon> callz = client.lokasiDosen("Bearer " + tokens, "kosong");
+        callz.enqueue(new Callback<object_cubeacon>() {
+            @Override
+            public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                if(response.isSuccessful())
+                {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
         // disconnect from Cubeacon service when this activity destroyed
         cubeacon.disconnect(this);
     }
@@ -143,35 +167,46 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public void didRangeBeaconsInRegion(final List<CBBeacon> beacons, CBRegion region) {
         this.beacons = beacons;
-        for (final CBBeacon beacon : beacons) {
-            String isi = "kosong";
-            if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
-            {
-                isi = beacon.getName();
-            }
-            AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-            Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, isi);
-            callz.enqueue(new Callback<object_cubeacon>() {
-                @Override
-                public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
-                    if(response.isSuccessful())
-                    {
-//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<object_cubeacon> call, Throwable t) {
-//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-//            }
-//            Toast.makeText(this, beacon.getName() + " " + beacon.getProximity(), Toast.LENGTH_SHORT).show();
-        }
         // update view using runnable
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+                times++;
+                if(times > 8)
+                {
+                    times = 0;
+                    for (final CBBeacon beacon : beacons) {
+                String isi = "kosong";
+                if(beacon.getProximity().toString().equals("NEAR") || beacon.getProximity().toString().equals("IMMEDIATE"))
+                {
+                    isi = beacon.getName();
+                }
+                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_cubeacon> callz = client.lokasiDosen("Bearer " + tokens, isi);
+                callz.enqueue(new Callback<object_cubeacon>() {
+                    @Override
+                    public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                        if(response.isSuccessful())
+                        {
+    //                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_cubeacon> call, Throwable t) {
+    //                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+//            }
+//            Toast.makeText(this, beacon.getName() + " " + beacon.getProximity(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(!bluetoothadapter.isEnabled())
+                {
+
+                    main_dosen.this.finish();
+                }
 //                Toast.makeText(activity_main.this, tess, Toast.LENGTH_SHORT).show();
 //                rcAdapter.notifyDataSetChanged();
 //                if (getSupportActionBar() != null) {
@@ -266,13 +301,6 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
                 nTitle.setVisibility(View.GONE);
                 title.setText("Notification");
                 break;
-            case R.id.tracking:
-                fragment = new tracking_dosen();
-                getSupportActionBar().setDisplayShowTitleEnabled(false);
-                title.setVisibility(View.VISIBLE);
-                nTitle.setVisibility(View.GONE);
-                title.setText("Tracking Position");
-                break;
             case R.id.data_mhsw:
                 fragment = new data_mhsw_2();
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -295,7 +323,24 @@ public class main_dosen extends AppCompatActivity implements NavigationView.OnNa
                 title.setText("About apps");
                 break;
             case R.id.logout:
+
                 AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                Call<object_cubeacon> callz = client.lokasiDosen("Bearer " + tokens, "kosong");
+                callz.enqueue(new Callback<object_cubeacon>() {
+                    @Override
+                    public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                        if(response.isSuccessful())
+                        {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 Call<object_dosen> call = client.logoutDosen("Bearer " + tokens);
                 call.enqueue(new Callback<object_dosen>() {
                     @Override

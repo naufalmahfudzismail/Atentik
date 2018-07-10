@@ -33,7 +33,7 @@ public class about_dosen extends Fragment {
     }
 
     public void setOpenWeb(){
-        final String url = "https://www.atentik.com";
+        final String url = "https://www.atentik.id";
         openWeb = v.findViewById(R.id.web);
         openWeb.setTextColor(getResources().getColor(R.color.pink));
         openWeb.setOnClickListener(new View.OnClickListener() {

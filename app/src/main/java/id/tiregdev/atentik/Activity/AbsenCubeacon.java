@@ -1,5 +1,6 @@
 package id.tiregdev.atentik.Activity;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.RemoteException;
@@ -23,6 +24,8 @@ import com.eyro.cubeacon.CBRangingListener;
 import com.eyro.cubeacon.CBRegion;
 import com.eyro.cubeacon.CBServiceListener;
 import com.eyro.cubeacon.Cubeacon;
+import com.eyro.cubeacon.LogLevel;
+import com.eyro.cubeacon.Logger;
 import com.eyro.cubeacon.SystemRequirementManager;
 
 import java.util.ArrayList;
@@ -53,6 +56,8 @@ public class AbsenCubeacon extends AppCompatActivity implements CBRangingListene
     RecyclerView rView;
     LinearLayoutManager lLayout;
     String tokens;
+    BluetoothAdapter bluetoothadapter;
+    int times = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,15 @@ public class AbsenCubeacon extends AppCompatActivity implements CBRangingListene
 
         // set listview on item click listener
 //        listView.setOnItemClickListener(this);
+
+        // set Cubeacon SDK log level to verbose mode
+        Logger.setLogLevel(LogLevel.VERBOSE);
+
+        // enable background power saver to save battery life up to 60%
+        Cubeacon.setBackgroundPowerSaver(true);
+
+        // initializing Cubeacon SDK
+        Cubeacon.initialize(this);
 
         // assign local instance of Cubeacon manager
         cubeacon = Cubeacon.getInstance();
@@ -111,7 +125,22 @@ public class AbsenCubeacon extends AppCompatActivity implements CBRangingListene
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_cubeacon> callz = client.lokasiMahasiswa("Bearer " + tokens, "kosong");
+        callz.enqueue(new Callback<object_cubeacon>() {
+            @Override
+            public void onResponse(Call<object_cubeacon> call, Response<object_cubeacon> response) {
+                if(response.isSuccessful())
+                {
+//                            Toast.makeText(activity_main.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<object_cubeacon> call, Throwable t) {
+//                        Toast.makeText(activity_main.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
         // disconnect from Cubeacon service when this activity destroyed
         cubeacon.disconnect(this);
     }
@@ -133,7 +162,16 @@ public class AbsenCubeacon extends AppCompatActivity implements CBRangingListene
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                rcAdapter.notifyDataSetChanged();
+                times++;
+                if(times > 2) {
+                    times = 0;
+                    rcAdapter.notifyDataSetChanged();
+                }
+                bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+                if(!bluetoothadapter.isEnabled())
+                {
+                    AbsenCubeacon.this.finish();
+                }
 //                if (getSupportActionBar() != null) {
 //                    getSupportActionBar().setSubtitle("Ranged beacon : " + beacons.size());
 //                }

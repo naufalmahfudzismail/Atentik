@@ -18,9 +18,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 
@@ -78,6 +81,7 @@ public class home extends Fragment {
     Context context = getActivity();
     private SwipeRefreshLayout swipeContainer;
     List<object_log> logs = new ArrayList<>();
+    ImageView foto;
 
     @Nullable
     @Override
@@ -125,6 +129,7 @@ public class home extends Fragment {
         nextData = v.findViewById(R.id.nextData);
         peraturans = v.findViewById(R.id.peraturan);
         editProfile = v.findViewById(R.id.editProfile);
+        foto = v.findViewById(R.id.foto);
         editProfile.setPreventCornerOverlap(false);
         absen = v.findViewById(R.id.absen);
         email = v.findViewById(R.id.email);
@@ -157,7 +162,7 @@ public class home extends Fragment {
                     tlp.setText(response.body().getTlp());
                     imei.setText(response.body().getImei_hp());
                     SP.setText(response.body().getStatus_sp());
-
+                    Glide.with(getContext()).load("https://atentik.id/assets/img/faces/" + response.body().getPhoto()).into(foto);
                 }
             }
 
@@ -319,9 +324,9 @@ public class home extends Fragment {
                     adapter_log rcAdapter = new adapter_log(getContext(), rowListItem);
                     rView.setAdapter(rcAdapter);
 
-                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lLayout.getOrientation());
-                    dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_shape));
-                    rView.addItemDecoration(dividerItemDecoration);
+//                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lLayout.getOrientation());
+//                    dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line_shape));
+//                    rView.addItemDecoration(dividerItemDecoration);
                 }
             }
 

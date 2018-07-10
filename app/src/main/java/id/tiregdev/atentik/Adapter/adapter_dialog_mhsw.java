@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import id.tiregdev.atentik.Model.object_mhsw_dosen;
@@ -43,7 +45,8 @@ public class adapter_dialog_mhsw extends RecyclerView.Adapter<adapter_dialog_mhs
         holder.emailAtauTlpn.setText(itemList.get(position).getEmailAtauTlpn());
         holder.jumlahKompenAtauStatusDosen.setText(itemList.get(position).getJumlahKompenAtauStatusDosen());
         holder.statusSPatauEmailDosen.setText(itemList.get(position).getStatusSPatauEmailDosen());
-        holder.ava.setImageResource(itemList.get(position).getAva());
+
+        Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(position).getPhoto()).into(holder.ava);
     }
 
     @Override
@@ -80,6 +83,9 @@ public class adapter_dialog_mhsw extends RecyclerView.Adapter<adapter_dialog_mhs
                     namadialog.setText(nama.getText());
                     jumlahstatusdialog.setText(jumlahKompenAtauStatusDosen.getText() + " jam");
                     statusemaildialog.setText("SP " + statusSPatauEmailDosen.getText());
+
+                    ImageView avava = exitDialogView.findViewById(R.id.ava);
+                    Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(getAdapterPosition()).getPhoto()).into(avava);
 
                     exitDialog.setView(exitDialogView);
                     exitDialog.show();

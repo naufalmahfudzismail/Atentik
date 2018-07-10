@@ -29,6 +29,16 @@ public class object_dosen {
     private String teks;
     @SerializedName("imei_hp")
     private String imei_hp;
+    @SerializedName("photo")
+    private String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getImei_hp() {
         return imei_hp;

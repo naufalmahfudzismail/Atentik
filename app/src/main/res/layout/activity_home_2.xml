@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
-                android:text="Muhamad Hafizh"
+                android:text="Nama"
                 android:textColor="@color/putih"
                 app:smart_font="@string/fontReguler" />
 
@@ -130,10 +130,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="20"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -164,10 +164,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="10"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -206,10 +206,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="1"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -238,10 +238,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="2"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -280,10 +280,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="4"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -312,10 +312,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="5dp"
-                                android:text="12"
+                                android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -347,7 +347,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginEnd="80dp"
+                            android:layout_marginEnd="120dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="12dp"
                             android:lineSpacingExtra="5dp"
@@ -355,7 +355,7 @@
                             app:smart_font="@string/fontBold" />
 
                         <RelativeLayout
-                            android:layout_width="70dp"
+                            android:layout_width="120dp"
                             android:layout_height="60dp"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/bg_shape_orange">
@@ -365,9 +365,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="4"
+                                android:text="0"
                                 android:textColor="@color/putih"
-                                android:textSize="44sp"
+                                android:textSize="30sp"
                                 app:smart_font="@string/fontBlack" />
 
                         </RelativeLayout>
@@ -430,7 +430,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/icon3"
-                        android:text="30000 IDR"
+                        android:text="0 IDR"
                         android:textColor="@color/Abu"
                         android:textSize="30sp"
                         app:smart_font="@string/fontBlack" />

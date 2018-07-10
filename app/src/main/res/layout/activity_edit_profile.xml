@@ -53,7 +53,7 @@
                 android:layout_below="@id/photo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:text="Muhamad Hafizh"
+                android:text="Nama"
                 android:textColor="@color/putih"
                 android:textSize="16sp"
                 app:smart_font="@string/fontBlack" />
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="4314010034"
+                    android:text="Nim"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/spasi"
-                    android:text="TI 8 Reg"
+                    android:text="Kelas"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -150,7 +150,7 @@
                 android:background="@android:color/transparent"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_mode_edit_black_24dp"
-                android:text="hvs137@gmail.com"
+                android:text="email"
                 android:textAllCaps="false"
                 android:textColor="@color/Abu"
                 android:textSize="16sp"
@@ -171,7 +171,7 @@
                 android:background="@android:color/transparent"
                 android:drawablePadding="15dp"
                 android:drawableStart="@drawable/ic_mode_edit_black_24dp"
-                android:text="085613212276"
+                android:text="nomor telpon"
                 android:textAllCaps="false"
                 android:textColor="@color/Abu"
                 android:textSize="16sp"
@@ -196,7 +196,7 @@
                 android:id="@+id/imeiORjabatan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="3212273"
+                android:text="imei"
                 app:smart_font="@string/fontReguler" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -212,7 +212,7 @@
                 android:id="@+id/spORstatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tidak mendapat SP"
+                android:text="status sp"
                 app:smart_font="@string/fontReguler" />
 
         </LinearLayout>

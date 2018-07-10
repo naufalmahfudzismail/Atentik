@@ -35,13 +35,13 @@ public class log_mahasiswa extends AppCompatActivity {
 
     RecyclerView rView;
     LinearLayoutManager  lLayout;
-    TextView save;
     String tokens;
     Locale localeID = new Locale("in", "ID");
     String jam = new SimpleDateFormat("HH:mm:ss ZZZZ", localeID).format(new Date());
     String tanggals = new SimpleDateFormat("dd-MM-yyyy", localeID).format(new Date());
     String hari = new SimpleDateFormat("EEEE", localeID).format(new Date());
-    List<object_log> logs = new ArrayList<>();
+    List<object_log_mahasiswa> logs = new ArrayList<>();
+    adapter_log_mahasiswa rcAdapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +55,6 @@ public class log_mahasiswa extends AppCompatActivity {
         CekToken ct = new CekToken();
         tokens = ct.Cek(this);
         setupAdapterLog();
-        setSave();
-    }
-
-    public void setSave(){
-        save = findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                log_mahasiswa.this.finish();
-                Toast.makeText(log_mahasiswa.this, "Save sukses", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -85,38 +73,38 @@ public class log_mahasiswa extends AppCompatActivity {
 
     public void setupAdapterLog(){
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-        Call<List<object_log>> call = client.lihatLogAbsenMahasiswa("Bearer " + tokens, tanggals, hari, jam);
-        call.enqueue(new Callback<List<object_log>>() {
+        Call<List<object_log_mahasiswa>> call = client.lihatLogAbsenMahasiswa("Bearer " + tokens, tanggals, hari, jam);
+        call.enqueue(new Callback<List<object_log_mahasiswa>>() {
             @Override
-            public void onResponse(Call<List<object_log>> call, Response<List<object_log>> response) {
+            public void onResponse(Call<List<object_log_mahasiswa>> call, Response<List<object_log_mahasiswa>> response) {
                 if(response.isSuccessful())
                 {
-                    List<object_log> simpan = response.body();
+                    List<object_log_mahasiswa> simpan = response.body();
                     for(int i = 0; i < simpan.size(); i++)
                     {
-                        logs.add(new object_log(simpan.get(i).getNama_matkul(),simpan.get(i).getRuangan(),simpan.get(i).getJam_hadir(), simpan.get(i).getWaktu_telat(), simpan.get(i).getKompen()));
+                        logs.add(new object_log_mahasiswa(simpan.get(i).getNama(),simpan.get(i).getNim(),simpan.get(i).getJam_hadir(), simpan.get(i).getWaktu_telat(), simpan.get(i).getKompen()));
                     }
-                    List<object_log> rowListItem = logs;
+                    List<object_log_mahasiswa> rowListItem = logs;
                     lLayout = new LinearLayoutManager(log_mahasiswa.this);
 
                     rView = findViewById(R.id.rView);
                     rView.setLayoutManager(lLayout);
 
-                    adapter_log rcAdapter = new adapter_log(log_mahasiswa.this, logs);
+                    rcAdapter = new adapter_log_mahasiswa(log_mahasiswa.this, logs);
                     rView.setAdapter(rcAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<object_log>> call, Throwable t) {
+            public void onFailure(Call<List<object_log_mahasiswa>> call, Throwable t) {
                 Toast.makeText(log_mahasiswa.this, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-    private List<object_log> getAllItemList(){
-        List<object_log> allItems = new ArrayList<>();
+    private List<object_log_mahasiswa> getAllItemList(){
+        List<object_log_mahasiswa> allItems = new ArrayList<>();
 //        allItems.add(new object_log_mahasiswa("Muhammad Hafizh", "4314010034","08.10", "10", "1"));
 //        allItems.add(new object_log_mahasiswa("Ilham Al Fajri", "4314010023","10.15", "15", "1"));
 //        allItems.add(new object_log_mahasiswa("Kadek Pandu", "4314010013","13.00", "0", "0"));

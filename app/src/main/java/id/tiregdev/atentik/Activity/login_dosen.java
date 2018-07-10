@@ -1,6 +1,7 @@
 package id.tiregdev.atentik.Activity;
 
 import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,6 +55,7 @@ public class login_dosen extends AppCompatActivity implements CBBootstrapListene
     private static final String TAG = login.class.getSimpleName();
     private static final int PERMISSIONS_REQUEST_READ_PHONE_STATE = 1;
     String imei;
+    BluetoothAdapter bluetoothadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +99,9 @@ public class login_dosen extends AppCompatActivity implements CBBootstrapListene
         String ldpass = readFile("logindosenpass");
         if(ldname.length() == 1024)
         {
-            Toast.makeText(this, ldname, Toast.LENGTH_SHORT).show();
-            masuklogindosen(ldname, ldpass);
+//            Toast.makeText(this, ldname, Toast.LENGTH_SHORT).show();
+            nim.setText(ldname.trim());
+            pass.setText(ldpass.trim());
         }
     }
 
@@ -221,6 +224,7 @@ public class login_dosen extends AppCompatActivity implements CBBootstrapListene
     }
 
     public void masuklogindosen(final String nims, final String passs){
+        bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
         Call<object_dosen> call = client.loginDosen(nims, passs, imei);
         call.enqueue(new Callback<object_dosen>() {
@@ -231,6 +235,10 @@ public class login_dosen extends AppCompatActivity implements CBBootstrapListene
                     if (response.body().getId() == "0")
                     {
                         Toast.makeText(login_dosen.this, "Imei tidak cocok", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(!bluetoothadapter.isEnabled())
+                    {
+                        Toast.makeText(login_dosen.this, "Anda harus menyalakan bluetooth", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -244,15 +252,20 @@ public class login_dosen extends AppCompatActivity implements CBBootstrapListene
                         startActivity(i);
                     }
                 }
-                else if(response.code() == 422)
+                else if(response.code() == 422 || response.code() == 401)
                 {
                     Toast.makeText(login_dosen.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(login_dosen.this, response.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<object_dosen> call, Throwable t) {
-                Toast.makeText(login_dosen.this, "Gagal: " + t.toString(), Toast.LENGTH_SHORT).show();
+                String salah = "Koneksi internet tidak tersambung";
+                Toast.makeText(login_dosen.this, "Gagal: \n" + salah, Toast.LENGTH_SHORT).show();
             }
         });
     }

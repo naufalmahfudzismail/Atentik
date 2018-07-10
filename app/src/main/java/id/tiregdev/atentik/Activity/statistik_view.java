@@ -16,11 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import id.tiregdev.atentik.AtentikClient;
+import id.tiregdev.atentik.Model.object_mahasiswa;
 import id.tiregdev.atentik.R;
+import id.tiregdev.atentik.Util.AtentikHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class statistik_view extends AppCompatActivity {
 
-    TextView openWeb;
+    TextView openWeb, nama;
+    String tokens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,28 @@ public class statistik_view extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+
+        nama = findViewById(R.id.nama);
+
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(this);
+
+        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+        Call<object_mahasiswa> call = client.profilMahasiswa("Bearer " + tokens);
+        call.enqueue(new Callback<object_mahasiswa>() {
+            @Override
+            public void onResponse(Call<object_mahasiswa> call, Response<object_mahasiswa> response) {
+                if(response.isSuccessful())
+                {
+                    nama.setText(response.body().getNama());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<object_mahasiswa> call, Throwable t) {
+                Toast.makeText(statistik_view.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         dialogOpsi();
         setOpenWeb();

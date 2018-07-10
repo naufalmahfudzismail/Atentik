@@ -48,29 +48,36 @@ public class register_dosen extends AppCompatActivity {
                 String passs = pass.getText().toString();
                 String confirmpasss = confirmPass.getText().toString();
 
-                AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-                Call<object_dosen> call = client.regisDosen(namas, nips, passs, confirmpasss);
-                call.enqueue(new Callback<object_dosen>() {
-                    @Override
-                    public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
-                        if(response.isSuccessful())
-                        {
-                            if(response.body().getId() == null)
+                if(passs.length() <8 || confirmpasss.length() <8)
+                {
+                    Toast.makeText(register_dosen.this, "Password minimal 8 karakter", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                    Call<object_dosen> call = client.regisDosen(namas, nips, passs, confirmpasss);
+                    call.enqueue(new Callback<object_dosen>() {
+                        @Override
+                        public void onResponse(Call<object_dosen> call, Response<object_dosen> response) {
+                            if (response.isSuccessful()) {
+                                if (response.body().getId() == null)
+                                    Toast.makeText(register_dosen.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
+                                else if (response.body().getId() == "0")
+                                    Toast.makeText(register_dosen.this, "Data sudah ada", Toast.LENGTH_SHORT).show();
+                                else {
+                                    Toast.makeText(register_dosen.this, "Anda telah teregistrasi", Toast.LENGTH_SHORT).show();
+                                    register_dosen.this.finish();
+                                }
+                            } else if (response.code() == 422 || response.code() == 401)
                                 Toast.makeText(register_dosen.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
-                            else if(response.body().getId() == "0")
-                                Toast.makeText(register_dosen.this, "Data sudah ada", Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(register_dosen.this, "Anda telah teregistrasi", Toast.LENGTH_SHORT).show();
                         }
-                        else if(response.code() == 422)
-                            Toast.makeText(register_dosen.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<object_dosen> call, Throwable t) {
-                        Toast.makeText(register_dosen.this, "Gagal: " + t.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<object_dosen> call, Throwable t) {
+                            String salah = "Koneksi internet tidak tersambung";
+                            Toast.makeText(register_dosen.this, "Gagal: \n" + salah, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 

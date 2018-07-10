@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import id.tiregdev.atentik.Activity.home_2;
@@ -45,7 +47,8 @@ public class adapter_kompen_terbanyak extends RecyclerView.Adapter<adapter_kompe
         holder.kelas.setText(itemList.get(position).getKelas());
         holder.jumlahKompen.setText(itemList.get(position).getJumlahKompen());
         holder.statusSP.setText(itemList.get(position).getStatusSP());
-        holder.ava.setImageResource(itemList.get(position).getAva());
+
+        Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(position).getPhoto()).into(holder.ava);
     }
 
     @Override

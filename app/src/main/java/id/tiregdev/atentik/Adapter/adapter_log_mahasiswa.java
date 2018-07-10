@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
+import id.tiregdev.atentik.Activity.CekToken;
 import id.tiregdev.atentik.Model.object_log_mahasiswa;
 import id.tiregdev.atentik.R;
 
@@ -23,6 +25,7 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
 
     private List<object_log_mahasiswa> itemList;
     private Context context;
+    String tokens;
 
     public adapter_log_mahasiswa(Context context, List<object_log_mahasiswa> itemList){
         this.itemList = itemList;
@@ -33,6 +36,8 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
     public holder_log_mahasiswa onCreateViewHolder(ViewGroup parent, int viewType){
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_log_mahasiswa,null);
         holder_log_mahasiswa hn = new holder_log_mahasiswa(layoutView);
+        CekToken ct = new CekToken();
+        tokens = ct.Cek(layoutView.getContext());
 
         RadioButton terlambat = layoutView.findViewById(R.id.RBtelat);
         terlambat.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +74,8 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
     public void onBindViewHolder(holder_log_mahasiswa holder, int position){
         holder.nama.setText(itemList.get(position).getNama());
         holder.nim.setText(itemList.get(position).getNim());
-        holder.jamHadir.setText(itemList.get(position).getJam());
-        holder.telat.setText(itemList.get(position).getTelat());
+        holder.jamHadir.setText(itemList.get(position).getJam_hadir());
+        holder.telat.setText(itemList.get(position).getWaktu_telat());
         holder.kompen.setText(itemList.get(position).getKompen());
     }
 
@@ -81,6 +86,7 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
 
     public class holder_log_mahasiswa extends RecyclerView.ViewHolder {
         public TextView nama, nim, jamHadir, telat, kompen;
+        public Button btnSet;
 
         public holder_log_mahasiswa(View itemView){
             super(itemView);
@@ -90,6 +96,14 @@ public class adapter_log_mahasiswa extends RecyclerView.Adapter<adapter_log_maha
             jamHadir = itemView.findViewById(R.id.jam);
             telat = itemView.findViewById(R.id.telat);
             kompen = itemView.findViewById(R.id.kompen);
+            btnSet = itemView.findViewById(R.id.set);
+
+            btnSet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "Fitur ini akan saya sempurnakan, saya janji!", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

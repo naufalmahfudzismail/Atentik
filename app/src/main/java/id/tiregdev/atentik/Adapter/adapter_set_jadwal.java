@@ -149,22 +149,29 @@ public class adapter_set_jadwal extends RecyclerView.Adapter<adapter_set_jadwal.
                     {
                         pilihans = "3";
                     }
-                    AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-                    Call<object_set_jadwal_masuk> call = client.setJadwalMasukMahasiswa("Bearer " + tokens, namaMatkul.getText().toString(), hari, namaDosen.getText().toString(), tanggals, pilihans, waktuMasuk.getText().toString(), jam);
-                    call.enqueue(new Callback<object_set_jadwal_masuk>() {
-                        @Override
-                        public void onResponse(Call<object_set_jadwal_masuk> call, Response<object_set_jadwal_masuk> response) {
-                            if(response.isSuccessful())
-                            {
-                                Toast.makeText(itemView.getContext(), response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    if(rb1.isChecked() && (waktuMasuk.getText().toString().isEmpty() || waktuMasuk.getText().toString().length() != 5 || !waktuMasuk.getText().toString().contains(".")))
+                    {
+                        Toast.makeText(itemView.getContext(), "Waktu masuk harus diisi dengan benar", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
+                        Call<object_set_jadwal_masuk> call = client.setJadwalMasukMahasiswa("Bearer " + tokens, namaMatkul.getText().toString(), hari, namaDosen.getText().toString(), tanggals, pilihans, waktuMasuk.getText().toString(), jam);
+                        call.enqueue(new Callback<object_set_jadwal_masuk>() {
+                            @Override
+                            public void onResponse(Call<object_set_jadwal_masuk> call, Response<object_set_jadwal_masuk> response) {
+                                if(response.isSuccessful())
+                                {
+                                    Toast.makeText(itemView.getContext(), response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<object_set_jadwal_masuk> call, Throwable t) {
-                            Toast.makeText(itemView.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<object_set_jadwal_masuk> call, Throwable t) {
+                                Toast.makeText(itemView.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 }
             });
         }

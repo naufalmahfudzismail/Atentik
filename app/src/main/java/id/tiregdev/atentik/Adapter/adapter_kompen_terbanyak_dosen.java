@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import id.tiregdev.atentik.Model.object_kompen_terbanyak;
@@ -69,7 +71,8 @@ public class adapter_kompen_terbanyak_dosen extends RecyclerView.Adapter<adapter
         holder.kelas.setText(itemList.get(position).getKelas());
         holder.jumlahKompen.setText(itemList.get(position).getJumlahKompen());
         holder.statusSP.setText(itemList.get(position).getStatusSP());
-        holder.ava.setImageResource(itemList.get(position).getAva());
+
+        Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(position).getPhoto()).into(holder.ava);
     }
 
     @Override

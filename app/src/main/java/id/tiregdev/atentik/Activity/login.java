@@ -2,6 +2,7 @@ package id.tiregdev.atentik.Activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,9 @@ import com.eyro.cubeacon.Cubeacon;
 import com.eyro.cubeacon.LogLevel;
 import com.eyro.cubeacon.Logger;
 import com.eyro.cubeacon.MonitoringState;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.firebase.messaging.RemoteMessage;
 import com.pusher.pushnotifications.PushNotificationReceivedListener;
 import com.pusher.pushnotifications.PushNotifications;
@@ -60,10 +64,16 @@ public class login extends AppCompatActivity implements CBBootstrapListener {
     private static final String TAG = login.class.getSimpleName();
     private static final int PERMISSIONS_REQUEST_READ_PHONE_STATE = 1;
     String imei;
+    BluetoothAdapter bluetoothadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            ProviderInstaller.installIfNeeded(this);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         sharedPreferences = getSharedPreferences("Token", Context.MODE_PRIVATE);
@@ -103,8 +113,8 @@ public class login extends AppCompatActivity implements CBBootstrapListener {
         String lpass = readFile("loginpass");
         if(lname.length() == 1024)
         {
-//            Toast.makeText(this, lname, Toast.LENGTH_SHORT).show();
-            masuklogin(lname, lpass);
+            nim.setText(lname.trim());
+            pass.setText(lpass.trim());
         }
 
     }
@@ -243,6 +253,7 @@ public class login extends AppCompatActivity implements CBBootstrapListener {
     }
 
     public void masuklogin(final String nims, final String passs){
+        bluetoothadapter = BluetoothAdapter.getDefaultAdapter();
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
         Call<object_mahasiswa> call = client.loginMahasiswa(nims, passs, imei);
         call.enqueue(new Callback<object_mahasiswa>() {
@@ -259,6 +270,10 @@ public class login extends AppCompatActivity implements CBBootstrapListener {
                     {
                         Toast.makeText(login.this, "Imei tidak cocok", Toast.LENGTH_SHORT).show();
                     }
+                    else if(!bluetoothadapter.isEnabled())
+                    {
+                        Toast.makeText(login.this, "Anda harus menyalakan bluetooth", Toast.LENGTH_SHORT).show();
+                    }
                     else
                     {
                         hideDialog();
@@ -272,17 +287,23 @@ public class login extends AppCompatActivity implements CBBootstrapListener {
                         startActivity(i);
                     }
                 }
-                else if(response.code() == 422)
+                else if(response.code() == 422 || response.code() == 401)
                 {
                     hideDialog();
                     Toast.makeText(login.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    hideDialog();
+                    Toast.makeText(login.this, response.toString(), Toast.LENGTH_SHORT).show();
                 }
                 hideDialog();
             }
 
             @Override
             public void onFailure(Call<object_mahasiswa> call, Throwable t) {
-                Toast.makeText(login.this, "Gagal: " + t.toString(), Toast.LENGTH_SHORT).show();
+                String salah = "Koneksi internet tidak tersambung";
+                Toast.makeText(login.this, "Gagal: \n" + salah, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -74,7 +74,7 @@
                     android:layout_toEndOf="@id/tlpTxt"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="geraldijoni.tik@pnj.ac.id"
+                    android:text="email"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -97,7 +97,7 @@
                     android:layout_below="@id/mailTxt"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/tlpTxt"
-                    android:text="085613212276"
+                    android:text="nomor telpon"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/spTxt"
                     android:layout_toEndOf="@+id/tlpTxt"
-                    android:text="KPS TMJ"
+                    android:text="jabatan"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -142,7 +142,7 @@
                     android:layout_below="@id/imei"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/tlpTxt"
-                    android:text="Dosen PNS"
+                    android:text="status"
                     android:textColor="@color/putih"
                     app:smart_font="@string/fontReguler" />
 
@@ -158,6 +158,58 @@
                 android:textAllCaps="false"
                 android:textColor="@color/putih"
                 app:smart_font="@string/fontBlack" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/tracking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="7dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            card_view:cardPreventCornerOverlap="false"
+            card_view:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/bgCV">
+
+                <RelativeLayout
+                    android:id="@+id/icon"
+                    android:layout_width="60dp"
+                    android:layout_height="90dp"
+                    android:background="#10ac84">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_person_pin_circle_white_24dp" />
+
+                </RelativeLayout>
+
+                <fr.arnaudguyon.smartfontslib.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@id/icon"
+                    android:text="Temukan Posisi Teman atau Dosen"
+                    android:textColor="@color/putih"
+                    app:smart_font="@string/fontBold" />
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="#10ac84" />
+
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -198,15 +250,6 @@
                 android:layout_below="@id/dashboardText"
                 android:textColor="@color/putih"
                 app:smart_font="@string/fontReguler"/>
-
-            <ImageView
-                android:id="@+id/filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_filter_list_white_24dp" />
 
         </RelativeLayout>
 
@@ -249,7 +292,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="5dp"
-                            android:text="20"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             android:textSize="44sp"
@@ -282,7 +325,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="5dp"
-                            android:text="10"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             android:textSize="44sp"
@@ -308,15 +351,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/izin"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
                         android:background="@drawable/bg_shape_ijo_pastel"
                         android:gravity="center"
                         android:padding="5dp">
@@ -327,7 +368,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="5dp"
-                            android:text="1"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             android:textSize="44sp"
@@ -343,14 +384,19 @@
                             android:textColor="@color/putih"
                             app:smart_font="@string/fontBold" />
 
-
                     </RelativeLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
                     <RelativeLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="120dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
                         android:background="@drawable/bg_shape_red_pastel"
                         android:gravity="center"
                         android:padding="5dp">
@@ -361,7 +407,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="5dp"
-                            android:text="2"
+                            android:text="0"
                             android:textAlignment="center"
                             android:textColor="@color/putih"
                             android:textSize="44sp"
@@ -377,27 +423,26 @@
                             android:textColor="@color/putih"
                             app:smart_font="@string/fontBold" />
 
-
                     </RelativeLayout>
 
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_shape_list_orange_pastel">
 
                     <View
                         android:layout_width="5dp"
-                        android:layout_height="60dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/bg_shape_orange_pastel" />
 
                     <fr.arnaudguyon.smartfontslib.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginEnd="80dp"
+                        android:layout_marginEnd="150dp"
                         android:layout_marginStart="20dp"
                         android:textColor="@color/putih"
                         android:layout_marginTop="12dp"
@@ -406,8 +451,8 @@
                         app:smart_font="@string/fontBold" />
 
                     <RelativeLayout
-                        android:layout_width="70dp"
-                        android:layout_height="60dp"
+                        android:layout_width="130dp"
+                        android:layout_height="80dp"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/bg_shape_orange_pastel">
 
@@ -417,9 +462,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="4"
+                            android:text="0"
                             android:textColor="@color/putih"
-                            android:textSize="44sp"
+                            android:textSize="32sp"
                             app:smart_font="@string/fontBlack" />
 
                     </RelativeLayout>
@@ -615,7 +660,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_toEndOf="@id/icon3"
-                    android:text="30000 IDR"
+                    android:text="0 IDR"
                     android:textColor="@color/putih"
                     android:textSize="30sp"
                     app:smart_font="@string/fontBlack" />

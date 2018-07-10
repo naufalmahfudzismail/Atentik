@@ -11,6 +11,7 @@ import id.tiregdev.atentik.Model.object_log_mahasiswa;
 import id.tiregdev.atentik.Model.object_lokasi;
 import id.tiregdev.atentik.Model.object_mahasiswa;
 import id.tiregdev.atentik.Model.object_mhsw_dosen;
+import id.tiregdev.atentik.Model.object_notif;
 import id.tiregdev.atentik.Model.object_set_jadwal_masuk;
 import id.tiregdev.atentik.Model.object_total;
 import id.tiregdev.atentik.Model.object_uang_kompen;
@@ -156,13 +157,17 @@ public interface AtentikClient {
     Call <object_total> totalUangKompen(@Header("Authorization") String auth,
                                               @Field("tanggal") String tanggal);
 
+    @FormUrlEncoded
     @Headers("Accept: application/json")
-    @GET("kompenTerbanyak")
-    Call<List<object_kompen_terbanyak>> kompenTerbanyak(@Header("Authorization") String auth);
+    @POST("kompenTerbanyak")
+    Call<List<object_kompen_terbanyak>> kompenTerbanyak(@Header("Authorization") String auth,
+                                                        @Field("tanggal") String tanggal);
 
+    @FormUrlEncoded
     @Headers("Accept: application/json")
-    @GET("kompenTerbanyakDosen")
-    Call<List<object_kompen_terbanyak>> kompenTerbanyakDosen(@Header("Authorization") String auth);
+    @POST("kompenTerbanyakDosen")
+    Call<List<object_kompen_terbanyak>> kompenTerbanyakDosen(@Header("Authorization") String auth,
+                                                             @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @Headers("Accept: application/json")
@@ -205,10 +210,18 @@ public interface AtentikClient {
     @FormUrlEncoded
     @Headers("Accept: application/json")
     @POST("lihatLogAbsenMahasiswa")
-    Call<List<object_log>> lihatLogAbsenMahasiswa (@Header("Authorization") String auth,
+    Call<List<object_log_mahasiswa>> lihatLogAbsenMahasiswa (@Header("Authorization") String auth,
                                                    @Field("tanggal") String tanggal,
                                                    @Field("hari") String hari,
                                                    @Field("jam") String jam);
+
+    @FormUrlEncoded
+    @Headers("Accept: application/json")
+    @POST("editLogAbsenMahasiswa")
+    Call<List<object_log_mahasiswa>> editLogAbsenMahasiswa (@Header("Authorization") String auth,
+                                                             @Field("pilihan") String pilihan,
+                                                             @Field("nim") String nim);
+
     @Headers("Accept: application/json")
     @GET("seluruhKelas")
     Call<List<object_mhsw_dosen>> seluruhKelas(@Header("Authorization") String auth);
@@ -235,5 +248,15 @@ public interface AtentikClient {
     @GET("lihatLokasi")
     Call<List<object_lokasi>> lihatLokasi(@Header("Authorization") String auth);
 
+    @Headers("Accept: application/json")
+    @GET("lihatLokasiDsn")
+    Call<List<object_lokasi>> lihatLokasiDsn(@Header("Authorization") String auth);
 
+    @Headers("Accept: application/json")
+    @GET("lihatNotif")
+    Call<List<object_notif>> lihatNotif(@Header("Authorization") String auth);
+
+    @Headers("Accept: application/json")
+    @GET("lihatNotifDosen")
+    Call<List<object_notif>> lihatNotifDosen(@Header("Authorization") String auth);
 }

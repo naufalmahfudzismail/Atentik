@@ -20,6 +20,26 @@ public class object_kompen_terbanyak {
     private String biaya;
     @SerializedName("status_sp")
     private String status_sp;
+    @SerializedName("tanggal")
+    private String tanggal;
+    @SerializedName("photo")
+    private String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
 
     public String getId_mhsw() {
         return id_mhsw;
@@ -64,13 +84,13 @@ public class object_kompen_terbanyak {
     private String urutan, kelas, jumlahKompen, statusSP;
     int ava;
 
-    public object_kompen_terbanyak(String urutan, String nama, String kelas, String jumlahKompen, String statusSP, int ava) {
+    public object_kompen_terbanyak(String urutan, String nama, String kelas, String jumlahKompen, String statusSP, String photo) {
         this.urutan = urutan;
         this.nama = nama;
         this.kelas = kelas;
         this.jumlahKompen = jumlahKompen;
         this.statusSP = statusSP;
-        this.ava = ava;
+        this.photo = photo;
     }
 
     public String getUrutan() {

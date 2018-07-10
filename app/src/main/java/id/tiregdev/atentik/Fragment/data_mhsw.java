@@ -54,7 +54,6 @@ public class data_mhsw extends Fragment {
         tokens = ct.Cek(this.getActivity());
         setupAdaptermhsw_dosen();
         setSearch();
-        dialogOpsi();
         return v;
     }
 
@@ -74,36 +73,6 @@ public class data_mhsw extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 filter(newText);
                 return true;
-            }
-        });
-    }
-
-    public void dialogOpsi() {
-        ImageView more = v.findViewById(R.id.more);
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater factory = LayoutInflater.from(getActivity());
-                final View exitDialogView = factory.inflate(R.layout.dialog_more_dsn_mhsw, null);
-                final AlertDialog exitDialog = new AlertDialog.Builder(getActivity()).create();
-
-                exitDialog.setView(exitDialogView);
-                exitDialogView.findViewById(R.id.filterKelas).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        dialogFilter();
-                    }
-                });
-
-                exitDialogView.findViewById(R.id.download).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        exitDialog.dismiss();
-                        Toast.makeText(getActivity(), "Unduh data sukses", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                exitDialog.show();
             }
         });
     }
@@ -169,7 +138,7 @@ public class data_mhsw extends Fragment {
                     List<object_mhsw_dosen> simpan = response.body();
                     for(int i = 0; i < simpan.size(); i++)
                     {
-                        mhsw.add(new object_mhsw_dosen(simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getNim(), simpan.get(i).getEmail(), simpan.get(i).getKompen(), simpan.get(i).getStatus_sp(), R.drawable.ava));
+                        mhsw.add(new object_mhsw_dosen(simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getNim(), simpan.get(i).getEmail(), simpan.get(i).getKompen(), simpan.get(i).getStatus_sp(), simpan.get(i).getPhoto()));
                     }
                     List<object_mhsw_dosen> rowListItem = mhsw;
                     mhsw2.addAll(mhsw);
@@ -203,7 +172,7 @@ public class data_mhsw extends Fragment {
           else{
             text = text.toLowerCase();
             for(int i = 0; i<mhsw2.size(); i++){
-                if(mhsw2.get(i).getNama().toLowerCase().contains(text) ||  mhsw2.get(i).getNipAtauNim().toLowerCase().contains(text)){
+                if(mhsw2.get(i).getNama().toLowerCase().contains(text) ||  mhsw2.get(i).getNipAtauNim().toLowerCase().contains(text) || mhsw2.get(i).getJabatanAatauKelas().toLowerCase().contains(text)){
                     mhsw.add(mhsw2.get(i));
                 }
             }

@@ -60,6 +60,7 @@ public class adapter_cubeacon extends RecyclerView.Adapter<adapter_cubeacon.hold
             public void onClick(View v) {
                 if(jarak.getText().equals("NEAR") || jarak.getText().equals("IMMEDIATE"))
                 {
+//                    Toast.makeText(context, tokens + ", " + hari + ", " + jam + ", " + tanggals + ", " + cubeaconNumber.getText().toString(), Toast.LENGTH_SHORT).show();
                         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
                         Call<object_log_mahasiswa> call = client.absenMahasiswa("Bearer " + tokens, hari, jam, tanggals, cubeaconNumber.getText().toString());
                         call.enqueue(new Callback<object_log_mahasiswa>() {

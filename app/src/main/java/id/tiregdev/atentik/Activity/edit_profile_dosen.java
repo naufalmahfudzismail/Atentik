@@ -17,6 +17,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import id.tiregdev.atentik.AtentikClient;
 import id.tiregdev.atentik.Util.AtentikHelper;
 import id.tiregdev.atentik.Model.object_dosen;
@@ -83,6 +85,7 @@ public class edit_profile_dosen extends AppCompatActivity {
 //                    imei.setText(response.body().getImei_hp());
                     status.setText(response.body().getStatus_dosen());
                     nip.setText(response.body().getNip());
+                    Glide.with(getBaseContext()).load("https://atentik.id/assets/img/faces/" + response.body().getPhoto()).into(photo);
                 }
             }
 
@@ -166,6 +169,10 @@ public class edit_profile_dosen extends AppCompatActivity {
                                 if(response.isSuccessful())
                                 {
                                     Toast.makeText(edit_profile_dosen.this, "Data berhasil di ubah", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(response.code() == 422 || response.code() == 401)
+                                {
+                                    Toast.makeText(edit_profile_dosen.this, "Data yang dimasukkan tidak tepat", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

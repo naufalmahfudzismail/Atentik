@@ -2,6 +2,7 @@ package id.tiregdev.atentik.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -69,6 +70,7 @@ public class dosen_adapter_notif extends RecyclerView.Adapter<dosen_adapter_noti
 
     public class holder_notif extends RecyclerView.ViewHolder {
         public TextView judul, isi, waktu;
+        SharedPreferences sharedpreferences;
 
         public holder_notif(final View itemView) {
             super(itemView);
@@ -77,9 +79,19 @@ public class dosen_adapter_notif extends RecyclerView.Adapter<dosen_adapter_noti
             isi = itemView.findViewById(R.id.isi);
             waktu = itemView.findViewById(R.id.time);
 
+            sharedpreferences = itemView.getContext().getSharedPreferences("notif", Context.MODE_PRIVATE);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    editor.putString("judul", judul.getText().toString());
+                    editor.putString("isi", isi.getText().toString());
+                    editor.putString("waktu", waktu.getText().toString());
+                    editor.apply();
+
                     Intent i = new Intent(context, detail_notif_dosen.class);
                     context.startActivity(i);
                 }

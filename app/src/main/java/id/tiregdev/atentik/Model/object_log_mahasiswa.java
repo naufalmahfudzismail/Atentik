@@ -20,6 +20,40 @@ public class object_log_mahasiswa {
     private String ruangan;
     @SerializedName("nama_cubeacon")
     private String nama_cubeacon;
+    @SerializedName("id_mhsw")
+    private String id_mhsw;
+    @SerializedName("nama")
+    private String nama;
+    @SerializedName("nim")
+    private String nim;
+    @SerializedName("status")
+    private String status;
+    @SerializedName("pilihan")
+    private String pilihan;
+
+    public String getPilihan() {
+        return pilihan;
+    }
+
+    public void setPilihan(String pilihan) {
+        this.pilihan = pilihan;
+    }
+
+    public String getId_mhsw() {
+        return id_mhsw;
+    }
+
+    public void setId_mhsw(String id_mhsw) {
+        this.id_mhsw = id_mhsw;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getNama_cubeacon() {
         return nama_cubeacon;
@@ -61,13 +95,11 @@ public class object_log_mahasiswa {
         this.ruangan = ruangan;
     }
 
-    private String nama, nim, jam, telat;
-
-    public object_log_mahasiswa(String nama, String nim, String jam, String telat, String kompen) {
+    public object_log_mahasiswa(String nama, String nim, String jam_hadir, String waktu_telat, String kompen) {
         this.nama = nama;
         this.nim = nim;
-        this.jam = jam;
-        this.telat = telat;
+        this.jam_hadir = jam_hadir;
+        this.waktu_telat = waktu_telat;
         this.kompen = kompen;
     }
 
@@ -85,22 +117,6 @@ public class object_log_mahasiswa {
 
     public void setNim(String nim) {
         this.nim = nim;
-    }
-
-    public String getJam() {
-        return jam;
-    }
-
-    public void setJam(String jam) {
-        this.jam = jam;
-    }
-
-    public String getTelat() {
-        return telat;
-    }
-
-    public void setTelat(String telat) {
-        this.telat = telat;
     }
 
     public String getKompen() {

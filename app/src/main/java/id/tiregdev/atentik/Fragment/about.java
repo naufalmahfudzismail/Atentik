@@ -30,7 +30,7 @@ public class about extends Fragment {
     }
 
     public void setOpenWeb(){
-        final String url = "https://www.atentik.com";
+        final String url = "https://www.atentik.id";
         openWeb = v.findViewById(R.id.web);
         openWeb.setOnClickListener(new View.OnClickListener() {
             @Override

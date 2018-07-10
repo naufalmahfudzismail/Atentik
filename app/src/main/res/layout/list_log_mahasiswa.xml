@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/AbuBG"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/AbuBG">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv"
@@ -43,11 +43,11 @@
                 android:id="@+id/jamTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_toStartOf="@id/jam"
                 android:text="Jam Hadir : "
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontReguler" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -55,10 +55,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:visibility="visible"
                 android:text="07:30"
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontBlack" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -67,10 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/jam"
                 android:layout_toStartOf="@id/jam"
-                android:visibility="visible"
                 android:text="Telat (menit) : "
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontReguler" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -80,9 +80,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/jam"
                 android:text="0"
-                android:visibility="visible"
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontBlack" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -90,23 +90,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/telatTxt"
-                android:visibility="visible"
+                android:layout_marginTop="0dp"
                 android:layout_toStartOf="@id/jam"
                 android:text="Kompensasi (jam) : "
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontReguler" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
                 android:id="@+id/kompen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/telat"
                 android:text="0"
                 android:textColor="@color/putih"
                 android:textSize="10sp"
+                android:visibility="visible"
                 app:smart_font="@string/fontBlack" />
 
             <fr.arnaudguyon.smartfontslib.FontTextView
@@ -114,48 +115,65 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/nim"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:text="Status Kehadiran Mahasiswa"
                 android:textColor="@color/putih"
-                android:layout_marginTop="5dp"
                 android:textSize="10sp"
                 app:smart_font="@string/fontReguler" />
 
             <RadioGroup
+                android:id="@+id/RG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/statusTxt"
-                android:id="@+id/RG"
                 android:orientation="horizontal">
 
+
                 <android.support.v7.widget.AppCompatRadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:buttonTint="@color/toska"
-                    android:textColor="@color/putih"
-                    android:textSize="12sp"
-                    android:checked="true"
                     android:id="@+id/RBtepatWaktu"
-                    android:text="Tepat Waktu"/>
-
-                <android.support.v7.widget.AppCompatRadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:buttonTint="@color/toska"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Hadir"
                     android:textColor="@color/putih"
                     android:textSize="12sp"
+                    app:buttonTint="@color/toska" />
+
+                <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/RBtelat"
-                    android:text="Terlambat"/>
-
-                <android.support.v7.widget.AppCompatRadioButton
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:buttonTint="@color/toska"
+                    android:layout_weight="1"
+                    android:text="Terlambat"
                     android:textColor="@color/putih"
                     android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:buttonTint="@color/toska" />
+
+                <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/RBtidakMasuk"
-                    android:text="Tidak Hadir"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tidak Hadir"
+                    android:textColor="@color/putih"
+                    android:textSize="12sp"
+                    app:buttonTint="@color/toska" />
+
 
             </RadioGroup>
+
+            <fr.arnaudguyon.smartfontslib.FontButton
+                android:id="@+id/set"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/RG"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_shape_birudongker"
+                android:text="SET"
+                android:textColor="@color/putih" />
 
         </RelativeLayout>
 

@@ -223,7 +223,7 @@ public class home_2 extends AppCompatActivity {
     public void setupAdapterkompen_terbanyak(){
 
         AtentikClient client = AtentikHelper.getClient().create(AtentikClient.class);
-        Call<List<object_kompen_terbanyak>> callz = client.kompenTerbanyak("Bearer " + tokens);
+        Call<List<object_kompen_terbanyak>> callz = client.kompenTerbanyak("Bearer " + tokens, tanggals);
         callz.enqueue(new Callback<List<object_kompen_terbanyak>>() {
             @Override
             public void onResponse(Call<List<object_kompen_terbanyak>> call, Response<List<object_kompen_terbanyak>> response) {
@@ -232,7 +232,7 @@ public class home_2 extends AppCompatActivity {
                     List<object_kompen_terbanyak> simpan = response.body();
                     for(int i = 0; i < simpan.size(); i++)
                     {
-                        kompenMhsw.add(new object_kompen_terbanyak(String.valueOf(i+1)+".",simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getKompen(), simpan.get(i).getStatus_sp(),R.drawable.ava));
+                        kompenMhsw.add(new object_kompen_terbanyak(String.valueOf(i+1)+".",simpan.get(i).getNama(),simpan.get(i).getNama_kelas(),simpan.get(i).getKompen() + " jam", simpan.get(i).getStatus_sp(), simpan.get(i).getPhoto()));
                     }
                     List<object_kompen_terbanyak> rowListItem = kompenMhsw;
                     lLayout = new LinearLayoutManager(home_2.this);

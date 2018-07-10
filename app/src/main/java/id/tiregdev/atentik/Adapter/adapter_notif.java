@@ -2,6 +2,7 @@ package id.tiregdev.atentik.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class adapter_notif extends RecyclerView.Adapter<adapter_notif.holder_not
 
     public class holder_notif extends RecyclerView.ViewHolder {
         public TextView judul, isi, waktu;
+        SharedPreferences sharedpreferences;
 
         public holder_notif(final View itemView) {
             super(itemView);
@@ -62,11 +64,23 @@ public class adapter_notif extends RecyclerView.Adapter<adapter_notif.holder_not
             isi = itemView.findViewById(R.id.isi);
             waktu = itemView.findViewById(R.id.time);
 
+            sharedpreferences = itemView.getContext().getSharedPreferences("notif", Context.MODE_PRIVATE);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    editor.putString("judul", judul.getText().toString());
+                    editor.putString("isi", isi.getText().toString());
+                    editor.putString("waktu", waktu.getText().toString());
+                    editor.apply();
+
                     Intent i = new Intent(context, detail_notif.class);
                     context.startActivity(i);
+
+
                 }
             });
         }
