@@ -126,5 +126,9 @@ semester selanjutnya berupa cuti akademik.\n\n
 mengulang seluruh mata kuliah pada semester yang sama pada tahun akademik
 berikutnya.
     </string>
+    <string name="salah_data">Data yang dimasukkan tidak tepat</string>
+    <string name="data_sudah_ada">Data sudah ada</string>
+    <string name="sudah_regist">Anda telah teregistrasi</string>
+    <string name="no_koneksi">Koneksi internet tidak tersambung</string>
 
 </resources>

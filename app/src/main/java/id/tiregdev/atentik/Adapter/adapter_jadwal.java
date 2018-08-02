@@ -21,21 +21,24 @@ import id.tiregdev.atentik.Activity.set_jadwal_masuk_dosen;
  * Created by HVS on 14/03/18.
  */
 
-public class adapter_jadwal extends RecyclerView.Adapter<adapter_jadwal.holder_jadwal> {
+public class adapter_jadwal extends RecyclerView.Adapter<adapter_jadwal.holder_jadwal>
+{
 
-    private List<object_jadwal> itemList;
-    private Context context;
-    TextView namaMatkul, namaDosen, jadwalHari;
+	private List<object_jadwal> itemList;
+	private Context context;
+	TextView namaMatkul, namaDosen, jadwalHari;
 
-    public adapter_jadwal(Context context, List<object_jadwal> itemList){
-        this.itemList = itemList;
-        this.context = context;
-    }
+	public adapter_jadwal(Context context, List<object_jadwal> itemList)
+	{
+		this.itemList = itemList;
+		this.context = context;
+	}
 
-    @Override
-    public holder_jadwal onCreateViewHolder(ViewGroup parent, int viewType){
-        final View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_jadwal,null);
-        holder_jadwal hn = new holder_jadwal(layoutView);
+	@Override
+	public holder_jadwal onCreateViewHolder(ViewGroup parent, int viewType)
+	{
+		final View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_jadwal, null);
+		holder_jadwal hn = new holder_jadwal(layoutView);
 
 //        option.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -65,37 +68,41 @@ public class adapter_jadwal extends RecyclerView.Adapter<adapter_jadwal.holder_j
 //            }
 //        });
 
-        return hn;
-    }
+		return hn;
+	}
 
-    @Override
-    public void onBindViewHolder(holder_jadwal holder, int position){
-        holder.namaMatkul.setText(itemList.get(position).getNamaMatkul());
-        holder.jam.setText(itemList.get(position).getJam());
+	@Override
+	public void onBindViewHolder(holder_jadwal holder, int position)
+	{
+		holder.namaMatkul.setText(itemList.get(position).getNamaMatkul());
+		holder.jam.setText(itemList.get(position).getJam());
 //        holder.jpm.setText(itemList.get(position).getJpm());
-        holder.ruangan.setText(itemList.get(position).getRuangan());
-        holder.namaDosenAtauNamaKelas.setText(itemList.get(position).getNamaDosenAtauNamaKelas());
-        holder.jadwalHari.setText(itemList.get(position).getHari());
-    }
+		holder.ruangan.setText(itemList.get(position).getRuangan());
+		holder.namaDosenAtauNamaKelas.setText(itemList.get(position).getNamaDosenAtauNamaKelas());
+		holder.jadwalHari.setText(itemList.get(position).getHari());
+	}
 
-    @Override
-    public int getItemCount(){
-        return this.itemList.size();
-    }
+	@Override
+	public int getItemCount()
+	{
+		return this.itemList.size();
+	}
 
-    public class holder_jadwal extends RecyclerView.ViewHolder {
-        public TextView namaMatkul, namaDosenAtauNamaKelas, jam, ruangan, jadwalHari;
+	public class holder_jadwal extends RecyclerView.ViewHolder
+	{
+		public TextView namaMatkul, namaDosenAtauNamaKelas, jam, ruangan, jadwalHari;
 
-        public holder_jadwal(View itemView){
-            super(itemView);
+		public holder_jadwal(View itemView)
+		{
+			super(itemView);
 
-            namaMatkul = itemView.findViewById(R.id.namaMatkul);
-            jam = itemView.findViewById(R.id.jam);
+			namaMatkul = itemView.findViewById(R.id.namaMatkul);
+			jam = itemView.findViewById(R.id.jam);
 //            jpm = itemView.findViewById(R.id.jpm);
-            ruangan = itemView.findViewById(R.id.ruangan);
-            namaDosenAtauNamaKelas = itemView.findViewById(R.id.namaDosenAtauNamaKelas);
-            jadwalHari = itemView.findViewById(R.id.jadwalHari);
-        }
-    }
+			ruangan = itemView.findViewById(R.id.ruangan);
+			namaDosenAtauNamaKelas = itemView.findViewById(R.id.namaDosenAtauNamaKelas);
+			jadwalHari = itemView.findViewById(R.id.jadwalHari);
+		}
+	}
 
 }

@@ -20,78 +20,87 @@ import id.tiregdev.atentik.R;
  * Created by HVS on 14/03/18.
  */
 
-public class adapter_dialog_mhsw extends RecyclerView.Adapter<adapter_dialog_mhsw.holder_mhsw_dosen> {
+public class adapter_dialog_mhsw extends RecyclerView.Adapter<adapter_dialog_mhsw.holder_mhsw_dosen>
+{
 
-    private List<object_mhsw_dosen> itemList;
-    private Context context;
+	private List<object_mhsw_dosen> itemList;
+	private Context context;
 
-    public adapter_dialog_mhsw(Context context, List<object_mhsw_dosen> itemList){
-        this.itemList = itemList;
-        this.context = context;
-    }
+	public adapter_dialog_mhsw(Context context, List<object_mhsw_dosen> itemList)
+	{
+		this.itemList = itemList;
+		this.context = context;
+	}
 
-    @Override
-    public holder_mhsw_dosen onCreateViewHolder(ViewGroup parent, int viewType){
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_data_dosen_dan_mhsw,null);
-        holder_mhsw_dosen hn = new holder_mhsw_dosen(layoutView);
-        return hn;
-    }
+	@Override
+	public holder_mhsw_dosen onCreateViewHolder(ViewGroup parent, int viewType)
+	{
+		View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_data_dosen_dan_mhsw, null);
+		holder_mhsw_dosen hn = new holder_mhsw_dosen(layoutView);
+		return hn;
+	}
 
-    @Override
-    public void onBindViewHolder(holder_mhsw_dosen holder, int position){
-        holder.nama.setText(itemList.get(position).getNama());
-        holder.jabatanAatauKelas.setText(itemList.get(position).getJabatanAatauKelas());
-        holder.nipAtauNim.setText(itemList.get(position).getNipAtauNim());
-        holder.emailAtauTlpn.setText(itemList.get(position).getEmailAtauTlpn());
-        holder.jumlahKompenAtauStatusDosen.setText(itemList.get(position).getJumlahKompenAtauStatusDosen());
-        holder.statusSPatauEmailDosen.setText(itemList.get(position).getStatusSPatauEmailDosen());
+	@Override
+	public void onBindViewHolder(holder_mhsw_dosen holder, int position)
+	{
+		holder.nama.setText(itemList.get(position).getNama());
+		holder.jabatanAatauKelas.setText(itemList.get(position).getJabatanAatauKelas());
+		holder.nipAtauNim.setText(itemList.get(position).getNipAtauNim());
+		holder.emailAtauTlpn.setText(itemList.get(position).getEmailAtauTlpn());
+		holder.jumlahKompenAtauStatusDosen.setText(itemList.get(position).getJumlahKompenAtauStatusDosen());
+		holder.statusSPatauEmailDosen.setText(itemList.get(position).getStatusSPatauEmailDosen());
 
-        Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(position).getPhoto()).into(holder.ava);
-    }
+		Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(position).getPhoto()).into(holder.ava);
+	}
 
-    @Override
-    public int getItemCount(){
-        return this.itemList.size();
-    }
+	@Override
+	public int getItemCount()
+	{
+		return this.itemList.size();
+	}
 
-    public class holder_mhsw_dosen extends RecyclerView.ViewHolder {
-        public TextView nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn, jumlahKompenAtauStatusDosen, statusSPatauEmailDosen;
-        public ImageView ava;
+	public class holder_mhsw_dosen extends RecyclerView.ViewHolder
+	{
+		public TextView nama, jabatanAatauKelas, nipAtauNim, emailAtauTlpn, jumlahKompenAtauStatusDosen, statusSPatauEmailDosen;
+		public ImageView ava;
 
-        public holder_mhsw_dosen(final View itemView){
-            super(itemView);
+		public holder_mhsw_dosen(final View itemView)
+		{
+			super(itemView);
 
-            nama = itemView.findViewById(R.id.nama);
-            jabatanAatauKelas = itemView.findViewById(R.id.jabatanAtauKelas);
-            nipAtauNim = itemView.findViewById(R.id.nipAtauNim);
-            emailAtauTlpn = itemView.findViewById(R.id.emailAtauTlp);
-            jumlahKompenAtauStatusDosen = itemView.findViewById(R.id.jumlahKompenAtauStatusDosen);
-            statusSPatauEmailDosen = itemView.findViewById(R.id.statusSPatauEmailDosen);
-            ava = itemView.findViewById(R.id.ava);
+			nama = itemView.findViewById(R.id.nama);
+			jabatanAatauKelas = itemView.findViewById(R.id.jabatanAtauKelas);
+			nipAtauNim = itemView.findViewById(R.id.nipAtauNim);
+			emailAtauTlpn = itemView.findViewById(R.id.emailAtauTlp);
+			jumlahKompenAtauStatusDosen = itemView.findViewById(R.id.jumlahKompenAtauStatusDosen);
+			statusSPatauEmailDosen = itemView.findViewById(R.id.statusSPatauEmailDosen);
+			ava = itemView.findViewById(R.id.ava);
 
-            itemView.setOnClickListener(  new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final LayoutInflater factory = LayoutInflater.from(context);
-                    final View exitDialogView = factory.inflate(R.layout.dialog_detail_mhsw, null);
-                    final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
+			itemView.setOnClickListener(new View.OnClickListener()
+			{
+				@Override
+				public void onClick(View view)
+				{
+					final LayoutInflater factory = LayoutInflater.from(context);
+					final View exitDialogView = factory.inflate(R.layout.dialog_detail_mhsw, null);
+					final AlertDialog exitDialog = new AlertDialog.Builder(context).create();
 
-                    TextView namadialog = exitDialogView.findViewById(R.id.nama);
+					TextView namadialog = exitDialogView.findViewById(R.id.nama);
 //                    TextView jumlahstatustxtdialog = exitDialogView.findViewById(R.id.jumlahKompenAtauStatusDosenTxt);
-                    TextView jumlahstatusdialog = exitDialogView.findViewById(R.id.jumlahKompenAtauStatusDosen);
-                    TextView statusemaildialog = exitDialogView.findViewById(R.id.statusSPatauEmailDosen);
-                    namadialog.setText(nama.getText());
-                    jumlahstatusdialog.setText(jumlahKompenAtauStatusDosen.getText() + " jam");
-                    statusemaildialog.setText("SP " + statusSPatauEmailDosen.getText());
+					TextView jumlahstatusdialog = exitDialogView.findViewById(R.id.jumlahKompenAtauStatusDosen);
+					TextView statusemaildialog = exitDialogView.findViewById(R.id.statusSPatauEmailDosen);
+					namadialog.setText(nama.getText());
+					jumlahstatusdialog.setText(jumlahKompenAtauStatusDosen.getText() + " jam");
+					statusemaildialog.setText("SP " + statusSPatauEmailDosen.getText());
 
-                    ImageView avava = exitDialogView.findViewById(R.id.ava);
-                    Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(getAdapterPosition()).getPhoto()).into(avava);
+					ImageView avava = exitDialogView.findViewById(R.id.ava);
+					Glide.with(context).load("https://atentik.id/assets/img/faces/" + itemList.get(getAdapterPosition()).getPhoto()).into(avava);
 
-                    exitDialog.setView(exitDialogView);
-                    exitDialog.show();
-                }
-            });
-        }
-    }
+					exitDialog.setView(exitDialogView);
+					exitDialog.show();
+				}
+			});
+		}
+	}
 
 }
